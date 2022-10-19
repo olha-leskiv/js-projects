@@ -8,7 +8,7 @@ let allQuotes = [];
 
 // Get Quotes from API
 async function initQuotes() {
-    const apiUrl = 'https://jacintodesign.github.io/quotes-api/data/quotes.json';
+    const apiUrl = 'https://type.fit/api/quotes';
     try {
         const something = await fetch(apiUrl);
         allQuotes = await something.json();
