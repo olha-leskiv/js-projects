@@ -3,11 +3,25 @@ const quote = document.getElementById('quote');
 const author = document.getElementById('author');
 const newQuote = document.getElementById('new-quote');
 const twitterButton = document.getElementById('twitter')
-const quoteContainer = document.querySelector('.quote-text')
+const quoteText = document.querySelector('.quote-text')
+const quoteContainer = document.querySelector('.quote-container')
+const loader = document.querySelector('.loader')
 let allQuotes = [];
 
+// Show Loader
+function showLoadingSpinner() {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+// Hide Loader
+function hideLoadingSpinner() {
+    loader.hidden = true;
+    quoteContainer.hidden = false;
+}
 // Get Quotes from API
 async function initQuotes() {
+    showLoadingSpinner();
     const apiUrl = 'https://type.fit/api/quotes';
     try {
         const something = await fetch(apiUrl);
@@ -19,6 +33,7 @@ async function initQuotes() {
 
 // Get One Quote 
 async function getOneQuote() {
+    showLoadingSpinner()
     // Pick a random quote from allQuotes array
     if(allQuotes.length == 0) {
          await initQuotes();
@@ -35,10 +50,11 @@ async function getOneQuote() {
     // Check if text field very long otherwise change font size
     quote.textContent = oneQuote.text;
     if(quote.textContent.length > 120) {
-        quoteContainer.classList.add("long-quote-text")
+        quoteText.classList.add("long-quote-text")
     } else {
-        quoteContainer.classList.remove("long-quote-text")
+        quoteText.classList.remove("long-quote-text")
     }
+ hideLoadingSpinner()
 }
 
 // Tweet Quote
@@ -47,8 +63,9 @@ function tweetQuote() {
     window.open(twitterUrl, '_blank')
 }
 
-getOneQuote()
-
 // Event Listeners
 newQuote.addEventListener('click', getOneQuote)
 twitterButton.addEventListener('click', tweetQuote)
+
+// First Run
+getOneQuote()
