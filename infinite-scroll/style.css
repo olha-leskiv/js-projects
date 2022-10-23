@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Corben&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Corben', cursive;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 24px auto 36px;
+}
+
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.image-container {
+    margin: 10px 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    margin-bottom: 24px;
+}
+
+/* Media Query: Large Smartphones */
+@media screen and (max-width: 600px) {
+    .image-container {
+        margin: 8px 4%;
+    }   
+    
+    .image-container img {
+        margin-bottom: 20px;
+    }
+}
