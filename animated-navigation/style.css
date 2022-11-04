@@ -22,6 +22,7 @@ body {
 }
 
 /* --- Navigation Menu ------------------------------ */
+
 nav, nav ul {
   margin: 0;
   width: 100vw;
@@ -56,21 +57,23 @@ nav li {
 
 nav ul li a::before {
   content: "";
-  width: 20vw;
-  height: 1px;
-  position: absolute;
+  width: 5vw;
+  height: 16px;
+  position: fixed;
   margin-top: 2%;
   left: 0;
   background-color: #fff;
+  transition: all 0.2s ease-in-out;
   }  
 
 nav li a:hover {
   transform: scale(120%);
-  
+  transition: all 0.1s ease-in-out;
 }
 
 nav li a:hover::before {
   width: 35vw;
+  transition: all 0.1s ease-in-out;
   } 
 
 
@@ -94,7 +97,59 @@ nav li:nth-of-type(5) {
   background-color: var(--navColor5);
 }
 
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slide-in-1 {
+  animation: 0.4s ease-in 0.1s both slide-in;
+}
+.slide-in-2 {
+  animation: 0.4s ease-in 0.2s both slide-in;
+}
+.slide-in-3 {
+  animation: 0.4s ease-in 0.3s both slide-in;
+}
+.slide-in-4 {
+  animation: 0.4s ease-in 0.4s both slide-in;
+}
+.slide-in-5 {
+  animation: 0.4s ease-in 0.5s both slide-in;
+}
+
+.slide-out-1 {
+  animation: 0.2s ease-out 0.4s both slide-out;
+}
+.slide-out-2 {
+  animation: 0.2s ease-out 0.3s both slide-out;
+}
+.slide-out-3 {
+  animation: 0.2s ease-out 0.2s both slide-out;
+}
+.slide-out-4 {
+  animation: 0.2s ease-out 0.1s both slide-out;
+}
+.slide-out-5 {
+  animation: 0.2s ease-out 0.0s both slide-out;
+}
+
+
 /* Overlay */
+
 .overlay {
   position: fixed;
   z-index: 9;
@@ -102,13 +157,20 @@ nav li:nth-of-type(5) {
   left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.0);
+  transform: translateX(-100vw);
+  transition: all 0.8s ease-in-out;
+}
+
+.overlay-slide-right {
   background-color: rgba(0, 0, 0, 0.7);
-  
+  transform: translateX(0);
+  transition: all 0.4s ease-in-out;
 }
 
 /* --- Menu Bars ------------------------------------ */
 
-.menu-bars {
+/* .menu-bars {
   position: fixed;
   top: 1rem;
   right: 2rem;
@@ -125,22 +187,68 @@ nav li:nth-of-type(5) {
   background-color: #fff;
   margin: 8px 0;
   transition: 0.4s;
+} */
+
+.menu {
+  position: fixed;
+  top: 64px;
+  right: -10px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: 0.5s ease;
+  height: 50px;
+  z-index: 11;
+  padding: 10px;
+}
+
+.menu .bar {
+  width: 40px;
+  height: 4px;
+  background: #fff;
+  transition: 0.4s ease;
+}
+.menu .bar:not(:first-child) {
+  margin-top: 8px;
+}
+
+#menu-icon {
+  position: fixed;
+  left: -999px;
+  top: -999px;
+}
+
+#menu-icon:checked + .menu {
+  transform: translate(-50%, -50%) rotatey(180deg);
+}
+#menu-icon:checked + .menu .bar {
+  transform: rotatey(180deg) rotatex(360deg);
+}
+#menu-icon:checked + .menu .bar:first-child {
+  transform: rotate(-45deg);
+  margin-top: 10px;
+}
+#menu-icon:checked + .menu .bar:nth-child(2) {
+  opacity: 0;
+}
+#menu-icon:checked + .menu .bar:nth-child(3) {
+  margin-top: -16px;
+  transform: rotate(45deg);
 }
 
 /* Rotate first bar */
-.change .bar1 {
+/* .change .bar1 {
   transform: rotate(-45deg) translate(-7px, 8px);
-}
+} */
 
 /* Fade out the second bar */
-.change .bar2 {
+/* .change .bar2 {
   opacity: 0;
-}
+} */
 
 /* Rotate last bar */
-.change .bar3 {
+/* .change .bar3 {
   transform: rotate(45deg) translate(-6px, -8px);
-}
+} */
 
 /* --- Sections ------------------------------------ */
 
