@@ -1,10 +1,7 @@
 const menuIcon = document.getElementById('menu-icon');
 const overlay = document.querySelector('.overlay');
-const nav1 = document.getElementById('nav-1');
-const nav2 = document.getElementById('nav-2');
-const nav3 = document.getElementById('nav-3');
-const nav4 = document.getElementById('nav-4');
-const nav5 = document.getElementById('nav-5');
+const numberOfMenuItems = 5;
+let navItemsArray = [];
 
 function slideInNav(navItem, navNumber) {
     navItem.classList.add(`slide-in-${navNumber}`);
@@ -17,7 +14,6 @@ function slideOutNav(navItem, navNumber) {
 }
 
 function animateNavItems(isOverlayHidden) {
-    let navItemsArray = [nav1, nav2, nav3, nav4, nav5];
     for(let i = 0; i < 5; i++) {
         let navItem = navItemsArray[i];
         let navNumber = i + 1;
@@ -33,9 +29,10 @@ function toggleOverlay(event) {
     animateNavItems(menuIcon.checked)
 }
 
+for (let i = 1; i <= numberOfMenuItems; i++) {
+    let navItem = document.getElementById(`nav-${i}`);
+    navItem.addEventListener('click', toggleOverlay);
+    navItemsArray.push(navItem);
+}
+
 menuIcon.addEventListener('change', toggleOverlay);
-nav1.addEventListener('click', toggleOverlay);
-nav2.addEventListener('click', toggleOverlay);
-nav3.addEventListener('click', toggleOverlay);
-nav4.addEventListener('click', toggleOverlay);
-nav5.addEventListener('click', toggleOverlay);
