@@ -10,31 +10,39 @@
 <body>
 
     <video class="video-background" loop muted autoplay>
-        <source src="record.mp4"></source>
+        <source src="earth.mp4"></source>
     </video>
     <div class="video-overlay"></div>
 
     <div class="container">
         <div class="input-container" id="input-container" hidden>
                 <h1>Create Custom Countdown!</h1>
-                <form action="" class="form" id="countdownForm">
+                <form action="" class="form" id="countdown-form">
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="What are you counting down to?">
+                    <p hidden>Add a title</p>
                     <label for="date-picker">Select a Date</label>
                     <input type="date" id="date-picker">
+                    <p hidden>Select a date</p>
                     <button type="submit">Submit</button>
                 </form>
         </div>
 
-        <div class="countdown" id="countdown">
+        <div class="countdown" id="countdown" hidden>
             <h1 id="countdown-title">Countdown Title Here</h1>
             <ul>
-                <li><span>3</span>Days</li>
-                <li><span>6</span>Hours</li>
-                <li><span>45</span>Minutes</li>
-                <li><span>52</span>Seconds</li>
+                <li><span></span>Days</li>
+                <li><span></span>Hours</li>
+                <li><span></span>Minutes</li>
+                <li><span></span>Seconds</li>
             </ul>
             <button id="countdown-button">Reset</button>
+        </div>
+
+        <div class="complete" id="complete" hidden>
+            <h1 class="complete-title">Countdown Complete!</h1>
+            <h1 class="complete-info">Countdown Finished on 05-05-2020</h1>
+            <button id="complete-button">New Countdown</button>
         </div>
     </div>
     <!-- Script -->

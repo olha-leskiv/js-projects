@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&family=Righteous&display=swap');
 
 html {
   box-sizing: border-box;
@@ -35,7 +35,7 @@ video {
   top: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(123, 76, 47, 0.4);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Container */
@@ -44,12 +44,12 @@ video {
   min-height: 304px;
   color: black;
   margin: 0 auto;
-  padding: 25px 50px;
+  padding: 60px 60px 68px 60px;
   border-radius: 5px;
   z-index: 2;
   display: flex;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .input-container {
@@ -58,15 +58,15 @@ video {
 }
 
 h1 {
-  font-size: 35px;
+  font-size: 40px;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 24px;
 }
 
 /* Form */
 .form {
-  width: 480px;
+  width: 100%;
 }
 
 label {
@@ -85,6 +85,18 @@ input {
   font-family: 'Albert Sans', sans-serif;
 }
 
+.input-error {
+  border: 1px solid rgb(199, 10, 10);  
+  margin-bottom: 2px;
+}
+
+p {
+  margin-top: 2px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: rgb(199, 10, 10);
+}
+
 /* Button */
 button {
   width: 100%;
@@ -93,7 +105,7 @@ button {
   margin-top: 15px;
   border: none;
   text-transform: uppercase;
-  background: #006959;
+  background: rgb(219, 132, 17);
   color: white;
   cursor: pointer;
   outline: none;
@@ -110,14 +122,15 @@ ul {
 }
 
 li {
-
-  font-size: 30px;
+  display: inline-block;
+  font-size: 28px;
   list-style-type: none;
   padding: 10px;
   text-transform: uppercase;
 }
 
 li span {
+  font-family: 'Righteous', cursive;
   display: block;
   font-size: 80px;
   text-align: center;
@@ -128,7 +141,28 @@ li span {
   position: relative;
   top: 60px;
 }
+.complete-title {
+  animation: complete 4s infinite;
+}
 
+@keyframes complete {
+ 0% {
+  color: rgb(241, 18, 18);
+ }  
+ 25% {
+  color: rgb(241, 126, 18);
+ }
+ 50% {
+  color: rgb(241, 226, 18);
+  transform: scale(135%);
+ }
+ 75%{
+  color: rgb(100, 241, 18);
+ }
+ 100%{
+  color: rgb(9, 208, 223);
+ }
+}
 
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
