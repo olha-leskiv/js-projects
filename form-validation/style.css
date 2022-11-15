@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Cantata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap');
+
+:root {
+   --main-color: rgb(60, 82, 22);
+   --valid: rgb(114, 177, 114);
+   --invalid: rgb(121, 26, 42) ;
+   --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: end;
+    font-family: 'Cantata One', serif;
+}
+
+.img-container {
+    background: url(https://images.unsplash.com/photo-1668279175893-7627ffbb5fa5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80) darkkhaki center;
+    background-repeat: none;
+    background-size: cover;
+    width: 50%;
+}
+
+.form-container {
+    width: 50%;
+    z-index: 2;
+    background-color: #fff;
+    padding: 7vh 9vw;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 16px;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+label {
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+input {
+    height: 44px;
+    border: none;
+    background-color: rgb(245, 245, 244);
+    font-size: 15px;
+    padding-left: 20px;
+    border-radius: var(--border-radius);
+    caret-color: var(--main-color);
+    font-family: 'Fragment Mono', monospace;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: 2px var(--main-color) solid;
+}
+
+input:valid {
+    border: 1px solid var(--valid);
+}
+
+input:invalid {
+    border: 1px solid var(--invalid);
+}
+
+button {
+    display: block;
+    background-color:var(--main-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    text-transform: uppercase;
+    color: white;
+    font-size: 17px;
+    min-width: 160px;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    filter: brightness(90%);
+}
+
+button:active {
+    filter: brightness(75%);
+}
+
+.message-container {
+    margin-top: 24px;
+    border: 1px solid var(--valid);
+    border-style: dotted;
+    border-radius: var(--border-radius);
+    color: var(--valid);
+    font-family: 'Fragment Mono', monospace;
+    text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        min-width: 80%;
+        padding: 7vh 10vw;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .container {
+        width: 100%;
+        padding: 3vh 10vw;
+    }
+    .img-container {
+        display: none;
+    } 
+    button {
+        margin: 24px auto;
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 32px;
+    }
+}

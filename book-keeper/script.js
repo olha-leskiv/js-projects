@@ -6,33 +6,72 @@ const bookmarksContainer = document.getElementById('bookmarks-container');
 const inputName = document.getElementById('website-name');
 const inputUrl = document.getElementById('website-url');
 const deleteBookmarkBtn = document.getElementById('delete-bookmark');
+const inputs = document.querySelectorAll('input');
 
 let bookmark = {
     name: '',
     url: ''
-};
+}
 
 function showModal() {
-    modal.classList.add('show-modal')   
+    modal.classList.add('show-modal');
+    inputName.focus(); 
 }
 
 function hideModal() {
     modal.classList.remove('show-modal');
+    resetForm()
+}
+
+function resetForm() {
     inputName.value = '';
     inputUrl.value = '';
+    inputName.classList.remove('input-error');
+    inputUrl.classList.remove('input-error')
 }
 
 function addNewBookmark(event) {
     event.preventDefault()
-    getValues()
-    createBookmark()
-    addToLocalStorage()
-    hideModal()
+    if(formIsValid()) {
+        getValuesFromForm()
+        createBookmark()
+        hideModal()
+        addToLocalStorage()
+    } else {
+        focusError()
+    }
 }
 
-function getValues() {
+function focusError() {
+    for(let i = 0; i < inputs.length; i++) {
+        if(inputs[i].value === '') {
+            inputs[i].focus();
+            break
+        }
+    }
+}
+
+function formIsValid() {
+    let result = true;
+    inputName.classList.remove('input-error');
+    inputUrl.classList.remove('input-error')
+    if(!inputName.value) {
+        inputName.classList.add('input-error');
+        result = false;
+    }
+    if(!inputUrl.value) {
+        inputUrl.classList.add('input-error');
+        result = false;
+    }
+    return result
+}
+
+function getValuesFromForm() {
     bookmark.name = inputName.value;
     bookmark.url = inputUrl.value;
+    if(!bookmark.url.includes('http://') || !bookmark.url.includes('https://')) {
+        bookmark.url = 'https://' + bookmark.url
+    }
 }
 
 function createBookmark() {
@@ -52,13 +91,15 @@ function createBookmark() {
 }
 
 function addToLocalStorage() {
-    localStorage.setItem(`b-${bookmark.name}`, JSON.stringify(bookmark))
+    let key = `b-${bookmark.name}`;
+    let value = JSON.stringify(bookmark);
+    localStorage.setItem(key, value)
 }
 
 function loadStorage() {
     for(i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
-        if('b-' == key.slice(0, 2)) {
+        if(key.slice(0, 2) === 'b-') {
             bookmark = JSON.parse(localStorage.getItem(key));
             createBookmark();
         }
@@ -71,7 +112,6 @@ function showDeleteIcon() {
 
 function deleteBookmark() {
     let name = this.nextElementSibling.children[1].innerText;
-    console.log(name)
     this.closest('.item').remove();
     localStorage.removeItem(`b-${name}`)
 }
@@ -80,4 +120,5 @@ closeModalIcon.addEventListener('click', hideModal);
 addBookmarkBtn.addEventListener('click', showModal);
 form.addEventListener('submit', addNewBookmark);
 window.addEventListener('load', loadStorage);
+window.addEventListener('click', (e) => e.target === modal ? hideModal() : false)
 
