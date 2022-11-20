@@ -4,7 +4,7 @@
 :root {
    --main-color: rgb(60, 82, 22);
    --valid: rgb(114, 177, 114);
-   --invalid: rgb(121, 26, 42) ;
+   --invalid: rgb(179, 18, 45) ;
    --border-radius: 8px;
 }
 
@@ -39,6 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 0 16px;
+    position: relative;
 }
 
 h1 {
@@ -53,7 +54,7 @@ label {
 
 input {
     height: 44px;
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: rgb(245, 245, 244);
     font-size: 15px;
     padding-left: 20px;
@@ -61,19 +62,56 @@ input {
     caret-color: var(--main-color);
     font-family: 'Fragment Mono', monospace;
     transition: all 0.3s;
+    outline: none;
 }
 
 input:focus {
-    outline: 2px var(--main-color) solid;
+    background-color: white;
+    border-color: var(--main-color);
 }
 
-input:valid {
+/* input:valid {
     border: 1px solid var(--valid);
+} */
+
+input[required] {
+    background-image: url(img/asterisk-solid.svg);
+    background-repeat: no-repeat;
+    background-position: right 4px top 4px;
+
 }
 
-input:invalid {
-    border: 1px solid var(--invalid);
+.visibility-icon {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    padding: 8px;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border-radius: var(--border-radius);
 }
+
+.visibility-icon:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.visibility-icon:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+/* 
+.tooltip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 16px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+} */
+/* input:invalid {
+    border: 1px solid var(--invalid);
+} */
 
 button {
     display: block;

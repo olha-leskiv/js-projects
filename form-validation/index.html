@@ -15,30 +15,32 @@
     </div>
    <div class="form-container">
        <h1>Sign Up Today</h1>
-       <form id="form">
+       <form id="form" name="form">
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="Enter your name">
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="555-555-5555">
+                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3" maxlength="160" title="Hello">
             </div>
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="email@address.com">
-            </div>
-            <div class="form-group">
-                <label for="website">Website URL</label>
-                <input type="url" id="website" placeholder="htttps://google.com">
+                <input type="email" id="email" placeholder="email@address.com" required>
             </div>
             <div class="form-group">
                 <label for="password1">Password</label>
-                <input type="password" id="password1" placeholder="Create password">
+                <input type="password" id="password1" name="password1" autocomplete="current-password" placeholder="Create password" required pattern="^(?=.*\d)(?=.*[a-zA-Z]).{8,}$">
+                <i class="visibility-icon fa-solid fa-eye" title="Password should have at least 8 characters and at least 1 number"></i>
             </div>
             <div class="form-group">
                 <label for="password2">Confirm Password</label>
-                <input type="password" id="password2" placeholder="Comfirm password">
+                <input type="password" id="password2" name="password2" placeholder="Comfirm password" required pattern="^(?=.*\d)(?=.*[a-zA-Z]).{8,}$" autocomplete="current-password" >
+                <i class="visibility-icon fa-solid fa-eye"></i>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="website">Website URL</label>
+                <input type="url" id="website" name="website" title="Url should start with 'https//'" placeholder="https://google.com">
             </div>
             <button type="submit">Register</button>
        </form>
@@ -47,6 +49,7 @@
        </div>
    </div>
     <!-- Script -->
+    <script src="input-mask.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 
