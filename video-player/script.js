@@ -9,15 +9,8 @@ const duration = document.getElementById('duration');
 const volumeRange = document.getElementById('volume-range');
 const volumeContainer = document.getElementById('volume-container');
 const volumeIcon = document.getElementById('volume-icon');
-// const volumeToggle = document.getElementById('volume-toggle');
-// const volumelineContainer = document.getElementById('volumeline-container');
-// const volumeline = document.getElementById('volumeline');
 
-// volumeline.style.width = video.volume * 100 + "%";
 
-function updateVolumeRange() {
-    volumeRange.value = video.volume * 100;
-}
 
 function videoIsPlaying() {
     return !video.paused
@@ -92,58 +85,30 @@ function changeVolumeIcon() {
     let volume = video.volume;
     console.log(volumeRange.value, video.volume)
 
-    if(volume > 0.5) {
+    if(volume > 0.5 && !video.muted) {
         volumeIcon.className = 'fa-solid fa-volume-high volume';
-    } else if (0.5 > volume && volume > 0) {
+    } else if (0.5 > volume && volume > 0.05 && !video.muted) {
         volumeIcon.className = 'fa-solid fa-volume-low volume';
-    } else if (video.muted) {
-        console.log(video.muted)
+    } else if (volume < 0.05 || video.muted) {
         volumeIcon.className = 'fa-solid fa-volume-mute volume';
     }
 }
 
 function changeVolume(e) {
-
-    // let offsetX = e.clientX - volumelineContainer.getBoundingClientRect().left;
-    // let containerWidth = volumelineContainer.offsetWidth;
-
-    // if(offsetX < 0) {
-    //     offsetX = 0;
-    // }
-    // if(offsetX > containerWidth) {
-    //     offsetX = containerWidth;
-    // }
-
-
-    // volumeline.style.width = offsetX + "px";
-    // volumeToggle.style.left = offsetX + "px";
     video.volume = e.target.value / 100;
+    if (video.volume < 0.05) {
+        video.muted = true;
+    } else {
+        video.muted = false;
+    }
 }
 
-// function changeVolume(e) {
-//     console.log(e)
-//     let offsetX = e.clientX - volumelineContainer.getBoundingClientRect().left;
-//     let containerWidth = volumelineContainer.offsetWidth;
-
-//     if(offsetX < 0) {
-//         offsetX = 0;
-//     }
-//     if(offsetX > containerWidth) {
-//         offsetX = containerWidth;
-//     }
-
-//     let volume = offsetX / containerWidth;
-
-//     volumeline.style.width = offsetX + "px";
-//     volumeToggle.style.left = offsetX + "px";
-//     video.volume = volume;
-// }
-
-// function setVolumeToggle() {
-//     let offsetX = video.volume * volumelineContainer.offsetWidth;
-//     volumeline.style.width = offsetX + "px";
-//     volumeToggle.style.left = offsetX + "px";
-// }
+function updateVolumeRange() {
+    volumeRange.value = video.volume * 100;
+    if(video.volume < 0.05) {
+        video.volume = 0.5;
+    }
+}
 
 playBtn.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
 expandBtn.addEventListener('click', openFullscreen);
@@ -151,12 +116,9 @@ video.addEventListener('timeupdate', updateProgress);
 video.addEventListener('loadeddata', setDuration);
 video.addEventListener('ended', pauseVideo);
 volumeRange.addEventListener('input', changeVolumeIcon);
-// video.addEventListener('loadeddata', setVolumeToggle)
 
 volumeIcon.addEventListener('click', toggleMute);
 volumeRange.addEventListener('input', changeVolume);
-// volumelineContainer.addEventListener('change', changeVolume);
 
-// volumeToggle.addEventListener('drag', changeVolume)
 
 updateVolumeRange();
