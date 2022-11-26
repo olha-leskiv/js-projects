@@ -12,7 +12,7 @@
 <body>
     <div class="video-container">
         <video loop><source src="guitar.mp4"></video>
-        <div class="hover-info">
+        <div class="hover-info" id="hover-info">
             <div class="title-container">
                 <i class="fa-solid fa-video"></i><h3>Video Title</h3> 
             </div>
@@ -24,8 +24,8 @@
                     <p class="duration" id="duration">0:00</p>
                 </div>
     
-                <div class="timeline-container">
-                    <div class="timeline" id="timeline">
+                <div class="timeline-container" id="timeline-container">
+                    <div class="timeline" >
                         <div class="progressline" id="progressline"></div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <i class="fa-solid fa-play control" id="play"></i>
 
                         <div class="volume-container control" id="volume-container">
-                            <i class="fa-solid fa-volume-high volume" id="volume-icon"></i>
+                            <i title='Mute' class="fa-solid fa-volume-high volume" id="volume-icon"></i>
                             <div class="indicator-container" id="volumeline-container">
                                 <input type="range" id="volume-range">
                             </div>
@@ -43,9 +43,19 @@
                     </div>
 
                     <div class="right">
-                        <div class="speed-container control">
+                        <div class="speed-container control" id="speed-control">
                             <p>1.0x</p>
                             <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="speed-dropdown" id="speed-dropdown">
+                            <p class="control">0.25x</p>
+                            <p class="control">0.5x</p>
+                            <p class="control">0.75x</p>
+                            <p class="control selected">1.0x</p>
+                            <p class="control">1.25x</p>
+                            <p class="control">1.5x</p>
+                            <p class="control">1.75x</p>
+                            <p class="control">2.0x</p>
                         </div>
 
                         <i class="fa-solid fa-expand control" id="expand"></i>
