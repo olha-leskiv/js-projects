@@ -12,6 +12,7 @@
 <body>
     <div class="video-container">
         <video loop><source src="guitar.mp4"></video>
+        <video loop class="fake-video"><source src="guitar.mp4" ></video>
         <div class="hover-info" id="hover-info">
             <div class="title-container">
                 <i class="fa-solid fa-video"></i><h3>Video Title</h3> 
@@ -27,6 +28,12 @@
                 <div class="timeline-container" id="timeline-container">
                     <div class="timeline" >
                         <div class="progressline" id="progressline"></div>
+                        <div class="hovered-time" id="hovered-time"></div>
+                    </div>
+
+                    <div class="preview-container" id="preview" hidden>
+                         <canvas id="canvas"></canvas>
+                         <p class="preview-time" id="preview-time"></p>
                     </div>
                 </div>
     

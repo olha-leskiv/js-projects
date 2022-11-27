@@ -12,6 +12,13 @@ const volumeIcon = document.getElementById('volume-icon');
 const speedDropdown = document.getElementById('speed-dropdown');
 const speedControl = document.getElementById('speed-control');
 const hoverInfo = document.getElementById('hover-info');
+const previewTime = document.getElementById('preview-time')
+const hoveredTime = document.getElementById('hovered-time')
+
+let canvasEl = document.getElementById('canvas');
+let preview = document.getElementById('preview');
+let fakeVideo = document.querySelector('.fake-video');
+
 
 speedDropdown.hidden = true;
 
@@ -167,10 +174,33 @@ function setControlsVisibility(event) {
 }
 
 function setNewTime(event) {
+
     let clickedX = event.offsetX;
     progressline.style.width = clickedX + 'px';
+    video.currentTime = clickedX * video.duration / timeline.offsetWidth;
+    updateTime();
 }
 
+function showThumbnail(e) {
+    if(!e.target.closest('.timeline-container') || e.target.closest('.preview-container')) {
+        preview.hidden = true;
+        hoveredTime.hidden = true;
+        return
+    }
+
+    preview.hidden = false;
+    hoveredTime.hidden = false;
+
+    let hoveredX = e.offsetX;
+    let x = e.offsetX;
+    hoveredTime.style.left = hoveredX + 'px';
+    canvasEl.closest('.preview-container').style.left = x + 'px';
+
+    newTime = hoveredX * video.duration / timeline.offsetWidth;
+    previewTime.textContent = formateTime(newTime);
+    fakeVideo.currentTime = newTime;
+
+}
 
 playBtn.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
 expandBtn.addEventListener('click', openFullscreen);
@@ -180,7 +210,7 @@ video.addEventListener('canplay', setDuration);
 video.addEventListener('ended', pauseVideo);
 video.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
 
-window.addEventListener('mouseover', setControlsVisibility)
+// window.addEventListener('mouseover', setControlsVisibility)
 
 volumeRange.addEventListener('input', changeVolume);
 volumeIcon.addEventListener('click', toggleMute)
@@ -188,5 +218,15 @@ speedControl.addEventListener('click', () => speedDropdown.hidden ? showSpeedDro
 window.addEventListener('click', selectSpeed);
 
 timeline.addEventListener('click', setNewTime);
+window.addEventListener('mousemove', showThumbnail);
 
 updateVolumeRange();
+
+
+function updateCanvas() {
+    let context = canvasEl.getContext('2d');
+    context.drawImage(fakeVideo, 0, 0, canvasEl.width, canvasEl.height);
+    window.requestAnimationFrame(updateCanvas);
+}
+
+requestAnimationFrame(updateCanvas);
