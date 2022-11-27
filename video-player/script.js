@@ -1,5 +1,4 @@
 const video = document.querySelector('video');
-const videoContainer = document.querySelector('.video-container');
 const playBtn = document.getElementById('play');
 const expandBtn = document.getElementById('expand');
 const currentTimeEl = document.getElementById('current-time');
@@ -14,39 +13,35 @@ const speedControl = document.getElementById('speed-control');
 const hoverInfo = document.getElementById('hover-info');
 const previewTime = document.getElementById('preview-time')
 const hoveredTime = document.getElementById('hovered-time')
+const canvasEl = document.getElementById('canvas');
+const preview = document.getElementById('preview');
+const fakeVideo = document.querySelector('.fake-video');
 
-let canvasEl = document.getElementById('canvas');
-let preview = document.getElementById('preview');
-let fakeVideo = document.querySelector('.fake-video');
-
-
-speedDropdown.hidden = true;
 
 let volume = video.volume;
 let range = video.volume * 100;
-let mouseOnVideo = Boolean;
+
+
+playBtn.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
+video.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
+video.addEventListener('ended', pauseVideo);
 
 function videoIsPlaying() {
     return !video.paused
 }
 
 function playVideo() {
-    video.play()
-    changePlayIcon()
+    video.play();
+    playBtn.classList.replace('fa-play', 'fa-pause');     
 }
 
 function pauseVideo() {
-    video.pause()
-    changePlayIcon()
+    video.pause();
+    playBtn.classList.replace('fa-pause', 'fa-play');
 }
 
-function changePlayIcon() {
-    if(videoIsPlaying()) {
-        playBtn.classList.replace('fa-play', 'fa-pause');     
-    } else {
-        playBtn.classList.replace('fa-pause', 'fa-play');
-    }
-}
+
+expandBtn.addEventListener('click', openFullscreen);
 
 function openFullscreen() {
     if (video.requestFullscreen) {
@@ -58,21 +53,20 @@ function openFullscreen() {
       }
 }
 
+
+video.addEventListener('timeupdate', updateProgress);
+
 function updateProgress() {
-    updateTime();
+    updateCurrentTime();
     updateProgressline();
 }
 
-function updateTime() {
+function updateCurrentTime() {
     currentTimeEl.textContent = formateTime(video.currentTime);
 }
 
 function updateProgressline() {
     progressline.style.width = (video.currentTime * timeline.offsetWidth / video.duration) + 'px';
-}
-
-function setDuration() {
-    duration.textContent = formateTime(video.duration);
 }
 
 function formateTime(time) {
@@ -83,6 +77,16 @@ function formateTime(time) {
     }
     return `${minutes}:${seconds}`
 }
+
+
+video.addEventListener('canplay', setDuration);
+
+function setDuration() {
+    duration.textContent = formateTime(video.duration);
+}
+
+
+volumeRange.addEventListener('input', changeVolume);
 
 function changeVolume() {
     range = volumeRange.value;
@@ -97,11 +101,14 @@ function changeVolume() {
     updateVideoVolume();
 }
 
+
+volumeIcon.addEventListener('click', toggleMute)
+
 function toggleMute() {
-    if(!video.muted) {
-        mute();
-    } else {
+    if(video.muted) {
         unmute();
+    } else {
+        mute();
     }
     updateVolumeRange();
 }
@@ -134,6 +141,9 @@ function updateVideoVolume() {
     video.volume = volume;
 }
 
+
+speedControl.addEventListener('click', () => speedDropdown.hidden ? showSpeedDropdown() : hideSpeedDropdown());
+
 function showSpeedDropdown() {
     speedDropdown.hidden = false;
     speedControl.lastElementChild.classList.replace('fa-chevron-down', 'fa-chevron-up');
@@ -144,14 +154,22 @@ function hideSpeedDropdown() {
     speedControl.lastElementChild.classList.replace('fa-chevron-up','fa-chevron-down');
 }
 
+
+window.addEventListener('click', selectSpeed);
+
 function selectSpeed(e) {
-    if(!e.target.closest('.speed-dropdown p')) {
+    if(e.target.closest('.speed-container')) {
+        return   
+    }
+    if(!e.target.closest('.speed-dropdown')) { 
         speedDropdown.hidden = true;
         return   
     }
-
-    let item = e.target;
+    
+    let item = e.target.closest('.speed-dropdown p');
     let speed = item.textContent.slice(0,-1);
+    
+    video.playbackRate = speed;
     speedControl.firstElementChild.textContent = speed + 'x';
 
     for(let child of speedDropdown.children) {
@@ -159,69 +177,58 @@ function selectSpeed(e) {
     }
     item.classList.add('selected');
 
-    video.playbackRate = speed;
     hideSpeedDropdown()
 }
 
+
+window.addEventListener('mouseover', setControlsVisibility);
+
 function setControlsVisibility(event) {
     let hoverVideo = event.target.closest('.video-container');
-
-    if(hoverVideo) {
-        hoverInfo.hidden = false;
-    } else {
-        hoverInfo.hidden = true;
-    }
+    hoverVideo ? showControls() : hideControls();
 }
+
+function showControls() {
+    hoverInfo.hidden = false;
+}
+
+function hideControls() {
+    hoverInfo.hidden = true;
+}
+
+
+timeline.addEventListener('click', setNewTime);
 
 function setNewTime(event) {
-
     let clickedX = event.offsetX;
+    let newTime = clickedX * video.duration / timeline.offsetWidth;
     progressline.style.width = clickedX + 'px';
-    video.currentTime = clickedX * video.duration / timeline.offsetWidth;
-    updateTime();
+    video.currentTime = newTime;
+    updateCurrentTime();
 }
 
+
+window.addEventListener('mousemove', showThumbnail);
+
 function showThumbnail(e) {
-    if(!e.target.closest('.timeline-container') || e.target.closest('.preview-container')) {
+    if(!e.target.closest('.timeline-container')) {
         preview.hidden = true;
         hoveredTime.hidden = true;
         return
     }
-
     preview.hidden = false;
     hoveredTime.hidden = false;
 
     let hoveredX = e.offsetX;
-    let x = e.offsetX;
+    let newTime = hoveredX * video.duration / timeline.offsetWidth;
+
     hoveredTime.style.left = hoveredX + 'px';
-    canvasEl.closest('.preview-container').style.left = x + 'px';
-
-    newTime = hoveredX * video.duration / timeline.offsetWidth;
-    previewTime.textContent = formateTime(newTime);
+    canvasEl.closest('.preview-container').style.left = hoveredX + 'px';
     fakeVideo.currentTime = newTime;
-
+    previewTime.textContent = formateTime(newTime);
 }
 
-playBtn.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
-expandBtn.addEventListener('click', openFullscreen);
-
-video.addEventListener('timeupdate', updateProgress);
-video.addEventListener('canplay', setDuration);
-video.addEventListener('ended', pauseVideo);
-video.addEventListener('click', () => videoIsPlaying() ? pauseVideo() : playVideo());
-
-// window.addEventListener('mouseover', setControlsVisibility)
-
-volumeRange.addEventListener('input', changeVolume);
-volumeIcon.addEventListener('click', toggleMute)
-speedControl.addEventListener('click', () => speedDropdown.hidden ? showSpeedDropdown() : hideSpeedDropdown());
-window.addEventListener('click', selectSpeed);
-
-timeline.addEventListener('click', setNewTime);
-window.addEventListener('mousemove', showThumbnail);
-
-updateVolumeRange();
-
+requestAnimationFrame(updateCanvas);
 
 function updateCanvas() {
     let context = canvasEl.getContext('2d');
@@ -229,4 +236,14 @@ function updateCanvas() {
     window.requestAnimationFrame(updateCanvas);
 }
 
-requestAnimationFrame(updateCanvas);
+
+updateVolumeRange();
+
+
+
+
+
+
+
+
+
