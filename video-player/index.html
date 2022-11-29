@@ -7,15 +7,15 @@
     <link rel="shortcut icon" href="../-- favicon/rocket-solid.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Template</title>
+    <title>Video Player</title>
 </head>
 <body>
     <div class="video-container">
         <video><source src="guitar.mp4"></video>
         <video class="fake-video"><source src="guitar.mp4" ></video>
-        <div class="hover-info" id="hover-info" hidden>
+        <div class="hover-info" id="hover-info">
             <div class="title-container">
-                <i class="fa-solid fa-video"></i><h3>Video Title</h3> 
+                <i class="fa-solid fa-video"></i><h3>Guitar melody</h3> 
             </div>
 
             <div class="controls-container">
@@ -25,7 +25,7 @@
                     <p class="duration" id="duration">0:00</p>
                 </div>
     
-                <div class="timeline-container" id="timeline-container">
+                <div class="timeline-container" id="timeline-container" title="Seek">
                     <div class="timeline" >
                         <div class="progressline" id="progressline"></div>
                         <div class="hovered-time" id="hovered-time"></div>
@@ -39,18 +39,18 @@
     
                 <div class="controls">
                     <div class="left">
-                        <i class="fa-solid fa-play control" id="play"></i>
+                        <i class="fa-solid fa-play control" id="play" title="Play"></i>
 
                         <div class="volume-container control" id="volume-container">
                             <i title='Mute' class="fa-solid fa-volume-high volume" id="volume-icon"></i>
-                            <div class="indicator-container" id="volumeline-container">
+                            <div class="indicator-container" id="volumeline-container" title="Change volume">
                                 <input type="range" id="volume-range">
                             </div>
                         </div>
                     </div>
 
                     <div class="right">
-                        <div class="speed-container control" id="speed-control">
+                        <div class="speed-container control" id="speed-control" title="Playback rate">
                             <p>1.0x</p>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
@@ -65,7 +65,7 @@
                             <p class="control">2.0x</p>
                         </div>
 
-                        <i class="fa-solid fa-expand control" id="expand"></i>
+                        <i class="fa-solid fa-expand control" id="expand" title="Expand"></i>
                     </div>
                 </div>
             </div>

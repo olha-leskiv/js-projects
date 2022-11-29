@@ -6,6 +6,7 @@
 
 * {
     box-sizing: border-box;
+    color: white;
 }
 
 body {
@@ -26,6 +27,19 @@ body {
     margin-bottom: 2vh;
     color: white;
 }
+
+.hover-info {
+    opacity: 0;
+    transition: all 0.2s ease-out 1s;
+    animation-fill-mode: backwards;
+}
+
+.video-container:hover .hover-info {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+
 
 video {
     display: block;
@@ -95,11 +109,17 @@ canvas {
     background-color: rgba(7, 16, 20, 0.4);
     height: 8px;
     border-radius: 10px;
+    transition: all 0.2 ease-in-out;
+}
+
+.timeline-container:hover .timeline {
+    transform: scaleY(135%);
+    transition: all 0.2 ease-in-out;
 }
 
 .progressline {
     width: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.85);
     height: 100%;
     border-radius: 10px;
     transition: all 0.1s linear;
@@ -133,9 +153,15 @@ canvas {
     align-items: center;
     border-radius: 4px;
     padding: 0 12px 0 0;
-    width: 190px;
+    width: 160px;
     height: 100%;
     justify-content: space-between;
+}
+
+input[type="range"] {
+    max-width: 90px;
+    background-color: red;
+    color: red;
 }
 
 .right {
@@ -215,3 +241,6 @@ h3 {
 .selected {
     background-color: rgba(216, 224, 228, 0.25); 
 }
+
+
+

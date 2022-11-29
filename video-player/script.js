@@ -32,12 +32,14 @@ function videoIsPlaying() {
 
 function playVideo() {
     video.play();
-    playBtn.classList.replace('fa-play', 'fa-pause');     
+    playBtn.classList.replace('fa-play', 'fa-pause');  
+    playBtn.setAttribute('title', 'Pause');   
 }
 
 function pauseVideo() {
     video.pause();
     playBtn.classList.replace('fa-pause', 'fa-play');
+    playBtn.setAttribute('title', 'Play');
 }
 
 
@@ -66,15 +68,13 @@ function updateCurrentTime() {
 }
 
 function updateProgressline() {
-    progressline.style.width = (video.currentTime * timeline.offsetWidth / video.duration) + 'px';
+    progressline.style.width = ((video.currentTime / video.duration) * 100) + '%';
 }
 
 function formateTime(time) {
     let minutes = Math.floor(time / 60);
     let seconds = Math.floor(time % 60);
-    if(seconds < 10) {
-        seconds = "0" + seconds;
-    }
+    seconds = seconds < 10 ? '0' + seconds : seconds;
     return `${minutes}:${seconds}`
 }
 
@@ -181,25 +181,9 @@ function selectSpeed(e) {
 }
 
 
-window.addEventListener('mouseover', setControlsVisibility);
+timeline.addEventListener('click', setProgress);
 
-function setControlsVisibility(event) {
-    let hoverVideo = event.target.closest('.video-container');
-    hoverVideo ? showControls() : hideControls();
-}
-
-function showControls() {
-    hoverInfo.hidden = false;
-}
-
-function hideControls() {
-    hoverInfo.hidden = true;
-}
-
-
-timeline.addEventListener('click', setNewTime);
-
-function setNewTime(event) {
+function setProgress(event) {
     let clickedX = event.offsetX;
     let newTime = clickedX * video.duration / timeline.offsetWidth;
     progressline.style.width = clickedX + 'px';
@@ -227,6 +211,7 @@ function showThumbnail(e) {
     fakeVideo.currentTime = newTime;
     previewTime.textContent = formateTime(newTime);
 }
+
 
 requestAnimationFrame(updateCanvas);
 
