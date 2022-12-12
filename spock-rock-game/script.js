@@ -4,6 +4,8 @@ const computerScoreCont = document.getElementById('computer-score');
 const computerIcons = document.querySelectorAll('#computer i');
 const playerChoice = document.getElementById('player-choice');
 const computerChoice = document.getElementById('computer-choice');
+const resultText = document.getElementById('result-text');
+const resetBtn = document.getElementById('reset');
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
   paper: { name: 'Paper', defeats: ['rock', 'spock'] },
@@ -15,71 +17,84 @@ const choices = {
 
 let playerScore = 0;
 let computerScore = 0;
+let result = "Let's battle!";
+let computerSelection;
 
-// function select(playerSelection) {
-//   let keys = Object.keys(choices);
-//   let computerSelection = keys[Math.floor(Math.random() * 5)];
-
-
-//   for(let icon of playerIcons) {
-//     if(icon.title.toLowerCase() == playerSelection) {
-//       icon.classList.add('selected');
-//       playerChoice.textContent = " --- " + playerSelection;
-//     } else {
-//       icon.classList.add('disabled');
-//       icon.classList.remove('selected');
-//     }
-//   }
-  
-//   for(let icon of computerIcons) {
-//     if(icon.title.toLowerCase() == computerSelection) {
-//       icon.classList.add('selected');
-//       computerChoice.textContent = " --- " + computerSelection;
-//     } else {
-//       icon.classList.add('disabled');
-//       icon.classList.remove('selected');
-//     }
-//   }
-
-//   for(let choice in choices) {
-//     if(choice == playerSelection) {
-//       if(playerSelection === computerSelection) {
-//         return
-//       }
-//       if(choices[choice].defeats.some(equal)) {
-//         playerScore++
-//         playerScoreCont.textContent = playerScore;
-//           console.log('win')
-//       } else {
-//         computerScore++
-//         computerScoreCont.textContent = computerScore;
-//       }
-
-//       function equal(elem) {
-//         return elem === computerSelection;
-//       }
-//     }
-//   }
-// }
+function getComputerSelection() {
+  computerSelection =  Object.keys(choices)[Math.floor(Math.random() * 5)];
+}
   
 function select(playerSelection) {
-  let computerSelection =  Object.keys(choices)[Math.floor(Math.random() * 5)];
+  getComputerSelection();
+
   for(let choice in choices) {
     let choiceName = choices[choice].name.toLowerCase();
 
     if(choiceName == playerSelection) {
 
       if(choices[choice].defeats.some((elem) => elem ===   computerSelection)) {
-          playerScore++
-          playerScoreCont.textContent = playerScore;
+          playerScore++          
       }
     }
+
     if(choiceName == computerSelection) {
       if(choices[choice].defeats.some((elem) => elem === playerSelection)) {
           computerScore++
-          computerScoreCont.textContent = computerScore;
       }
+    } 
+  }
+
+  for(let icon of playerIcons) {
+    let type = icon.id.split('-')[1];
+
+    if(type == playerSelection) {
+      icon.classList.add('selected');
+      playerChoice.textContent = " --- " + playerSelection;
+    } else {
+      icon.classList.add('disabled');
+      icon.classList.remove('selected');
     }
   }
-  console.log(playerSelection, playerScore, computerSelection, computerScore)
+  
+  for(let icon of computerIcons) {
+    let type = icon.id.split('-')[1];
+
+    if(type == computerSelection) {
+      icon.classList.add('selected');
+      computerChoice.textContent = " --- " + computerSelection;
+    } else {
+      icon.classList.add('disabled');
+      icon.classList.remove('selected');
+    }
+  }
+
+  resetBtn.parentElement.classList.add('show');
+
+  if(playerScore > computerScore) {
+    result = 'You won!'
+  } else if(playerScore < computerScore) {
+    result = 'Computer won!'
+  } else {
+    result = 'Draw!'
+  }
+
+  updateUI();
+
+}
+
+function updateUI() {
+  computerScoreCont.textContent = computerScore;
+  playerScoreCont.textContent = playerScore;
+  resultText.textContent = result;
+  console.log(result)
+}
+
+resetBtn.addEventListener('click', reset);
+
+function reset() {
+  playerScore = 0;
+  computerScore = 0;
+  result = "Let's battle!";
+  resetBtn.parentElement.classList.remove('show');
+  updateUI();
 }
