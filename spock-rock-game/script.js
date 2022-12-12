@@ -14,87 +14,75 @@ const choices = {
   spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
 };
 
+// let playerScore = 0;
+// let computerScore = 0;
+// let result = "Let's battle!";
+// let computerSelection;
+// let playerSelection;
 
-let playerScore = 0;
-let computerScore = 0;
-let result = "Let's battle!";
-let computerSelection;
-
-function getComputerSelection() {
-  computerSelection =  Object.keys(choices)[Math.floor(Math.random() * 5)];
-}
+// function getComputerSelection() {
+//   computerSelection = choices[Math.floor(Math.random() * 5)];
+// }
   
-function select(playerSelection) {
-  getComputerSelection();
+// function select(event, playerInput) {
+//   playerSelection = playerInput;    
+//   getComputerSelection();
 
-  for(let choice in choices) {
-    let choiceName = choices[choice].name.toLowerCase();
+//   for(let icon of playerIcons) {
+//     icon.classList.remove('selected');
+//   }
+//   event.target.classList.add('selected');
 
-    if(choiceName == playerSelection) {
+//   for(let choice in choices) {
+//     let choiceName = choices[choice].name.toLowerCase();
 
-      if(choices[choice].defeats.some((elem) => elem ===   computerSelection)) {
-          playerScore++          
-      }
-    }
+//     if(choiceName == playerSelection) {
 
-    if(choiceName == computerSelection) {
-      if(choices[choice].defeats.some((elem) => elem === playerSelection)) {
-          computerScore++
-      }
-    } 
-  }
+//       if(choices[choice].defeats.some((elem) => elem ===   computerSelection)) {
+//         result = 'You won!'         
+//       }
+//     }
 
-  for(let icon of playerIcons) {
-    let type = icon.id.split('-')[1];
+//     if(choiceName == computerSelection) {
+//       if(choices[choice].defeats.some((elem) => elem === playerSelection)) {
+//         result = 'Computer won!'    
+//       }
+//     } 
+//   }
 
-    if(type == playerSelection) {
-      icon.classList.add('selected');
-      playerChoice.textContent = " --- " + playerSelection;
-    } else {
-      icon.classList.add('disabled');
-      icon.classList.remove('selected');
-    }
-  }
+//   updateUI();
+// }
+
+// function updateUI() {
   
-  for(let icon of computerIcons) {
-    let type = icon.id.split('-')[1];
+//   for(let icon of computerIcons) {
+//     let type = icon.id.split('-')[1];
 
-    if(type == computerSelection) {
-      icon.classList.add('selected');
-      computerChoice.textContent = " --- " + computerSelection;
-    } else {
-      icon.classList.add('disabled');
-      icon.classList.remove('selected');
-    }
-  }
+//     if(type == computerSelection) {
+//       icon.classList.add('selected');
+//       computerChoice.textContent = " --- " + computerSelection;
+//     } else {
+//       icon.classList.add('disabled');
+//       icon.classList.remove('selected');
+//     }
+//   }
 
-  resetBtn.parentElement.classList.add('show');
+//   resetBtn.parentElement.classList.add('show');
 
-  if(playerScore > computerScore) {
-    result = 'You won!'
-  } else if(playerScore < computerScore) {
-    result = 'Computer won!'
-  } else {
-    result = 'Draw!'
-  }
+//   computerScoreCont.textContent = computerScore;
+//   playerScoreCont.textContent = playerScore;
+//   resultText.textContent = result;
+//   console.log(result)
+// }
 
-  updateUI();
+// resetBtn.addEventListener('click', reset);
 
-}
-
-function updateUI() {
-  computerScoreCont.textContent = computerScore;
-  playerScoreCont.textContent = playerScore;
-  resultText.textContent = result;
-  console.log(result)
-}
-
-resetBtn.addEventListener('click', reset);
-
-function reset() {
-  playerScore = 0;
-  computerScore = 0;
-  result = "Let's battle!";
-  resetBtn.parentElement.classList.remove('show');
-  updateUI();
-}
+// function reset() {
+//   playerScore = 0;
+//   computerScore = 0;
+//   playerSelection = '';
+//   computerSelection = '';
+//   result = "Let's battle!";
+//   resetBtn.parentElement.classList.remove('show');
+//   updateUI();
+// }
