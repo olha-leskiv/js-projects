@@ -18,20 +18,20 @@
     
         <div class="player-container player" id="player">
             <h2>You - <span id="player-score">0</span><span class="choice" id="player-choice"></span></h2>
-            <i class="fa-regular fa-hand-back-fist" title="Rock" id="player-rock" onclick="select(event,'rock')"></i>
-            <i class="fa-regular fa-hand" title="Paper" id="player-paper" onclick="select(event,'paper')"></i>
-            <i class="fa-regular fa-hand-scissors" title="Scissors" id="player-scissors" onclick="select(event,'scissors')"></i>
-            <i class="fa-regular fa-hand-lizard" title="Lizard" id="player-lizard" onclick="select(event,'lizard')"></i>
-            <i class="fa-regular fa-hand-spock" title="Spock" id="player-spock" onclick="select(event,'spock')"></i>
+            <i class="fa-regular fa-hand-back-fist" title="Rock" data-type="rock" onclick="battle(event)"></i>
+            <i class="fa-regular fa-hand" title="Paper" data-type="paper" onclick="battle(event)"></i>
+            <i class="fa-regular fa-hand-scissors" title="Scissors" data-type="scissors" onclick="battle(event)"></i>
+            <i class="fa-regular fa-hand-lizard" title="Lizard" data-type="lizard" onclick="battle(event)"></i>
+            <i class="fa-regular fa-hand-spock" title="Spock" data-type="spock" onclick="battle(event)"></i>
         </div>
 
         <div class="player-container computer" id="computer">
             <h2>Computer - <span id="computer-score">0</span><span class="choice" id="computer-choice"></span></h2>
-            <i class="fa-regular fa-hand-back-fist" title="Rock" id="computer-rock"></i>
-            <i class="fa-regular fa-hand" title="Paper" id="computer-paper"></i>
-            <i class="fa-regular fa-hand-scissors" title="Scissors" id="computer-scissors"></i>
-            <i class="fa-regular fa-hand-lizard" title="Lizard" id="computer-lizard"></i>
-            <i class="fa-regular fa-hand-spock" title="Spock" id="computer-spock"></i>
+            <i class="fa-regular fa-hand-back-fist" title="Rock" data-type="rock"></i>
+            <i class="fa-regular fa-hand" title="Paper" data-type="paper"></i>
+            <i class="fa-regular fa-hand-scissors" title="Scissors" data-type="scissors"></i>
+            <i class="fa-regular fa-hand-lizard" title="Lizard" data-type="lizard"></i>
+            <i class="fa-regular fa-hand-spock" title="Spock" data-type="spock"></i>
         </div>
         
         <div class="result-container">
