@@ -1,91 +1,129 @@
-const playerIcons = document.querySelectorAll('#player i');
-const playerScoreCont = document.getElementById('player-score');
-const computerScoreCont = document.getElementById('computer-score');
-const playerChoice = document.getElementById('player-choice');
-const computerChoice = document.getElementById('computer-choice');
-const computerIcons = document.querySelectorAll('#computer i');
-const resultText = document.getElementById('result-text');
-const resetBtn = document.getElementById('reset');
-
-const choices = {
-  rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
-  paper: { name: 'Paper', defeats: ['rock', 'spock'] },
-  scissors: { name: 'Scissors', defeats: ['paper', 'lizard'] },
-  lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
-  spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
-};
-
-let playerScore = 0;
-let computerScore = 0;
-let playerChoiceEl = Element;
-let computerChoiceEl = Element;
-
 function battle(event) {
-  playerChoiceEl = event.target;
-  computerChoiceEl = computerIcons[Math.floor(Math.random() * 5)];
 
-  if(playerWins()) {
-    playerScore++;
-    setResult('You won!');
-  } else if(computerWins()) {
-    computerScore++;
-    setResult('computer won!');
-  } else {
-    setResult("it's a tie.");
+  let playerChoiceEl = event.target;
+  let computerChoiceEl = getComputerChoiceEl();
+
+  switch(getWinner(playerChoiceEl, computerChoiceEl)) {
+    case 'player':
+      increaseScore('player')
+      setResult('You won!');
+      break;
+    case 'computer':
+      increaseScore('computer');
+      setResult('Computer won!');
+      break;
+    case 'nobody':
+      setResult("it's a tie.");
+      break;
   }
-
-  updateStyles();
+  resetStyles();
+  showSelection(playerChoiceEl, computerChoiceEl)
+  showType(playerChoiceEl, computerChoiceEl)
   showResetBtn();
 }
 
-function playerWins() {
-  let playerType = playerChoiceEl.dataset.type;
-  let computerType = computerChoiceEl.dataset.type;
-  return choices[playerType].defeats.some(type => type === computerType)
+function getComputerChoiceEl() {
+  const computerIcons = document.querySelectorAll('#computer i');
+  let computerChoiceEl = computerIcons[Math.floor(Math.random() * 5)];
+  return computerChoiceEl
 }
 
-function computerWins() {
-  let playerType = playerChoiceEl.dataset.type;
-  let computerType = computerChoiceEl.dataset.type;
-  return choices[computerType].defeats.some(type => type === playerType)
+function getWinner(playerChoiceEl, computerChoiceEl) {
+
+  const choices = {
+    rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
+    paper: { name: 'Paper', defeats: ['rock', 'spock'] },
+    scissors: { name: 'Scissors', defeats: ['paper', 'lizard'] },
+    lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
+    spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
+  };
+
+  let playerType = getType(playerChoiceEl);
+  let computerType = getType(computerChoiceEl);
+
+  const playerWins = choices[playerType].defeats.some(type => type === computerType);
+
+  const computerWins = choices[computerType].defeats.some(type => type === playerType);
+
+  if(playerWins) {
+    return 'player'
+  } else if(computerWins) {
+    return 'computer'
+  } else {
+    return 'nobody'
+  }
 }
 
-function updateStyles() {
-  for(let icon of playerIcons) {
-    icon.classList.remove('selected');
-  }
-  for(let icon of computerIcons) {
-    icon.classList.remove('selected');
-  }
+function showSelection(playerChoiceEl, computerChoiceEl) {
   playerChoiceEl.classList.add('selected');
-  computerChoiceEl.classList.add('selected');
-  playerScoreCont.textContent = playerScore;
-  computerScoreCont.textContent = computerScore;
-  playerChoice.textContent = " --- " + playerChoiceEl.dataset.type;
-  computerChoice.textContent =  " --- " + computerChoiceEl.dataset.type;
+  computerChoiceEl.classList.add('selected');    
+}
+
+function showType(playerChoiceEl, computerChoiceEl) {
+
+  let playerType = getType(playerChoiceEl);
+  let computerType = getType(computerChoiceEl);
+
+  if(playerChoiceEl && computerChoiceEl) {
+    playerType = " --- " + playerType;
+    computerType =  " --- " + computerType;
+  } else {
+    playerType = '';
+    computerType = '';
+  }
+
+  const playerChoiceCont = document.getElementById('player-choice');
+  const computerChoiceCont = document.getElementById('computer-choice');
+  playerChoiceCont.textContent = playerType;
+  computerChoiceCont.textContent = computerType;
+}
+
+function increaseScore(combatant) {
+  const scoreCont = document.getElementById(`${combatant}-score`);
+  let score = Number(scoreCont.textContent);
+  score++;
+  scoreCont.textContent = score;
+}
+
+function getType(element) {
+  return element.dataset.type
+}
+
+function resetStyles() {
+  const allIcons = document.querySelectorAll('.player-container i');
+  for(let icon of allIcons) {
+    icon.classList.remove('selected');
+  } 
 }
 
 function setResult(result) {
+  const resultText = document.getElementById('result-text');
   resultText.textContent = result;
 }
 
 function showResetBtn() {
+  const resetBtn = document.getElementById('reset');
+  resetBtn.addEventListener('click', resetGame);
   resetBtn.parentElement.classList.add('show');
 }
 
-function hideResetBtn() {
-  resetBtn.parentElement.classList.remove('show');
-}
-resetBtn.addEventListener('click', resetGame);
-
 function resetGame() {
-  playerScore = 0;
-  computerScore = 0;
+  resetStyles();
+  resetScore();
   hideResetBtn();
-  updateStyles();
-  playerChoice.textContent = '';
-  computerChoice.textContent = '';
   setResult("Let's battle!");
+}
+
+function resetScore() {
+  const playerScoreCont = document.getElementById(`player-score`)
+  const computerScoreCont = document.getElementById(`computer-score`)
+  playerScoreCont.textContent = 0;
+  computerScoreCont.textContent = 0;
+}
+
+function hideResetBtn() {
+  const resetBtn = document.getElementById('reset');
+  resetBtn.parentElement.classList.remove('show');
 }
 
 
