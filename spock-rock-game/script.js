@@ -1,81 +1,87 @@
+const choices = {
+  rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
+  paper: { name: 'Paper', defeats: ['rock', 'spock'] },
+  scissors: { name: 'Scissors', defeats: ['paper', 'lizard'] },
+  lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
+  spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
+};
+
+const computerIcons = document.querySelectorAll('#computer i');
+
+const player = 'player';
+const computer = 'computer';
+
 function battle(event) {
-
-  let playerChoiceEl = event.target;
-  let computerChoiceEl = getComputerChoiceEl();
-
-  switch(getWinner(playerChoiceEl, computerChoiceEl)) {
-    case 'player':
-      increaseScore('player')
+  let chosenElements = {
+    player: event.target,
+    computer: getComputerChoiceEl(),
+  }
+  
+  switch(getWinner(chosenElements)) {
+    case player:
+      increaseScore(player);
       setResult('You won!');
       break;
-    case 'computer':
-      increaseScore('computer');
+    case computer:
+      increaseScore(computer);
       setResult('Computer won!');
       break;
     case 'nobody':
       setResult("it's a tie.");
       break;
   }
-  resetStyles();
-  showSelection(playerChoiceEl, computerChoiceEl)
-  showType(playerChoiceEl, computerChoiceEl)
+  updateStyles(chosenElements);
   showResetBtn();
 }
 
-function getComputerChoiceEl() {
-  const computerIcons = document.querySelectorAll('#computer i');
-  let computerChoiceEl = computerIcons[Math.floor(Math.random() * 5)];
-  return computerChoiceEl
+function updateStyles(chosenElements) {
+  resetStyles();
+
+  highlightSelectedElements(chosenElements);
+  displayChoiceNames(chosenElements);
 }
 
-function getWinner(playerChoiceEl, computerChoiceEl) {
+function getComputerChoiceEl() {
+  let computerChoiceEl = computerIcons[Math.floor(Math.random() * 5)];
+  return computerChoiceEl;
+}
 
-  const choices = {
-    rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
-    paper: { name: 'Paper', defeats: ['rock', 'spock'] },
-    scissors: { name: 'Scissors', defeats: ['paper', 'lizard'] },
-    lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
-    spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
-  };
+function getWinner(chosenElements) {
+  let playerChoice = getChoice(chosenElements.player);
+  let computerChoice = getChoice(chosenElements.computer);
 
-  let playerType = getType(playerChoiceEl);
-  let computerType = getType(computerChoiceEl);
+  function playerWins() {
+    return choices[playerChoice].defeats.some(type => type === computerChoice);
+  }
+  
+  function computerWins() {
+    return choices[computerChoice].defeats.some(type => type === playerChoice);
+  }
 
-  const playerWins = choices[playerType].defeats.some(type => type === computerType);
-
-  const computerWins = choices[computerType].defeats.some(type => type === playerType);
-
-  if(playerWins) {
-    return 'player'
-  } else if(computerWins) {
-    return 'computer'
+  if(playerWins()) {
+    return player
+  } else if(computerWins()) {
+    return computer
   } else {
     return 'nobody'
   }
 }
 
-function showSelection(playerChoiceEl, computerChoiceEl) {
-  playerChoiceEl.classList.add('selected');
-  computerChoiceEl.classList.add('selected');    
+function highlightSelectedElements(elements) {
+  for (let key in elements) {
+    elements[key].classList.add('selected');
+  }
 }
 
-function showType(playerChoiceEl, computerChoiceEl) {
+function displayChoiceNames(chosenElements) {
+  displayChoiceName(chosenElements.player, document.getElementById('player-choice'));
+  displayChoiceName(chosenElements.computer, document.getElementById('computer-choice'));
+}
 
-  let playerType = getType(playerChoiceEl);
-  let computerType = getType(computerChoiceEl);
-
-  if(playerChoiceEl && computerChoiceEl) {
-    playerType = " --- " + playerType;
-    computerType =  " --- " + computerType;
-  } else {
-    playerType = '';
-    computerType = '';
+function displayChoiceName(choiceEl, choiceContainer) {
+  if(choiceEl) {
+    choiceContainer.textContent = " --- " + getChoice(choiceEl);
   }
-
-  const playerChoiceCont = document.getElementById('player-choice');
-  const computerChoiceCont = document.getElementById('computer-choice');
-  playerChoiceCont.textContent = playerType;
-  computerChoiceCont.textContent = computerType;
 }
 
 function increaseScore(combatant) {
@@ -85,7 +91,7 @@ function increaseScore(combatant) {
   scoreCont.textContent = score;
 }
 
-function getType(element) {
+function getChoice(element) {
   return element.dataset.type
 }
 
