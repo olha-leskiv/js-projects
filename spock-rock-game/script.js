@@ -17,14 +17,17 @@ function battle(event) {
     computer: getComputerChoiceEl(),
   }
   
+  stopConfetti();
+
   switch(getWinner(chosenElements)) {
     case player:
       increaseScore(player);
       setResult('You won!');
+      startConfetti();
       break;
     case computer:
       increaseScore(computer);
-      setResult('Computer won!');
+      setResult('You lost!');
       break;
     case 'nobody':
       setResult("it's a tie.");
@@ -80,8 +83,16 @@ function displayChoiceNames(chosenElements) {
 
 function displayChoiceName(choiceEl, choiceContainer) {
   if(choiceEl) {
-    choiceContainer.textContent = " --- " + getChoice(choiceEl);
+    choiceContainer.textContent = getChoice(choiceEl) + '!';
+    choiceContainer.style.marginLeft = '24px';
+  } else {
+    choiceContainer.textContent = '';
   }
+}
+
+function removeChoiceNames() {
+  displayChoiceName('', document.getElementById('player-choice'));
+  displayChoiceName('', document.getElementById('computer-choice'));
 }
 
 function increaseScore(combatant) {
@@ -118,6 +129,8 @@ function resetGame() {
   resetScore();
   hideResetBtn();
   setResult("Let's battle!");
+  removeConfetti();
+  removeChoiceNames();
 }
 
 function resetScore() {

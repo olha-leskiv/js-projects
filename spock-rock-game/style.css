@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 :root {
   --you:  rgb(30, 143, 255);
@@ -20,6 +21,12 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   user-select: none;
+  position: relative;
+}
+
+body {
+  min-height: 100vh;
+  padding: 100px 0;
 }
 
 .header {
@@ -27,6 +34,15 @@ html, body {
   white-space: nowrap;
   display: flex;
   background-color: black;
+  position: absolute;
+}
+
+.header.top {
+  top: 0;
+} 
+
+.header.bottom {
+  bottom: 0;
 }
 
 h1 {
@@ -48,7 +64,10 @@ h1 {
 }
 
 .player-container {
-  margin: 72px;
+  margin: 16px;
+  background-color: whitesmoke;
+  padding: 24px 32px 48px;
+  border-radius: 12px;
 }
 
 .player i{
@@ -57,6 +76,10 @@ h1 {
 
 .player i:hover {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.choice {
+  font-family: 'Luckiest Guy', cursive;
 }
 
 .player .choice{
@@ -70,7 +93,7 @@ h1 {
 
 .computer i{
   color: var(--computer);
-  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .computer .choice{
@@ -84,6 +107,8 @@ h1 {
 
 h2 {
   margin-bottom: 16px;
+  font-family: 'Audiowide', cursive;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .fa-regular {
@@ -102,11 +127,11 @@ h2 {
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
-  opacity: 0;
+  display: none;
 }
 
 .show {
-  opacity: 1;
+  display: block;
 }
 
 .reset-icon {
@@ -136,6 +161,7 @@ h2 {
 }
 
 .result-container {
+  margin: 0 0 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,23 +172,22 @@ h2 {
   margin: unset;
 }
 
-
-
-/* Media Query: Tablet (Vertical) */
-@media screen and (max-width: 1000px) {
-
-  .player-container {
-    margin: 72px 24px;
-  }
-
-}
-
 /* Media Query: Large Smartphone (Vertical) */
 @media screen and (max-width: 600px) {
 
   .player-container {
-    margin: 64px 24px;
+    margin: 24px;
+    padding: 16px 0 40px;
   }
+
+  .result-container {
+    margin: 0 0 40px;
+  }
+
+  
+.reset-container h3 {
+  opacity: 1;
+}
 
   h1 {
     font-size: 24px;
