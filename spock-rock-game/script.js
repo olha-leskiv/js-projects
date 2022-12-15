@@ -1,3 +1,5 @@
+import { startConfetti, stopConfetti, removeConfetti } from './confetti.js';
+
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
   paper: { name: 'Paper', defeats: ['rock', 'spock'] },
@@ -7,6 +9,7 @@ const choices = {
 };
 
 const computerIcons = document.querySelectorAll('#computer i');
+const resetBtn = document.getElementById('reset');
 
 const player = 'player';
 const computer = 'computer';
@@ -37,11 +40,19 @@ function battle(event) {
   showResetBtn();
 }
 
+window.battle = battle;
+
 function updateStyles(chosenElements) {
   resetStyles();
 
+  makeH2Black();
   highlightSelectedElements(chosenElements);
   displayChoiceNames(chosenElements);
+}
+
+function makeH2Black() {
+  const h2 = document.querySelector('.computer h2');
+  h2.style.color = 'black';
 }
 
 function getComputerChoiceEl() {
@@ -119,18 +130,23 @@ function setResult(result) {
 }
 
 function showResetBtn() {
-  const resetBtn = document.getElementById('reset');
   resetBtn.addEventListener('click', resetGame);
-  resetBtn.parentElement.classList.add('show');
+  resetBtn.classList.add('show');
 }
 
 function resetGame() {
   resetStyles();
   resetScore();
   hideResetBtn();
-  setResult("Let's battle!");
+  setResult("Choose your hand!");
   removeConfetti();
   removeChoiceNames();
+  makeH2Gray()
+}
+
+function makeH2Gray() {
+  const h2 = document.querySelector('.computer h2');
+  h2.style.color = 'rgba(0, 0, 0, 0.4)';
 }
 
 function resetScore() {
@@ -141,8 +157,5 @@ function resetScore() {
 }
 
 function hideResetBtn() {
-  const resetBtn = document.getElementById('reset');
-  resetBtn.parentElement.classList.remove('show');
+  resetBtn.classList.remove('show');
 }
-
-

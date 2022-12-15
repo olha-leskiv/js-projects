@@ -64,11 +64,16 @@ h1 {
 }
 
 .player-container {
-  margin: 16px;
+  margin: 16px 25vw;
   background-color: whitesmoke;
   padding: 24px 32px 48px;
   border-radius: 12px;
 }
+
+.player-container.player {
+  background-color: rgba(30, 143, 255, 0.1);
+}
+
 
 .player i{
   color: var(--you);
@@ -92,7 +97,7 @@ h1 {
 }
 
 .computer i{
-  color: var(--computer);
+  color: var(--disabled);
   cursor: not-allowed;
 }
 
@@ -108,6 +113,10 @@ h1 {
 h2 {
   margin-bottom: 16px;
   font-family: 'Audiowide', cursive;
+  color: rgba(0, 0, 0, 1);
+}
+
+.computer h2 {
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -170,6 +179,16 @@ h2 {
 .result-text {
   font-size: 48px;
   margin: unset;
+}
+
+
+/* Media Query: Small Desktop */
+@media screen and (max-width: 1600px) {
+
+  .player-container {
+    margin: 24px 8vw;
+  }
+
 }
 
 /* Media Query: Large Smartphone (Vertical) */
