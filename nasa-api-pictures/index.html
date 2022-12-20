@@ -15,35 +15,22 @@
 
         <div class="navigation-container">
             <span class="background"></span>
-            <span class="navigation-items" id="resultsNav">
-                <h3 class="clickable" id="favouritesNav">Favourites</h3>
+            <span class="navigation-items" >
+                <span><h3 class=" clickable active" id="resultNav"><i class="fa-solid fa-user-astronaut"></i>&nbsp;&nbsp;NASA images</h3></span>
+                <span class="gap"></span>
+                <span><h3 class=" clickable" id="favouritesNav"><i class="fa-solid fa-heart"></i>&nbsp;&nbsp;Favourites</h3></span>
+                
             </span>
-
-            <span class="navigation-items hidden" id="favouritesNav">
-                <h3 class="clickable">Load more NASA images</h3>
-            </span>
-
         </div>
 
         <div class="images-container">
 
-            <!-- <div class="card">
-                <a href="" title="View Full Image" target="_blank" loop>
-                    <img src="./bcbf14218007dcd7826ec14e0871db57.jpg" alt="Nasa Picture of the Day" class="card-img-top">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">Title of Image</h5>
-                    <p class="clickable">Add to Favourite</p>
-                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem odio nobis voluptates voluptas quasi? Explicabo, aliquam? Provident, nobis. Libero ipsa culpa similique perferendis ratione rerum modi consequuntur, molestias nobis velit?
-                    Voluptatibus magni dignissimos aliquid pariatur autem debitis. Quod doloribus voluptate eos eum ducimus voluptas odio culpa autem consequuntur repudiandae. Recusandae voluptates reiciendis nobis possimus omnis consequatur vero quidem quis fugiat?
-                    Consequatur assumenda magnam totam repellendus deleniti autem voluptate sunt reprehenderit animi tenetur minus quo magni est ex accusantium illo nostrum unde asperiores eos ut, dolores exercitationem optio laborum?
-                    </p>
-                    <small class="text-muted">
-                        <strong>12-12-20</strong>
-                        <span>Copyright Info</span>
-                    </small>
-                </div>
-            </div> -->
+            <div class="favourite-empty hidden" id="emptyState">
+                <div class="illustration"><i class="fa-solid fa-meteor"></i></div>
+                <h3>Nothing added</h3>
+                <p>All favourite photos will appear here</p>
+                <button>View Nasa Images</button>
+            </div>
 
             <div class="loader">
                 <img src="astronaut-1.svg" alt="Loading">
@@ -52,11 +39,11 @@
         </div>
 
         <div>
-            <h3 class="clickable hidden" id="loadMore">Load more</h3>
+            <button class="secondary clickable hidden" id="loadMore">Load more</button>
         </div>
 
         <div class="save-confirmed hidden">
-            <h2>Added!</h2>
+            <h3>Added!</h3>
         </div>
         
     </div>
