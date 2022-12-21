@@ -41,8 +41,21 @@ button:hover {
 
 button.secondary {
   background-color: rgb(10,16,37);
-  color: rgba(255, 255, 255, 0.8);
+  color: #ffffffcc;
   font-weight: 500;
+}
+
+.loading {
+  animation: rotate 1s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .container {

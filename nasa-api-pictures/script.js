@@ -22,7 +22,7 @@ async function getImageUrlFromApi() {
         hide(loader);
         display(loadMoreBtn);
     } catch (error) {
-        throw error
+        throw error;
     }
 }
 
@@ -48,28 +48,44 @@ function createCard(image) {
     card.className = 'card';
     
     let a = document.createElement('a');
-    a.setAttribute('target',"_blank");
-    a.setAttribute('href',image.hdurl);
-    a.setAttribute('title',"View Full Image");
+    a.target = "_blank";
+    a.href = image.hdurl;
+    a.title = "View Full Image";
     
-    let topImage = document.createElement('img');
-    topImage.src = image.url;
-    topImage.setAttribute('alt', image.title);
+    let topImage = '';
     topImage.className = 'card-img-top';
-    topImage.loading = 'lazy';
-    
+    if(image['url'].includes('youtube')) {
+        topImage = document.createElement('iframe');
+        topImage.width = '100%';
+        topImage.height = 'auto';
+        topImage.maxHeight = '60vh';
+        topImage.src = image.url;
+        topImage.title = "Geostationary Highway Through Orion";
+        topImage.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        topImage.setAttribute('allowfullscreen', true);
+        topImage.setAttribute('frameborder', "0");
+        a.href = image.url;
+    } else {
+        topImage = document.createElement('img');
+        topImage.src = image.url;
+        topImage.alt = image.title;
+        topImage.loading = 'lazy';
+    }
+
+    let copyright = image.copyright === undefined ? '' : image.copyright;
+
     let cardBody = document.createElement('div');
     cardBody.className = 'card-body';
     cardBody.innerHTML = `
         <p class="card-text">${image.explanation}</p>
         <small class="text-muted">
             <strong>${image.date}</strong>
-            <span>Copyright Info</span>
+            <span>${copyright}</span>
         </small>
-    `
+    `;
 
     let favouriteBtn = document.createElement('div');
-    favouriteBtn.className = 'card-favourite clickable'
+    favouriteBtn.className = 'card-favourite clickable';
     if(image.favourite) {
         favouriteBtn.innerHTML = `
         <i class="fa-solid fa-heart"></i><p>Remove from Favourites</p>`; 
@@ -98,6 +114,8 @@ function createCard(image) {
     card.append(a);
     card.append(cardBody);
     imageContainer.append(card);
+
+    enableLoadMoreBtn();
 }
 
 function toggleFavourite(item) {
@@ -111,7 +129,7 @@ function toggleFavourite(item) {
     }
 
     function itemExist() {
-        return favourite.indexOf(item.image) > -1
+        return favourite.indexOf(item.image) > -1;
     }
 
     function removeFromFavourites() {
@@ -188,17 +206,31 @@ function initStateFromLocalStorage() {
 }
 
 function updateLocalStorage() {
-    localStorage.setItem(
-        'favourite',
-        JSON.stringify(favourite)
-    )
+    localStorage.setItem('favourite',JSON.stringify(favourite));
 }
 
-loadMoreBtn.addEventListener('click', getImageUrlFromApi);
+function loadMore() {
+    disableLoadMoreBtn();
+    getImageUrlFromApi();
+}
+
+function disableLoadMoreBtn() {
+    loadMoreBtn.innerHTML = '<i class="fa-solid fa-spinner"></i>';
+    loadMoreBtn.firstElementChild.classList.add('loading');
+    loadMoreBtn.disabled = true;
+}
+
+function enableLoadMoreBtn() {
+    loadMoreBtn.innerHTML = 'Load more';
+    loadMoreBtn.classList.remove('loading');
+    loadMoreBtn.disabled = false;
+}
+
+loadMoreBtn.addEventListener('click', loadMore);
 favouritesNav.addEventListener('click', loadFavourites);
 resultNav.addEventListener('click', loadMain);
 emptyState.lastElementChild.addEventListener('click', loadMain);
 
-getImageUrlFromApi()
+getImageUrlFromApi();
 initStateFromLocalStorage();
 
