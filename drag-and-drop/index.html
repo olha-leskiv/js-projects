@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="zeroing.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="main-title">Kanban Board</h1>
+    <div class="boards-container">
+
+        <div class="board">
+            <div class="board-header">
+                <h3>Backlog<span class="card-counter">1</span></h3>
+                <!-- <i title="Add card" class="fa-solid fa-plus"></i> -->
+            </div>
+            <div class="cards">
+                <div class="card" draggable="true">
+                    <p>Finish kanban board project</p>
+                 </div>
+                 <p class="add">+ Add card</p>
+                 <div class="add-card hidden" id="addCard">
+                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
+                    <button>Add card</button> <button class="secondary">Dismiss</button>
+                 </div>
+            </div>
+        </div>
+
+        <div class="board">
+            <div class="board-header">
+                <h3>In progress<span class="card-counter">1</span></h3>
+                <!-- <i title="Add card" class="fa-solid fa-plus"></i> -->
+            </div>
+            <div class="cards">
+                <div class="card" draggable="true">
+                    <p>Finish kanban board project</p>
+                 </div>
+                 <p class="add">+ Add card</p>
+                 <div class="add-card hidden" id="addCard">
+                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
+                    <button>Add card</button> <button class="secondary">Dismiss</button>
+                 </div>
+            </div>
+        </div>
+
+        <div class="board">
+            <div class="board-header">
+                <h3>Complete<span class="card-counter">1</span></h3>
+                <!-- <i title="Add card" class="fa-solid fa-plus"></i> -->
+            </div>
+            <div class="cards">
+                <div class="card" draggable="true">
+                    <p>Finish kanban board project</p>
+                 </div>
+                 <p class="add">+ Add card</p>
+                 <div class="add-card hidden" id="addCard">
+                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
+                    <button>Add card</button> <button class="secondary">Dismiss</button>
+                 </div>
+            </div>
+        </div>
+
+        <div class="board">
+            <div class="board-header">
+                <h3>On hold<span class="card-counter">1</span></h3>
+                <!-- <i title="Add card" class="fa-solid fa-plus"></i> -->
+            </div>
+            <div class="cards">
+                <div class="card" draggable="true">
+                    <p>Finish kanban board project</p>
+                 </div>
+                 <p class="add">+ Add card</p>
+                 <div class="add-card hidden" id="addCard">
+                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
+                    <button>Add card</button> <button class="secondary">Dismiss</button>
+                 </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
