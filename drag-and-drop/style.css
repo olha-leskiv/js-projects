@@ -3,18 +3,20 @@
 :root {
   --radius: 20px;
   --small-radius: 10px;
-  --tiny-radius: 2px;
+  --tiny-radius: 4px;
   --font: 'Work Sans', sans-serif;
   --display-font: 'Bungee Inline', cursive;
 }
 
 body {
-  background: url('https://images.unsplash.com/photo-1671453683999-a8d10e3a2ef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2663&q=80');
-  background-position: top;
+  background-image: url('https://images.unsplash.com/photo-1671453683999-a8d10e3a2ef1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2663&q=80');
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
   font-family: var(--font);
+  overflow-y: hidden;
 }
 
 h1 {
@@ -43,13 +45,31 @@ p {
   line-height: 128%;
 }
 
+/* Textarea */
+
 textarea {
+  display: block;
   width: 100%;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.85);
   font-weight: 400;
   line-height: 128%;
   resize: none;
+}
+
+textarea:focus {
+  border: 1px solid rgba(88, 86, 222);
+}
+
+textarea.error {
+  border: 1px solid rgb(216, 64, 64);
+}
+
+.error-text {
+  display: block;
+  color: rgb(216, 64, 64);
+  font-size: 14px;
+  margin: 0 0 12px;
 }
 
 /* Scrollbar */
@@ -60,7 +80,6 @@ textarea {
 
 ::-webkit-scrollbar-track {
   background: rgb(41, 41, 41);
-
 }
 
 ::-webkit-scrollbar-thumb {
@@ -72,14 +91,20 @@ textarea {
   background: #555;
 }
 
+/* Boards */
 
 .boards-container {
+  position: absolute;
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   padding: 0 24px;
+  white-space: nowrap;
 }
 
 .board {
-  width: 360px;
+  min-width: 360px;
+  height: min-content;
   background: rgba(0, 0, 0, 0.3);
   border-radius: var(--radius);
   padding: 0 24px 24px;
@@ -104,6 +129,7 @@ textarea {
 }
 
 .card {
+  flex: 0 0 auto;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: var(--small-radius);
@@ -112,15 +138,19 @@ textarea {
 
 /* Add card */
 
-.add {
+.add-text {
   padding: 8px;
   font-size: 14px;
   border-radius: var(--small-radius);
   cursor: pointer;
 }
 
-.add:hover{
+.add-text:hover{
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+.buttons {
+  margin: 4px 0 16px;
 }
 
 button {
@@ -134,6 +164,7 @@ button {
 
 button.secondary {
   background-color: rgba(76, 76, 78);
+  margin-left: 6px;
 }
 
 /* Hidden */
