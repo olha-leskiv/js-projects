@@ -33,7 +33,6 @@ for(let board of document.querySelectorAll('.board')) {
       }
     }, 0);
 
-    updateCounters();
     updateLocalStorage()
   }
 
@@ -56,6 +55,14 @@ function hideEditor(e) {
   let board = getBoardElements(e);
   hide(board.editor);
   display(board.addText);
+  board.textarea.value = '';
+  hideError(board.textarea);
+}
+
+function hideError(textarea) {
+  let error = textarea.nextElementSibling;
+  hide(error);
+  textarea.classList.remove('error');
 }
 
 function addCard(e) {
@@ -76,12 +83,26 @@ function addCard(e) {
 }
 
 function createCard(value) {
-  let card = document.createElement('textarea');
+
+  let editIcon = document.createElement('i');
+  editIcon.className = "fa-solid fa-pen-clip";
+  editIcon.title = 'Edit';
+  editIcon.onclick = editCard;
+
+  let deleteIcon = document.createElement('i');
+  deleteIcon.className = "fa-solid fa-trash-can";
+  deleteIcon.title = 'Delete';
+  deleteIcon.onclick = deleteCard;
+
+  let textarea = document.createElement('textarea')
+  let card = document.createElement('div');
+
   card.className = 'card';
   card.draggable = true;
-  card.readOnly = true;
-  card.disabled = true;
-  card.textContent = value;
+  textarea.readOnly = true;
+  textarea.disabled = true;
+  textarea.textContent = value;
+  card.append(editIcon, deleteIcon, textarea)
 
   card.ondragstart = (e) => {
     card.id = 'dragging';
@@ -93,9 +114,12 @@ function createCard(value) {
 
   card.ondragend = () => display(card);
 
-  // card.addEventListener('focus', changeContent);
-
   return card
+}
+
+function deleteCard(e) {
+  e.target.closest('.card').remove();
+  updateLocalStorage();
 }
 
 function getBoardElements(e) {
@@ -120,33 +144,51 @@ function updateCounters() {
   })
 }
 
-// function changeContent(e) {
-//   let textarea = e.currentTarget;
-//   let originalValue = textarea.value;
-//   let buttons = document.createElement('div');
-//   buttons.className = 'buttons';
+function editCard(e) {
+  let card = e.currentTarget.closest('.card');
+  let textarea = card.querySelector('textarea');
+  let icons = card.querySelectorAll('i');
+  icons.forEach(icon => icon.style.display = 'none')
+  textarea.disabled = false;
+  textarea.readOnly = false;
+  const end = textarea.value.length;
+  textarea.setSelectionRange(end, end);
+  textarea.focus();
+  let originalValue = textarea.value;
+  let buttons = document.createElement('div');
+  buttons.className = 'buttons';
 
-//   let saveBtn = document.createElement('button');
-//   saveBtn.textContent = 'Save';
-//   saveBtn.addEventListener('click', () => {
-//       textarea.blur();
-//       buttons.remove();
-//     }
-//   )
+  let saveBtn = document.createElement('button');
+  saveBtn.textContent = 'Save';
+  saveBtn.addEventListener('click', () => {
+      unselectTextarea(textarea);
+    }
+  )
   
-//   let cancelBtn = document.createElement('button');
-//   cancelBtn.textContent = 'Cancel';
-//   cancelBtn.className = 'secondary'
-//   cancelBtn.addEventListener('click', () => {
-//       textarea.value = originalValue;
-//       textarea.blur();
-//       buttons.remove();
-//     }
-//   )
+  let cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'Cancel';
+  cancelBtn.className = 'secondary'
+  cancelBtn.addEventListener('click', () => {
+      textarea.value = originalValue;
+      unselectTextarea(textarea);
+    }
+  )
 
-//   buttons.append(saveBtn, cancelBtn);
-//   textarea.after(buttons);  
-// }
+  function unselectTextarea(textarea) {
+    textarea.blur();
+    textarea.disabled = true;
+    textarea.readOnly = true;
+    buttons.remove();
+    icons.forEach(icon => icon.style.display = 'block');
+    updateLocalStorage()
+  }
+
+  buttons.append(saveBtn, cancelBtn);
+
+  textarea.after(buttons);  
+}
+
+
 
 function showErrorState(textarea) {
   let error = textarea.nextElementSibling;
@@ -178,13 +220,13 @@ function updateLocalStorage() {
   }
   for(let board of document.querySelectorAll('.board')) {
     let cardsArray = [];
-    for(let card of board.querySelector('.cards').children) {
+    for(let card of board.querySelectorAll('.cards textarea')) {
       cardsArray.push(card.value);
     }
     boardsContent[board.id] = cardsArray;
   }
-  console.log(boardsContent)
   localStorage.setItem('boards', JSON.stringify(boardsContent));
+  updateCounters();
 }
 
 window.onload = () => {
@@ -196,7 +238,6 @@ window.onload = () => {
     if(boardsContent[boardName].length > 0) {
       let board = document.getElementById(boardName);
       let cardsContainer = board.querySelector('.cards');
-      console.log(boardsContent, board, cardsContainer)
       for(let item of boardsContent[boardName]) {
         let card = createCard(item);
         cardsContainer.append(card);
