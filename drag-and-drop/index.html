@@ -13,7 +13,7 @@
     <h1 class="main-title">Kanban Board</h1>
     <div class="boards-container">
 
-        <div class="board">
+        <div class="board" id="backlog">
 
             <div class="board-header">
                 <h3>Backlog<span class="card-counter">0</span></h3>
@@ -33,44 +33,66 @@
             </div>  
         </div>
 
-        <div class="board">
+        <div class="board" id="in progress">
+
             <div class="board-header">
                 <h3>In progress<span class="card-counter">0</span></h3>
             </div>
+
             <div class="cards">
-                 <p class="add-text">+ Add card</p>
-                 <div class="add-card hidden" id="addCard">
-                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
-                    <button>Add card</button> <button class="secondary">Dismiss</button>
-                 </div>
             </div>
+
+            <p class="add-text">+ Add card</p>
+                
+            <div class="editor hidden">
+                <textarea class="card" placeholder="Start typing..." dragable></textarea>
+                <small class="error-text hidden">Enter some text</small>
+                <div class="buttons">
+                    <button class="add-btn">Add card</button><button class="secondary dismiss-btn">Dismiss</button>
+                </div>
+            </div>  
         </div>
 
-        <div class="board">
-            <div class="board-header">
+        <div class="board" id="complete">
+
+            <div class="board-header" id="complete">
                 <h3>Complete<span class="card-counter">0</span></h3>
             </div>
+
             <div class="cards">
-                 <p class="add-text">+ Add card</p>
-                 <div class="add-card hidden" id="addCardContainer">
-                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
-                    <button>Add card</button> <button class="secondary">Dismiss</button>
-                 </div>
             </div>
+
+            <p class="add-text">+ Add card</p>
+                
+            <div class="editor hidden">
+                <textarea class="card" placeholder="Start typing..." dragable></textarea>
+                <small class="error-text hidden">Enter some text</small>
+                <div class="buttons">
+                    <button class="add-btn">Add card</button><button class="secondary dismiss-btn">Dismiss</button>
+                </div>
+            </div>  
         </div>
 
-        <div class="board">
+        <div class="board" id="on hold">
+
             <div class="board-header">
                 <h3>On hold<span class="card-counter">0</span></h3>
             </div>
+
             <div class="cards">
-                 <p class="add-text" onclick="openEditor">+ Add card</p>
-                 <div class="add-card hidden" id="addCard">
-                    <textarea class="card" rows="8" placeholder="Start typing..."></textarea>
-                    <button>Add card</button> <button class="secondary">Dismiss</button>
-                 </div>
             </div>
+
+            <p class="add-text">+ Add card</p>
+                
+            <div class="editor hidden">
+                <textarea class="card" placeholder="Start typing..." dragable></textarea>
+                <small class="error-text hidden">Enter some text</small>
+                <div class="buttons">
+                    <button class="add-btn">Add card</button><button class="secondary dismiss-btn">Dismiss</button>
+                </div>
+            </div>  
         </div>
+
 
     </div>
     <!-- Script -->

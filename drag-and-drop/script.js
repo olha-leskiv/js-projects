@@ -1,98 +1,158 @@
-const addTexts = document.querySelectorAll('.add-text');
-addTexts.forEach(item => {
-  item.addEventListener('click', openEditor);
-});
-
-const dismissBtns = document.querySelectorAll('.dismiss-btn');
-dismissBtns.forEach(item => {
-  item.addEventListener('click', hideEditor);
-});
-
-const addBtns = document.querySelectorAll('.add-btn');
-addBtns.forEach(item => {
-  item.addEventListener('click', addCard);
-});
 
 
-function openEditor(e) {
-  let board = e.currentTarget.closest('.board');
-  let addText = board.querySelector('.add-text');
-  let editor = board.querySelector('.editor');
-  display(editor);
-  hide(addText);
-}
+for(let addText of document.querySelectorAll('.add-text')) {
+  addText.onclick = openEditor;
+};
 
-function hideEditor(e) {
-  let board = e.currentTarget.closest('.board');
-  let addText = board.querySelector('.add-text');
-  let editor = board.querySelector('.editor');
-  hide(editor);
-  display(addText);
-}
+for(let btn of document.querySelectorAll('.dismiss-btn')) {
+  btn.onclick = hideEditor;
+};
 
-function addCard(e) {
+for(let btn of document.querySelectorAll('.add-btn')) {
+  btn.onclick = addCard;
+};
 
-  let board = e.currentTarget.closest('.board');
-  let editor = board.querySelector('.editor');
-  let textarea = board.querySelector('.editor textarea');
-  let value = textarea.value;
-  if(!value) {
-    showErrorState(textarea)
-  } else {
-    let card = document.createElement('textarea');
-    card.className = 'card';
-    card.draggable = true;
-    card.textContent = value;
-    card.addEventListener('focus', changeContent);
-    
-    
-    let cardsContainer = board.querySelector('.cards');
-    cardsContainer.append(card);
+for(let board of document.querySelectorAll('.board')) {
+  let cards = board.querySelector('.cards');
+  let otherCards = document.querySelectorAll('.cards');
 
-    let addText = board.querySelector('.add-text');  
-    hide(editor);
-    display(addText);
+  board.ondragover = (e) => {
+    e.preventDefault();
+  }
 
-    let counter = board.querySelector('.card-counter');
-    counter.textContent++;
-    
-    clearErrorState(textarea)
+  board.ondrop = (e) => {
+    e.preventDefault();
+    let data = e.dataTransfer.getData("text");
+    let card = document.getElementById(data);
+    card.removeAttribute('id');
+    cards.append(card);
+
+    setTimeout(() => {
+      for(let cards of otherCards) {
+        cards.classList.remove('drop-expect');
+      }
+    }, 0);
+
+    updateCounters();
+    updateLocalStorage()
+  }
+
+  board.ondragenter = () => {
+    for(let cards of otherCards) {
+      cards.classList.remove('drop-expect');
+    };
+    cards.classList.add('drop-expect');
   }
 }
 
-function changeContent(e) {
-  let textarea = e.currentTarget;
-  let originalValue = textarea.value;
-  let buttons = document.createElement('div');
-  buttons.className = 'buttons';
-
-  let saveBtn = document.createElement('button');
-  saveBtn.textContent = 'Save';
-  saveBtn.addEventListener('click', () => {
-      textarea.blur();
-      buttons.remove();
-    }
-  )
-  
-  let cancelBtn = document.createElement('button');
-  cancelBtn.textContent = 'Cancel';
-  cancelBtn.className = 'secondary'
-  cancelBtn.addEventListener('click', () => {
-      textarea.value = originalValue;
-      textarea.blur();
-      buttons.remove();
-    }
-  )
-
-  buttons.append(saveBtn, cancelBtn);
-  textarea.after(buttons);  
+function openEditor(e) {
+  let board = getBoardElements(e);
+  display(board.editor);
+  hide(board.addText);
+  board.textarea.focus();
 }
+
+function hideEditor(e) {
+  let board = getBoardElements(e);
+  hide(board.editor);
+  display(board.addText);
+}
+
+function addCard(e) {
+  let board = getBoardElements(e);
+  let value = board.textarea.value;
+
+  if(!value) {
+    showErrorState(board.textarea)
+  } else {
+    let card = createCard(value);
+    board.cardsContainer.append(card);
+    hide(board.editor);
+    clearErrorState(board.textarea);
+    display(board.addText);
+    updateCounters();
+    updateLocalStorage();
+  }
+}
+
+function createCard(value) {
+  let card = document.createElement('textarea');
+  card.className = 'card';
+  card.draggable = true;
+  card.readOnly = true;
+  card.disabled = true;
+  card.textContent = value;
+
+  card.ondragstart = (e) => {
+    card.id = 'dragging';
+    e.dataTransfer.setData("text", e.currentTarget.id);
+    setTimeout(() => {
+      hide(card)
+    }, 0);
+  };
+
+  card.ondragend = () => display(card);
+
+  // card.addEventListener('focus', changeContent);
+
+  return card
+}
+
+function getBoardElements(e) {
+  let board = e.currentTarget.closest('.board');
+  let item = {
+    'self': board,
+    'editor': board.querySelector('.editor'),
+    'textarea': board.querySelector('.editor textarea'),
+    'cardsContainer': board.querySelector('.cards'),
+    'addText': board.querySelector('.add-text'),
+    'cards': [],
+  }
+  return item
+}
+
+function updateCounters() {
+  const counters = document.querySelectorAll('.card-counter');
+  counters.forEach(counter => {
+    let board = counter.closest('.board');
+    let cards = board.querySelector('.cards');
+    counter.textContent = cards.children.length;
+  })
+}
+
+// function changeContent(e) {
+//   let textarea = e.currentTarget;
+//   let originalValue = textarea.value;
+//   let buttons = document.createElement('div');
+//   buttons.className = 'buttons';
+
+//   let saveBtn = document.createElement('button');
+//   saveBtn.textContent = 'Save';
+//   saveBtn.addEventListener('click', () => {
+//       textarea.blur();
+//       buttons.remove();
+//     }
+//   )
+  
+//   let cancelBtn = document.createElement('button');
+//   cancelBtn.textContent = 'Cancel';
+//   cancelBtn.className = 'secondary'
+//   cancelBtn.addEventListener('click', () => {
+//       textarea.value = originalValue;
+//       textarea.blur();
+//       buttons.remove();
+//     }
+//   )
+
+//   buttons.append(saveBtn, cancelBtn);
+//   textarea.after(buttons);  
+// }
 
 function showErrorState(textarea) {
   let error = textarea.nextElementSibling;
   display(error);
-  textarea.classList.add('error')
-  textarea.focus()
+  textarea.classList.add('error');
+  textarea.focus();
 }
 
 function clearErrorState(textarea) {
@@ -107,4 +167,41 @@ function display(element) {
 }
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function updateLocalStorage() {
+  let boardsContent = {
+    'backlog': [],
+    'In progress': [],
+    'complete': [],
+    'on hold': [],
+  }
+  for(let board of document.querySelectorAll('.board')) {
+    let cardsArray = [];
+    for(let card of board.querySelector('.cards').children) {
+      cardsArray.push(card.value);
+    }
+    boardsContent[board.id] = cardsArray;
+  }
+  console.log(boardsContent)
+  localStorage.setItem('boards', JSON.stringify(boardsContent));
+}
+
+window.onload = () => {
+  if(!localStorage.getItem('boards')) {
+    return
+  }
+  let boardsContent = JSON.parse(localStorage.getItem('boards'));
+  for(let boardName in boardsContent) {
+    if(boardsContent[boardName].length > 0) {
+      let board = document.getElementById(boardName);
+      let cardsContainer = board.querySelector('.cards');
+      console.log(boardsContent, board, cardsContainer)
+      for(let item of boardsContent[boardName]) {
+        let card = createCard(item);
+        cardsContainer.append(card);
+      }
+    }
+  }
+  updateCounters();
 }

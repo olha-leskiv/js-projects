@@ -134,7 +134,17 @@ textarea.error {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: var(--small-radius);
   margin: 0 0 4px;
+  cursor: pointer;
+  height: fit-content;
 }
+
+.drop-expect::after {
+  content: '';
+  display: block;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: var(--small-radius);
+} 
 
 /* Add card */
 
