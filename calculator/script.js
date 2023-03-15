@@ -8,9 +8,11 @@ function formValue(input) {
         if(firstSymbolIsDot(currentValue)) currentValue = 0;
     } else {
         if(currentValue === 0) currentValue = '';
-        if(currentValue == 0 && input == 0) return;
+        if(currentValue[0] == 0 && input == 0) return;
     }
     currentValue = currentValue + input;
+    console.log(currentValue)
+
     updateDOM(currentValue);
 }
 
@@ -26,14 +28,12 @@ function update(newOperator) {
     updateOperator(newOperator);
     updateResult();
     updateDOM(result);
-    console.log(currentValue, result)
     currentValue = '';
 }
 
 function sumUp() {
     updateResult();
     updateDOM(result);
-    console.log(currentValue, result)
     operator = undefined;
     currentValue = '';
 }   
