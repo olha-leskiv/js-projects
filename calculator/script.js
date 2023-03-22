@@ -17,7 +17,7 @@ function formValue(input) {
 }
 
 function alreadyHasDot(currentValue) {
-    return currentValue.toString().split('').some((item) => item === '.')
+    return currentValue.toString().includes('.');
 }
 
 function firstSymbolIsDot(currentValue) {
@@ -48,7 +48,6 @@ function updateOperator(newOperator) {
     operator = newOperator;
 }
 
-
 function setDefault() {
     operator = undefined;
     result = undefined;
@@ -58,7 +57,7 @@ function setDefault() {
 
 function updateDOM(value) {
     if(value === undefined) value = 0;
-    document.querySelector('.calculator-display h1').textContent = value;
+    document.querySelector('.calcu lator-display h1').textContent = value;
 }
 
 function calculate() {
