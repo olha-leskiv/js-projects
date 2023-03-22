@@ -57,7 +57,7 @@ function setDefault() {
 
 function updateDOM(value) {
     if(value === undefined) value = 0;
-    document.querySelector('.calcu lator-display h1').textContent = value;
+    document.querySelector('.calculator-display h1').textContent = value;
 }
 
 function calculate() {
