@@ -1,0 +1,1145 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&display=swap');
+
+:root {
+    --first:  #D1D1D1;
+    --second: #E1DBD6;
+    --third: #E2E2E2;
+    --fourth: #F9F6F2;
+    --black:  #272727;
+    --accent:  rgb(236, 181, 62);
+    --accent2:  rgb(236, 88, 62);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 400px 400px;
+}
+
+.grid-item {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.grid-item:nth-of-type(4n + 1) {
+    background-color: var(--first);
+}
+
+.grid-item:nth-of-type(4n + 2) {
+    background-color: var(--second);
+}
+
+.grid-item:nth-of-type(4n + 3) {
+    background-color: var(--third);
+}
+
+.grid-item:nth-of-type(4n + 4) {
+    background-color: var(--fourth);
+}
+
+a {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Creative rotating button effect */
+
+.rotating-button a {
+    color: var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.rotating-button a:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #F9F6F2;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+    transition: transform 1s ease;
+}
+
+.rotating-button a:hover:before {
+    transform: rotate(0);
+} 
+
+/* Creative swipe button effect */
+
+.swipe-button a {
+    color:var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: none 1s ease;
+    transition-property: color;
+
+}
+
+.swipe-button a:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color:var(--black);
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transform: translateX(-100%);
+    transform-origin: left;
+    transition: transform 1s ease;
+}
+
+.swipe-button a:hover:before {
+    transform: translateX(0);
+} 
+
+.swipe-button a:hover {
+    color: white;
+}
+
+/* Creative button hover effect (squares) */
+
+.squares a {
+    color:var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: none 1s ease-in;
+    transition-property: color;
+}
+
+.squares a:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color:var(--black);
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transform: rotateX(90deg);
+    transition: transform 1s ease-in;
+}
+
+.squares a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color:var(--black);
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transform: rotateY(90deg);
+    transition: transform 1s ease-in;
+}
+
+.squares a:hover:before {
+    transform: rotateX(0);
+}
+
+.squares a:hover:after {
+    transform: rotateY(0);
+} 
+
+.squares a:hover {
+    color: white;
+}
+
+/* Creative button stretching effect */
+
+.stretch-button a {
+    color:var(--black);
+    font-weight: 300;
+    letter-spacing: 0;
+    font-size: 2rem;
+    box-shadow: 0 0 0 0.1em var(--black);
+    padding: 1em 2em;
+    z-index: 1;
+    transition: 0.5s;
+    transition-property: box-shadow, font-weight, letter-spacing;
+
+}
+
+.stretch-button a:hover {
+    font-weight: 700;
+    letter-spacing: 6px;
+    box-shadow: 0 0 0 0.18em var(--black);
+} 
+
+/* Creative button swipe effect from top to bottom with text */
+
+.swipe-top a {
+    color:var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.swipe-top a:before {
+    content: 'Yeah!';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    transform: translateY(-100%);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+.swipe-top a:hover:before {
+    transform: translateY(0);
+} 
+
+/* Creative button glowing effect */
+
+.glowing a {
+    color:var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 700ms ease;
+}
+
+.glowing a:hover {
+    background-color: var(--accent);
+}
+
+.glowing a:before {
+    content: '';
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1.2em;
+    transform: translateX(-100%) rotate(45deg);
+    transition: transform 700ms ease;
+}
+
+.glowing a:hover:before {
+    transform: translateX(100%) rotate(45deg);
+}
+
+/* Creative two layers swapping button effect */
+
+.two-layers a {
+    color: transparent;
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 700ms ease;
+}
+
+.two-layers a:before {
+    content: 'Hover Me';
+    background-color: white;
+    color: var(--black);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 500ms ease;
+}
+
+.two-layers a:after {
+    content: 'Hovered';
+    background-color: var(--accent);
+    color: var(--black);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 500ms ease;
+    transform: translate(-110%, 100%);
+}
+
+.two-layers a:hover:before {
+    transform: translate(100%,-100%);
+}
+
+.two-layers a:hover:after {
+    transform: translate(0, 0);
+}
+
+/* Creative text scaling button effect */
+
+.text-scaling a {
+    color: var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    overflow: hidden;
+}
+
+.text-scaling a:before {
+    content: 'Hovered';
+    background-color: var(--black);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease-out;
+    transform: scale(5);
+    opacity: 0;
+}
+
+.text-scaling a:hover:before {
+    transform: scale(100%);
+    opacity: 100;
+}
+
+/* Creative circular swapping button effect */
+
+.circular-swap a {
+    color: var(--black);
+    font-size: 2rem;
+    border: 0.1em solid var(--black);
+    padding: 1em 2em;
+    position: relative;
+    overflow: hidden;
+    transition: color 300ms ease;
+    z-index: 1;
+}
+
+.circular-swap a:before {
+    content: '';
+    background-color: var(--black);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    border-radius: 0 0 10em 10em;
+    z-index: -1;
+}
+
+.circular-swap a:hover:before {
+    transform: scaleY(100%);
+    border-radius: 0;
+}
+
+.circular-swap a:hover {
+    color: white;
+}
+
+/* Creative rotating 3 layers button effect */
+
+.three-layer a {
+    color: var(--black);
+    font-size: 2rem;
+    border: solid 0.1em var(--black);
+    padding: 1em 2em;
+    position: relative;
+}
+
+.three-layer a:before {
+    content: 'Yeah!';
+    background-color: var(--accent);
+    color: var(--black);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease;
+    transform: rotateX(270deg);
+    transform-origin: top;
+    outline: solid 0.1em var(--accent);
+
+
+}
+
+.three-layer a:after {
+    content: 'Hovered';
+    background-color: var(--black);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease 150ms;
+    transform: rotateX(270deg);
+    transform-origin: top;
+    outline: solid 0.1em var(--black);
+
+}
+
+.three-layer a:hover:before,
+.three-layer a:hover:after {
+    transform: rotateX(0);
+}
+
+.three-layer a:not( :hover ):before {
+    transition: all 300ms ease 150ms;
+}
+
+.three-layer a:not( :hover ):after {
+    transition: all 300ms ease;
+}
+
+/* Creative layers swapping from left to right button effect */
+
+.left-to-right a {
+    color: transparent;
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+}
+
+.left-to-right a:before {
+    content: 'Hovered';
+    background-color: var(--accent);
+    color: var(--black);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 500ms ease;
+    transform: scale(0%) rotateY(-360deg);
+    opacity: 0;
+}
+
+.left-to-right a:after {
+    content: 'Hover Me';
+    background-color: var(--black);
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 500ms ease;
+    transform: scale(100%) rotateY(0deg);
+    opacity: 100%;
+}
+
+.left-to-right a:hover:before {
+    left: 0;
+    transform: scale(100%) rotateY(0deg);
+    opacity: 100;
+}
+
+.left-to-right a:hover:after {
+    right: -100%;
+    transform: scale(0%) rotateY(360deg);
+    opacity: 0;
+}
+
+/* Creative 3 circles to background button effect */
+
+.circles a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    transition: color 250ms ease 200ms;
+}
+
+.circles a:before,
+.circles a:after {
+    content: '';
+    position: absolute;
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--accent2);
+    transition: all 250ms ease;
+    z-index: -1;
+    opacity: 0;
+}
+
+.circles a:before {
+    left: 0;
+    box-shadow: -3em 0 0 var(--accent2);
+}
+
+.circles a:after {
+    right: 0;
+    box-shadow: 3em 0 0 var(--accent2);
+}
+
+.circles a:hover:before {
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    opacity: 100%;
+}
+
+.circles a:hover:after {
+    right: 50%;
+    transform: translateY(-50%) translateX(50%);
+    opacity: 100%;
+}
+
+.circles span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4em;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent2);
+    z-index: 1;
+    transform: scale(0);
+    transform-origin: center;
+    transition: all 250ms ease-in 100ms;
+    z-index: -1;
+}
+
+.circles a:hover span {
+    transform: scale(100%);
+    border-radius: 0;
+}
+
+.circles a:hover {
+    color: white
+}
+
+/* Creative button hover effect */
+
+.shifts a {
+    color: white;
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    transition: color 200ms ease;
+    z-index: 1;
+}
+
+.shifts a:before {
+    content: '';
+    background-color: var(--accent);
+    position: absolute;
+    top: -0.15em;
+    left: -0.15em;
+    width: 100%;
+    height: 100%;
+    transition: all 200ms ease;
+    z-index: -1;
+    transform: perspective(30em) rotateX(0) ;
+    transform-origin: top;
+    mix-blend-mode: multiply;
+}
+
+.shifts a:after {
+    content: '';
+    background-color: var(--accent2);
+    position: absolute;
+    bottom: -0.15em;
+    right: -0.15em;
+    width: 100%;
+    height: 100%;
+    transition: all 200ms ease;
+    z-index: -1; 
+    transform: perspective(30em) rotateX(0);
+    transform-origin: bottom;
+    mix-blend-mode: multiply;
+}
+
+.shifts a:hover:before {
+    top: -0.3em;
+    left: 0;
+    transform: perspective(30em) rotateX(78deg) ;
+}
+
+.shifts a:hover:after {
+    bottom: -0.3em;
+    right: 0;
+    transform: perspective(30em) rotateX(-78deg) ;
+}
+
+.shifts a:hover {
+    color: var(--black);
+}
+
+/* Creative splitted button effect */
+
+.four-blocks a {
+    color: var(--black);
+    font-size: 2rem;
+    border: solid 0.1em var(--black);
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: color 300ms ease;
+}
+
+.four-blocks a:before {
+    content: '';
+    background-color: var(--black);
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    z-index: -1;
+    transition: all 300ms ease;
+}
+
+.four-blocks a:after {
+    content: '';
+    background-color: var(--black);
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    top: -100%;
+    right: 0;
+    z-index: -1;
+    transition: all 300ms ease 150ms;
+}
+
+.four-blocks span:before {
+    content: '';
+    background-color: var(--black);
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    top: -100%;
+    left: 25%;
+    z-index: -1;
+    transition: all 300ms ease 50ms;
+}
+
+.four-blocks span:after {
+    content: '';
+    background-color: var(--black);
+    height: 100%;
+    width: 25%;
+    position: absolute;
+    bottom: -100%;
+    right: 25%;
+    z-index: -1;
+    transition: all 300ms ease 100ms;
+}
+
+.four-blocks a:hover:before {
+    bottom: 0; 
+}
+
+.four-blocks a:hover:after {
+    top: 0;
+}
+
+.four-blocks a:hover span:before {
+    top: 0;
+}
+
+.four-blocks a:hover span:after {
+    bottom: 0; 
+}
+
+.four-blocks a:hover {
+    color: white;
+}
+
+/* Creative border swapping button effect */
+
+.border-swap a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+}
+
+.border-swap a:before {
+    content: '';
+    height: 150%;
+    width: 100%;
+    position: absolute;
+    top: -25%;
+    left: 0;
+    transition: all 500ms ease;
+    border-left: 0.1em solid var(--accent);
+    border-right: 0.1em solid var(--accent2);
+}
+
+.border-swap a:after {
+    content: '';
+    height: 100%;
+    width: 120%;
+    position: absolute;
+    top: 0;
+    left: -10%;
+    transition: all 500ms ease;
+    border-top: 0.1em solid var(--accent);
+    border-bottom: 0.1em solid var(--accent2);
+}
+
+.border-swap a:hover:before {
+    transform: rotateY(180deg)
+}
+
+.border-swap a:hover:after {
+    transform: rotateX(180deg)
+}
+
+/* Creative border growing button effect */
+
+.border-grow a {
+    color: white;
+    background-color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+}
+
+.border-grow a:before {
+    content: '';
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    top: -0.2em;
+    left: -0.2em;
+    transition: all 300ms ease;
+    border-left: 0.1em solid var(--black);
+    border-top: 0.1em solid var(--black);
+}
+
+.border-grow a:after {
+    content: '';
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    bottom: -0.2em;
+    right: -0.2em;
+    transition: all 300ms ease;
+    border-right: 0.1em solid var(--black);
+    border-bottom: 0.1em solid var(--black);
+}
+
+.border-grow a:hover:before,
+.border-grow a:hover:after {
+    height: 100%;
+    width: 100%;
+}
+
+/* Creative first letter rotating button effect */
+
+.first-letter a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    border: solid 0.1em var(--black);
+    z-index: 1;
+    transition: all 300ms ease;
+}
+
+.first-letter a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black);
+    z-index: -1;
+    transition: all 300ms ease;
+    opacity: 0;
+}
+
+.first-letter a:hover:before {
+    transform: rotate(15deg) translateX(-4%);
+    opacity: 1;
+    border-radius: 0.5em;
+}
+
+.first-letter a:hover {
+    border: solid 0.1em #27272754;
+    color: white;
+    border-radius: 0.5em;
+
+}
+
+.first-letter span {
+    transition: all 300ms ease;
+    position: relative;
+    color: transparent;
+}
+
+.first-letter span:before {
+    content: 'H';
+    color: var(--black);
+    position: absolute;
+    transition: all 200ms ease;
+}
+
+.first-letter a:hover span:before {
+    transform: rotate(360deg) translate(-60%, -59%);
+    color: var(--accent);
+    font-size: 5rem;
+}
+
+/* Creative 4 borders growing button effect */
+
+.four-borders a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.four-borders a:before,
+.four-borders a:after,
+.four-borders span:before,
+.four-borders span:after {
+    content: '';
+    transition: all 350ms ease;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.four-borders a:before {
+    border-top: 0.1em solid var(--black);
+    transform: translateX(-100%);
+}
+
+.four-borders a:after {
+    border-bottom: 0.1em solid var(--black);
+    transform: translateX(100%);
+}
+
+.four-borders span:before {
+    border-left: 0.1em solid var(--black);
+    transform: translateY(100%);
+}
+
+.four-borders span:after {
+    border-right: 0.1em solid var(--black);
+    transform: translateY(-100%);
+}
+
+.four-borders a:hover:before {
+    transform: translateX(0);
+}
+
+.four-borders a:hover:after {
+    transform: translateX(0);
+}
+
+.four-borders a:hover span:before {
+    transform: translateY(0);
+}
+
+.four-borders a:hover span:after {
+    transform: translateY(0);
+}
+
+/* Creative wavy button effect */
+
+.wave a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    border: 0.1em solid var(--black);
+    overflow: hidden;
+    transition: color 400ms linear;
+}
+
+.wave a:hover {
+    color: white;
+}
+
+.wave .blue {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: calc(-100% - 22px);
+    left: 0;
+    background-color: #00aeff;
+    transition: bottom 500ms linear;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+.wave .blue:before {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: 0;
+    width: 100%;
+    height: 22px;
+    background: url(../img/wave.png);
+    animation: wavy 500ms linear infinite;
+    border-bottom: 1px solid #00aeff;
+} 
+
+@keyframes wavy {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: 118px;
+    }
+}
+
+.wave a:hover .blue {
+    bottom: 0;
+}
+
+/* Creative 2 cuts button effect */
+
+.two-cuts a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    transition: color 300ms ease;
+    overflow: hidden;
+}
+
+.two-cuts span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    border: 0.1em solid var(--black);
+}
+
+.two-cuts span:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 500%;
+    width: 10%;
+    background-color: var(--first);
+    z-index: -1;
+    transform: translateX(-50%) translateY(-50%) rotate(-60deg);
+    transition: all 300ms ease;
+}
+
+.two-cuts a:hover span:before {
+    width: 100%;
+    transform: translateX(-50%) translateY(-50%) rotate(60deg);
+    background-color: var(--black);
+}
+
+.two-cuts a:hover {
+    color: white;
+}
+
+/* Creative 2 parts skewed button effect */
+
+.two-skewed a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    transition: color 300ms ease;
+}
+
+.two-skewed a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background-color: var(--accent);
+    z-index: -1;
+    transform: skewX(30deg) translateY(-8%);
+    transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.two-skewed a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background-color: var(--accent2);
+    z-index: -1;
+    transform: skewX(30deg) translateY(8%);
+    transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.two-skewed a:hover:before {
+    left: 50%;
+    transform: skewX(0) translateY(0);
+}
+
+.two-skewed a:hover:after {
+    right: 50%;
+    transform: skewX(0) translateY(0);
+}
+
+/* Creative pulsing button effect */
+
+.pulse a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    transition: all 300ms;
+    border-radius: 2em;
+}
+
+.pulse a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: -1;
+    transition: all 300ms;
+    opacity: 1;
+    border-radius: 2em;
+
+}
+
+.pulse a:hover:before {
+    opacity: 0;
+    transform: scaleY(160%) scaleX(130%);
+}
+
+.pulse a:hover {
+    transform: translateY(-6%);
+    box-shadow: 0 0.6em 0.4em #27272727;
+}
+
+.pulse a:active {
+    transform: translateY(-2%);
+    box-shadow: 0 0.3em 0.3em #27272727;
+}
+
+/* Diagonal swipe button effect using borders*/
+
+.diagonal a {
+    color: var(--black);
+    font-size: 2rem;
+    padding: 1em 2em;
+    position: relative;
+    z-index: 1;
+    transition: color 300ms ease;
+    border: solid 0.1em var(--black);
+    overflow: hidden;
+}
+
+.diagonal a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transition: all 300ms ease;
+    border-top: 1.5em solid var(--black);
+    border-bottom: 1.5em solid var(--black);
+    border-right: 1.5em solid transparent;
+    transform: translateX(-100%);
+}
+
+.diagonal a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transition: all 300ms ease;
+    border-top: 1.5em solid var(--black);
+    border-bottom: 1.5em solid var(--black);
+    border-left: 1.5em solid transparent;
+    transform: translateX(100%);
+}
+
+.diagonal a:hover:before,
+.diagonal a:hover:after {
+    transform: translateX(0);
+}
+
+.diagonal a:hover {
+    color: white;
+}

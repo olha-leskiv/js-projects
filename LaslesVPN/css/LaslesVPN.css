@@ -92,6 +92,7 @@ ul {
         line-height: 18px;
         position: relative;
         z-index: 2;
+        cursor: pointer;
     }
 
     button.primary {
@@ -102,7 +103,10 @@ ul {
         border: none;
         border-radius: var(--radius);
         height: 60px;
-        
+    }
+
+    button.primary:hover {
+        filter: brightness(120%);
     }
 
     .hero_content::after {
@@ -378,8 +382,11 @@ ul {
     .customer_stack {
         display: flex;
         margin: 60px 0;
-        overflow-x: auto;
-        padding-left: calc(50% - 570px);
+        /* padding-left: calc(50% - 570px); */
+        gap: 50px;
+        overflow-x: visible;
+        transition: margin 400ms;
+        justify-content: flex-start;
     }
 
     .customer_card:first-child {
@@ -396,7 +403,6 @@ ul {
         min-width: 400px;    
         height: 100%;
         padding: 30px;
-        margin-right: 50px;
     }
 
  
