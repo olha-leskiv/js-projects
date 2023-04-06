@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&display=swap');
 
 :root {
-    --first:  #D1D1D1;
-    --second: #E1DBD6;
-    --third: #E2E2E2;
-    --fourth: #F9F6F2;
+    --first:  #eeeeee;
+    --second: ##eeeeee;
+    --third: ##eeeeee;
+    --fourth: ##eeeeee;
     --black:  #272727;
     --accent:  rgb(236, 181, 62);
     --accent2:  rgb(236, 88, 62);
@@ -12,32 +12,20 @@
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 400px 400px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0.5rem;
 }
 
 .grid-item {
-    min-height: 400px;
+    height: 36vh;
+    min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-}
-
-.grid-item:nth-of-type(4n + 1) {
+    margin: 1rem;
     background-color: var(--first);
-}
 
-.grid-item:nth-of-type(4n + 2) {
-    background-color: var(--second);
-}
-
-.grid-item:nth-of-type(4n + 3) {
-    background-color: var(--third);
-}
-
-.grid-item:nth-of-type(4n + 4) {
-    background-color: var(--fourth);
 }
 
 a {
@@ -62,7 +50,7 @@ a {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: #F9F6F2;
+    background-color: var(--accent);
     height: 100%;
     width: 100%;
     z-index: -1;
@@ -145,7 +133,7 @@ a {
     left: 0;
     top: 0;
     background-color:var(--black);
-    height: 100%;
+    height: 102%;
     width: 100%;
     z-index: -1;
     transform: rotateY(90deg);
@@ -1114,9 +1102,9 @@ a {
     width: 100%;
     z-index: -1;
     transition: all 300ms ease;
-    border-top: 1.5em solid var(--black);
-    border-bottom: 1.5em solid var(--black);
-    border-right: 1.5em solid transparent;
+    border-top: 1.6em solid var(--black);
+    border-bottom: 1.6em solid var(--black);
+    border-right: 1.6em solid transparent;
     transform: translateX(-100%);
 }
 
@@ -1129,9 +1117,9 @@ a {
     width: 100%;
     z-index: -1;
     transition: all 300ms ease;
-    border-top: 1.5em solid var(--black);
-    border-bottom: 1.5em solid var(--black);
-    border-left: 1.5em solid transparent;
+    border-top: 1.6em solid var(--black);
+    border-bottom: 1.6em solid var(--black);
+    border-left: 1.6em solid transparent;
     transform: translateX(100%);
 }
 
@@ -1142,4 +1130,20 @@ a {
 
 .diagonal a:hover {
     color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    :root {
+        font-size: 14px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;;
+    }
 }
