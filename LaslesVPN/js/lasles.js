@@ -1,6 +1,10 @@
-const cards = document.querySelector('.customer_stack');
+const cards = document.querySelector('.customer_stack').children;
 const card = document.querySelector('.customer_card');
 const cardsWidth = cards.offsetWidth;
+const gap = 50
+const dots = document.querySelector('.customer_dots').children;
+
+let activeCard = 1;
 
 const testimonialLeftBtn = document.getElementById('testimonial-left');
 const testimonialRightBtn = document.getElementById('testimonial-right');
@@ -9,30 +13,34 @@ testimonialLeftBtn.addEventListener('click', shiftTestimonialsLeft);
 testimonialRightBtn.addEventListener('click', shiftTestimonialsRight);
 
 function shiftTestimonialsRight() {
-    if(cards.style.marginLeft >= cardsWidth) {
+    if(activeCard >= cards.length) {
         return
     }
-
-    let shift;
-    if(!cards.style.marginLeft) {
-        shift = -card.offsetWidth - 50;
-    } else {
-        shift = parseInt(cards.style.marginLeft) - card.offsetWidth - 50;
-    }
-    cards.style.marginLeft = shift + `px`;
-
-    // cards.scroll(shift + `px`, 0)
+    activeCard++;
+    translateCards();
 }
 
 function shiftTestimonialsLeft() {
-    if(!cards.style.marginLeft) {
-        return
+    if(activeCard == 1) return
+    activeCard--;
+    translateCards();
+}
+
+function translateCards(cardNumber) {
+    if(cardNumber) {
+        activeCard = cardNumber;
     }
-    let shift;
-    if(!cards.style.marginLeft) {
-        shift = card.offsetWidth + 50;
-    } else {
-        shift = parseInt(cards.style.marginLeft) + card.offsetWidth + 50;
+    for(let i = 0; i < cards.length; i++) {
+        cards[i].style.transform = `translateX(-${(card.offsetWidth + gap) * (activeCard - 1)}px)`
+        cards[i].classList.remove('card-active');
+        if(i === activeCard - 1) {
+            cards[i].classList.add('card-active');
+        }
     }
-    cards.style.marginLeft = shift + `px`;
+    for(let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('dot-active');
+        if(i === activeCard - 1) {
+            dots[i].classList.add('dot-active');
+        }
+    }
 }
