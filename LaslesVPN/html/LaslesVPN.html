@@ -15,13 +15,12 @@
       <div class="container" >
           <div class="menu">
               <img src="../svg/Logo.svg" alt="">
-              <ul>
-                  <li>About</li>
-                  <li>Features</li>
-                  <li>Pricing</li>
-                  <li>Testimonials</li>
-                  <li>Help</li>
-              </ul>
+              <nav>
+                  <a href="#features">Features</a>
+                  <a href="#pricing">Pricing</a>
+                  <a href="#network">Network</a>
+                  <a href="#testimonials">Testimonials</a>
+              </nav>
               <div class = "menu_buttons">
                 <button class="tetriary">Sign In</button>  
                 <button class="secondary">Sign Up</button>
@@ -31,9 +30,11 @@
               <div class="hero_content">
                 <h1>Want anything to be easy with <b>LaslesVPN.</b></h1>
                 <p>Provide a network for all your needs with ease and fun using LaslesVPN discover interesting features from us.</p>
-              <button class="primary">Get Started</button>
+                <button class="primary">Get Started</button>
               </div>
-              <img src="../svg/Illustration 1.svg" alt="">
+              <div>
+                <img src="../png/Illustration 1.png" alt="">
+              </div>
           </div>
       </div>
   </div> 
@@ -64,73 +65,87 @@
                 </div>
               </div>
           </div>
-        <div class="numbers_shadow"></div>
       </div>
   </div>
-  <div class="features">
+  <div class="features" id="features">
           <div class="container">
               <div class="features__inner">
-                  <img src="../svg/Illustration 2.svg" alt="">
-                  <div class="features_content">
-                      <h3>We Provide Many Features You Can Use</h3>
-                      <p>You can explore the features that we provide with fun and have their own functions each feature.</p>
-                      <ul class="checkbox">
-                          <li><h6>Powerfull online protection.</h6></li>
-                          <li><h6>Internet without borders.</h6></li>
-                          <li><h6>Supercharged VPN</h6></li>
-                          <li><h6>No specific time limits.</h6></li>
-                      </ul>
-                  </div>
+                <div>
+                    <img src="../svg/Illustration 2.svg" alt="">
+
+                </div>
+                <div class="features_content">
+                    <h3>We Provide Many Features You Can Use</h3>
+                    <p>You can explore the features that we provide with fun and have their own functions each feature.</p>
+                    <ul class="checkbox">
+                        <li><h6>Powerfull online protection.</h6></li>
+                        <li><h6>Internet without borders.</h6></li>
+                        <li><h6>Supercharged VPN</h6></li>
+                        <li><h6>No specific time limits.</h6></li>
+                    </ul>
+                </div>
               </div>
           </div>
   </div>
   <div class="gradient">
-    <div class="plan">
+    <div class="plan" id="pricing">
             <div class="container">
                 <div class="plan__inner">
                     <h3 class="section_title">Choose Your Plan</h3>
                     <p class="section_subtitle">Let's choose the package that is best for you and explore it happily and cheerfully.</p>
                     <div class="plan_stack">
                         <div class="plan_card">
-                            <img class="plan_img" src="../svg/Free.svg" alt="">
-                            <h5>Free Plan</h5>
-                            <ul class="check_thin">
-                                <li><h6>Unlimited Bandwitch</h6></li>
-                                <li><h6>Encrypted Connection</h6></li>
-                                <li><h6>No Traffic Logs</h6></li>
-                                <li><h6>Works on All Devices</h6></li>
-                            </ul>
+                            <div  class="plan_img">
+                                <img src="../svg/Free.svg" alt="">
+                            </div>
+                            <div class="card_text">
+                                <h5>Free Plan</h5>
+                                <ul class="check_thin">
+                                    <li><h6>Unlimited Bandwitch</h6></li>
+                                    <li><h6>Encrypted Connection</h6></li>
+                                    <li><h6>No Traffic Logs</h6></li>
+                                    <li><h6>Works on All Devices</h6></li>
+                                </ul>
+                            </div>
                             <div class="plan_card_bottom">
                                 <h4>Free</h4>
                                 <button class="secondary">Select</button>
                             </div>
                         </div>
                         <div class="plan_card">
-                            <img class="plan_img" src="../svg/Standard.svg" alt="">
-                            <h5>Standard Plan</h5>
-                            <ul class="check_thin">
-                                <li><h6>Unlimited Bandwitch</h6></li>
-                                <li><h6>Encrypted Connection</h6></li>
-                                <li><h6>Yes Traffic Logs</h6></li>
-                                <li><h6>Works on All Devices</h6></li>
-                                <li><h6>Connect Anyware</h6></li>
-                            </ul>
+                            <div class="plan_img">
+                                <img src="../svg/Standard.svg" alt="">
+                            </div>
+                            <div class="card_text">
+                                <h5>Standard Plan</h5>
+                                <ul class="check_thin">
+                                    <li><h6>Unlimited Bandwitch</h6></li>
+                                    <li><h6>Encrypted Connection</h6></li>
+                                    <li><h6>Yes Traffic Logs</h6></li>
+                                    <li><h6>Works on All Devices</h6></li>
+                                    <li><h6>Connect Anyware</h6></li>
+                                </ul>
+                            </div>
                             <div class="plan_card_bottom">
                                 <h4>$9 <span class="gray">/ mo</span></h4>
                                 <button class="secondary">Select</button>
                             </div>
                         </div>
                         <div class="plan_card">
-                            <img class="plan_img" src="../svg/Premium.svg" alt="">
-                            <h5>Premium Plan</h5>
-                            <ul class="check_thin">
-                                <li><h6>Bandwitch</h6></li>
-                                <li><h6>Encrypted Connection</h6></li>
-                                <li><h6>No Traffic Logs</h6></li>
-                                <li><h6>Works on All Devices</h6></li>
-                                <li><h6>Connect Anyware</h6></li>
-                                <li><h6>Get New Features</h6></li>
-                            </ul>
+                            <div class="plan_img">
+                                <img  src="../svg/Premium.svg" alt="">
+                            </div>
+                            <div class="card_text">
+                                <h5>Premium Plan</h5>
+                                <ul class="check_thin">
+                                    <li><h6>Bandwitch</h6></li>
+                                    <li><h6>Encrypted Connection</h6></li>
+                                    <li><h6>No Traffic Logs</h6></li>
+                                    <li><h6>Works on All Devices</h6></li>
+                                    <li><h6>Connect Anyware</h6></li>
+                                    <li><h6>Get New Features</h6></li>
+                                </ul>
+                            </div>
                            
                                 <div class="plan_card_bottom">
                                     <h4>$12<span class="gray"> / mo </span></h4>
@@ -142,187 +157,292 @@
                 </div>
             </div>
     </div>
-    <div class="network">
+    <div class="network" id="network">
         <div class="container">
             <div class="network__inner">
                 <h3 class="section_title">Huge Global Network of Fast VPN</h3>
                 <p class="section_subtitle">See LaslesVPN everywhere to make it easier for you when you move locations.</p>
-                <img class="map" src="../svg/Huge Global.svg" alt="">
+                <div class="map">
+
+                    <div title="City" class="network-dot south-america-up">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot south-america-middle">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot south-america-right">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot south-america-down">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-left">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-up-middle">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-up-right">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-middle">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-right">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-down-right">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot north-america-down">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot greenland-left">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot greenland-middle">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot greenland-down">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot greenland-right">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot asia-up" >
+                        <imgsrc="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot asia-middle">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot asia-down-left">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot asia-down">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot asia-middle-right">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot asia-right">
+                        <img src="../svg/network-dot.svg" alt="">
+
+                    </div>
+                    <div title="City" class="network-dot europe-up">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot europe-middle">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot europe-right">
+                        <img src="../svg/network-dot.svg" alt="">
+
+                    </div>
+                    <div title="City" class="network-dot australia-left">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot australia-down">
+                        <img src="../svg/network-dot.svg" alt="">
+
+                    </div>
+                    <div title="City" class="network-dot africa-left">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot africa-center">
+                        <img src="../svg/network-dot.svg" alt="">
+                    </div>
+                    <div title="City" class="network-dot africa-down">
+                        <img  src="../svg/network-dot.svg" alt="">
+                    </div>
+
+                    <img class="world" src="../svg/Huge Global.svg" alt="">
+                </div>
                 <div class="logos">
-                    <img src="../svg/logo-netflix.svg" alt="">
-                    <img src="../svg/logo-reddit.svg" alt="">
-                    <img src="../svg/logo-amazon.svg" alt="">
-                    <img src="../svg/logo-discord.svg" alt="">
-                    <img src="../svg/logo-dpotify.svg" alt="">
+                    <div>
+                        <img src="../svg/logo-netflix.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../svg/logo-reddit.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../svg/logo-amazon.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../svg/logo-discord.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="../svg/logo-dpotify.svg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
   </div>
-  <div class="customers">
+  <div class="customers" id="testimonials">
     <div class="container">
         <div class="customer__inner">
             <h3 class="section_title">Trusted by Thousands of Happy Customer</h3>
             <p class="section_subtitle">These are the stories of our customers who have joined us with great pleasure when using this crazy feature.</p>
-            <div class="customer_stack">
-                <div class="customer_card card-active">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+            <div class="wrapper">
+                <div class="customer_stack">
+                    <div class="customer_card card-active">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
-                </div>
-                <div class="customer_card">
-                    <div class="customer_card_top">
-                        <div class="customer_card_top_info">
-                        <img src="../png/customer-avatar.png" alt="">  
-                        <div 
-                            class="customer_card_top_info_name">
-                            <h5>Viezh Robert</h5>
-                            <h6>Warsaw, Poland</h6>
+                    <div class="customer_card">
+                        <div class="customer_card_top">
+                            <div class="customer_card_top_info">
+                            <img src="../png/customer-avatar.png" alt="">  
+                            <div 
+                                class="customer_card_top_info_name">
+                                <h5>Viezh Robert</h5>
+                                <h6>Warsaw, Poland</h6>
+                                </div>
+                            </div>
+                            <div class="customer_card_top_rating">
+                                <p class="black">4.5</p>
+                                <img src="../svg/star.svg" alt="">
                             </div>
                         </div>
-                        <div class="customer_card_top_rating">
-                            <p class="black">4.5</p>
-                            <img src="../svg/star.svg" alt="">
-                        </div>
+                        <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                     </div>
-                    <p>“Wow... I am very happy to use this VPN, it turned out to be more than my expectations and so far there have been no problems. LaslesVPN always the best”.</p>
                 </div>
             </div>
         </div>
         <div class="customer_slider">
             <div class="customer_dots">
-                <div class="dot dot-active" onclick="translateCards(1)"></div>
-                <div class="dot" onclick="translateCards(2)"></div>
-                <div class="dot" onclick="translateCards(3)"></div>
-                <div class="dot" onclick="translateCards(4)"></div>
-                <div class="dot" onclick="translateCards(5)"></div>
-                <div class="dot" onclick="translateCards(6)"></div>
-                <div class="dot" onclick="translateCards(7)"></div>
-                <div class="dot" onclick="translateCards(8)"></div>
+                <div class="dot dot-active" onclick="updateCustomerSection(1)"></div>
+                <div class="dot" onclick="updateCustomerSection(2)"></div>
+                <div class="dot" onclick="updateCustomerSection(3)"></div>
+                <div class="dot" onclick="updateCustomerSection(4)"></div>
+                <div class="dot" onclick="updateCustomerSection(5)"></div>
+                <div class="dot" onclick="updateCustomerSection(6)"></div>
+                <div class="dot" onclick="updateCustomerSection(7)"></div>
+                <div class="dot" onclick="updateCustomerSection(8)"></div>
             </div>
             <div>
               <button id="testimonial-left" class="secondary"><img src="../svg/eva_arrow-back-fill.svg" alt=""></button>
-              <button id="testimonial-right" class="primary"><img src="../svg/eva_arrow-forward-fill.svg" alt=""></button>
+              <button id="testimonial-right" class="secondary red"><img src="../svg/eva_arrow-forward-fill.svg" alt=""></button>
             </div>
         </div>
     </div>
 
   </div>
-  
   <div class="footer">
       <div class="container shadow">
                 <div class="cta__inner">
@@ -330,9 +450,7 @@
                         <h3>Subscribe Now for Get Special Features!</h3>
                         <p>Let's subscribe with us and find the fun.</p>
                     </div>
-                    <div class="active" >
                     <button class="primary">Subscribe Now</button>
-                    </div>  
                 </div>
               <div class="cta_shadow"></div>
 
