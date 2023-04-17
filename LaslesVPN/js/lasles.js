@@ -1,8 +1,11 @@
 const cards = document.querySelector('.customer_stack').children;
+let customersStuck =  document.querySelector('.customer_stack');
 const dots = document.querySelector('.customer_dots').children;
 const networkDots = document.querySelectorAll('.network-dot');
 const networkSection =document.getElementById('network');
-let networkPosition = networkSection.getBoundingClientRect();
+const customerSection =document.getElementById('testimonials');
+const networkPosition = networkSection.getBoundingClientRect();
+const customersPosition = customerSection.getBoundingClientRect();
 const cardGap = 50
 
 let activeCard = 1;
@@ -46,30 +49,48 @@ function sizeCSS(cssName, leftPX, topPX, sizePX) {
     let top = (topPX * 100 / 537).toFixed(2);
     return (
         console.log(`
-        .${cssName} {
-            left: ${left}%;
-            top: ${top}%;
-            max-width: ${sizePX}px;
-        }
-            `
-        )
+            .${cssName} {
+                left: ${left}%;
+                top: ${top}%;
+                max-width: ${sizePX}px;
+            }
+        `)
     )
 }
 
-window.addEventListener('scroll', dotsAppears);
+window.addEventListener('scroll', makeDotsAppear);
 
-function dotsAppears() {
-    if(networkPosition.top < window.scrollY && networkPosition.bottom >= 0) {
-		window.removeEventListener('scroll', dotsAppears);
-
+function makeDotsAppear() {
+    if(networkSection.offsetTop - networkSection.clientHeight/2  < window.scrollY) {
         for(let dot of networkDots) {
             let delay = Math.floor(((Math.random() * networkDots.length * 50)))
             dot.style.transitionDelay = delay + 'ms';
             setTimeout(() => {dot.style = ''}, delay)
 
             dot.classList.add('visible');
-            
         }
-
 	}
+
+    if(customerSection.offsetTop - customerSection.clientHeight < window.scrollY) {
+        customersStuck.classList.remove('shifted');
+        window.removeEventListener('scroll', makeDotsAppear);
+    }
 }
+
+const numbersValue = document.querySelectorAll('.numbers h4');
+let interval = 2000;
+
+numbersValue.forEach((value) => {
+    let startValue = 0;
+    let endValue = parseInt(value.getAttribute('data-value'));
+    let duration = Math.floor(interval / endValue);
+    let counter = setInterval(() => {
+        startValue++;
+        value.textContent = startValue;
+        if(startValue == endValue) {
+            value.textContent = startValue + "+"
+            clearInterval(counter);
+        }
+    }, duration);
+})
+
