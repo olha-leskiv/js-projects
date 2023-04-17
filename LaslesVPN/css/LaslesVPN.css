@@ -764,7 +764,7 @@ img{
 
     .shifted {
         transform: translateX(-100%);
-        opacity: 0
+        opacity: 0;
     }
 
     .customer_card {
