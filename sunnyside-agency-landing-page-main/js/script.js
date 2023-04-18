@@ -11,7 +11,7 @@ window.onresize = () => {
     }
 }
 
-window.onload = () => {
+window.ons = () => {
     if(window.visualViewport.width > 850) {
         mobileNav.classList.remove('nav-mobile');
     }
