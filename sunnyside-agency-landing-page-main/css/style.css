@@ -89,7 +89,31 @@ img {
 
 .nav-items {
     display: none;
+    gap: 50px;
+    align-items: center;
 } 
+
+.nav-items a {
+    font-size: 19px;
+    line-height: 159%;
+    letter-spacing: -1px;
+    font-family: 'Barlow';
+    font-weight: 600;
+}
+
+.nav-items a.button {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+    padding: 20px 30px 17px;
+    line-height: auto;
+    background-color: var(--white);
+    border-radius: 100px;
+    color: var(--very-dark-desaturated-blue);
+}
 
 .hamburger-icon {
     width: 20px;
@@ -120,7 +144,8 @@ h1 {
     margin: 0 auto 38px;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
+    max-width: 12ch;
 }
 
 /* Grid */
@@ -189,17 +214,16 @@ h2 {
     font-weight: 900;
     font-size: 25px;
     line-height: 31px;
+    letter-spacing: 0.3px;
     color: var(--very-dark-desaturated-blue);
     margin-bottom: 20px;
 }
 
-.text-block p,
-#testimonials p {
+.text-block p {
     font-size: 14px;
     font-weight: 600;
     color: var(--dark-grayish-blue);
     line-height: 170%;
-    max-width: 45ch;
 }
 
 .link {
@@ -254,12 +278,14 @@ h2 {
     background-color: #8FD8C7;
     background-image: url(../images/desktop/image-graphic-design.jpg);
     color: var(--dark-desaturated-cyan);
+    background-size: cover;
 }
 
 #photography {
     background-color: #5FCDFF;
     background-image: url(../images/desktop/image-photography.jpg);
     color: var(--dark-blue);
+    background-size: cover;
 }
 
 h3 {
@@ -312,6 +338,13 @@ h5 {
     color: var(--very-dark-desaturated-blue);
 }
 
+#testimonials p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark-grayish-blue);
+    line-height: 170%;
+}
+
 #testimonials p.small {
     font-size: 11px;
     color: var(--grayish-blue);
@@ -334,6 +367,8 @@ h5 {
 
 #gallery img {
     object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 /* Footer */
@@ -360,7 +395,6 @@ footer .links {
 
 .links a {
     color: var(--dark-moderate-cyan);
-
 }
 
 footer .socials {
@@ -371,7 +405,7 @@ footer .socials {
 
 footer .socials img {
     width: 16px;
-    height: 16 px
+    height: 16px
 }
 
 
@@ -396,19 +430,113 @@ footer .socials img {
     }
 
     .text-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h4 {
+        font-size: 21px;
+        letter-spacing: 4px;
+        margin: 0 auto 77px ;
+    }
+
+    .clients {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .client {
+        max-width: 345px;
+    }
+
+    #gallery {
+        grid-template-columns: 25vw 25vw 25vw 25vw;
+        grid-template-rows: 25vw;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        'transform egg'
+        'cup stand-out'
+        'design photography'
+        'testimonials testimonials'
+        'gallery gallery';
+    }
+}
+
+@media screen and (min-width: 850px) {
+
+    .container {
+        max-width: 1330px;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    #hero {
+        background-size: 99vw;
+        background-color: var(--hero);
+        min-height: 785px;
+        padding-top: 191px;
+    }
+    
+    #hero img {
+        margin: 0 auto 140px ;
+        width: 37px;
+        display: block;
+    }
+
+    #nav {
+        top: 33px;
+    }
+    
+    .logo {
+        width: 168px;
+    }
+    
+    .nav-items {
+        display: flex;
+    } 
+    
+    .nav-items a {
+        color: var(--white);
+    }   
+    
+    .hamburger-icon {
+        display: none;
+    }
+
+    h1 {
+        line-height: 69px;
+        text-align: center;
+        letter-spacing: 9px;
+        font-size: 56px;
+        max-width: unset;
+        margin: 0 auto 90px;
+    }
+
+    .text-block {
         text-align: left;
         padding: 7vw;
+        padding-left: 22%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: start;
+        min-height: 590px;
+    }
+
+    #stand-out {
+        padding-left: 15%;
     }
 
     h2 {
         font-size: 39px;
         line-height: 48px;
         letter-spacing: 0.5px;
-        margin-bottom: 40px;
+        margin-bottom: 32px;
+        max-width: 16ch;
     }
 
     .text-block p,
@@ -416,6 +544,10 @@ footer .socials img {
         font-size: 18px;
         line-height: 159%;
         letter-spacing: -0.3px;
+    }
+
+    .text-block p {
+        max-width: 45ch;
     }
 
     .link {
@@ -430,8 +562,10 @@ footer .socials img {
         width: 134px;
     }
 
-    #testimonials p {
-        line-height: 170%;
+    .color-block {
+        min-height: 590px;
+        padding: 60px 7%;
+
     }
 
     .color-block p {
@@ -440,23 +574,68 @@ footer .socials img {
         letter-spacing: -0.6px;
     }
 
+    h3 {
+        font-size: 27px;
+        line-height: 33px;
+        letter-spacing: 0.3px;
+    }
+
+    #testimonials {
+        padding: 160px 0;
+    }
+
     .clients {
-        flex-direction: row;
- 
+        max-width: 1085px;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    #testimonials p {
+        line-height: 170%;
+    }
+
+    #testimonials img {
+        width: 72px;
+        border-radius: 50%;
+        margin-bottom: 59px;
+    }
+
+    h5 {
+        font-size: 18px;
+        margin: 68px auto 12px; 
+    }
+
+    #testimonials p.small {
+        font-size: 14px;
+        letter-spacing: -0.2px;
     }
 
     #gallery {
-        grid-template-columns: 25vw 25vw 25vw 25vw;
-        grid-template-rows: 25vw;
+        grid-template-rows: 440px;
     }
 
-    .grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        'egg transform'
-        'stand-out cup'
-        'design photography'
-        'testimonials testimonials'
-        'gallery gallery';
+    footer {
+        padding: 70px;
+    }
+
+    footer svg {
+        width: 168px;
+        height: 34px;
+        margin-bottom: 42px;
+    }
+    
+    footer .links {
+        font-size: 18px;
+        margin-bottom: 90px;
+        gap: 57px
+    }
+
+    footer .socials {
+        gap: 27px;
+    }
+
+    footer .socials img {
+        width: 20px;
+        height: 20px;
     }
 }
