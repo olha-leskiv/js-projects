@@ -428,7 +428,6 @@ h3 {
 #testimonials {
     text-align: center;
     padding: 50px 0 70px;
-    background-color: var(--white);
 }
 
 .clients {
@@ -613,7 +612,7 @@ footer .socials svg:hover {
     #hero {
         background-size: min(1440px, 99vw);
         background-color: var(--hero);
-        min-height: 785px;
+        min-height: 800px;
         padding-top: 191px;
     }
     
