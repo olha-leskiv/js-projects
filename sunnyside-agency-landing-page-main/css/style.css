@@ -93,12 +93,44 @@ img {
     align-items: center;
 } 
 
+.nav-items.nav-mobile {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--white);
+    top: 80px;
+    width: 87%;
+    padding: 40px;
+    font-size: 20px;
+    gap: 32px;
+}
+
+.nav-items.nav-mobile:after {
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 13px solid transparent;
+    border-left: 13px solid transparent;
+    border-right: 13px solid var(--white);
+    border-bottom: 13px solid var(--white);
+    position: absolute;
+    top: -25px;
+    right: 0;
+}
+
 .nav-items a {
     font-size: 19px;
     line-height: 159%;
     letter-spacing: -1px;
     font-family: 'Barlow';
     font-weight: 600;
+    line-height: 24px;
+    color: var(--dark-grayish-blue);
+    transition: all 300ms ease;
+}
+
+.nav-items a:hover {
+    opacity: 0.8;
 }
 
 .nav-items a.button {
@@ -110,13 +142,20 @@ img {
     text-transform: uppercase;
     padding: 20px 30px 17px;
     line-height: auto;
-    background-color: var(--white);
+    background-color: var(--yellow);
     border-radius: 100px;
     color: var(--very-dark-desaturated-blue);
+    transition: all 300ms ease;
+}
+
+.nav-items a.button:hover {
+    background-color: hsla(0, 0%, 100%, 0.2);
+    color: white;
 }
 
 .hamburger-icon {
     width: 20px;
+    cursor: pointer;
 }
 
 /* Hero */
@@ -249,14 +288,65 @@ h2 {
     z-index: -1;
     border-radius: 100px;
     opacity: 0.2;
+    transition: all 300ms ease;
 }
 
 #transform .link:before {
     background-color: var(--yellow);
 }
 
+#egg {
+    background-color: hsl(49, 100%, 50%);
+    position: relative;
+}
+
+#egg img {
+    max-width: 720px;
+    margin: 0 auto;
+    display: block;
+}
+
+#egg:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to right, hsl(49, 100%, 50%) 10%, hsla(49, 100%, 50%, 0) 30%, hsla(49, 100%, 50%, 0) 70%, hsl(49, 100%, 50%) 90%);
+    display: none;
+}
+
+#cup {
+    background-color: hsl(5, 100%, 69%);
+    position: relative;
+}
+
+#cup img {
+    max-width: 720px;
+    margin: 0 auto;
+    display: block;
+}
+
+#cup:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to right,hsl(5, 100%, 69%) 10%, hsla(49, 100%, 50%, 0) 30%, hsla(49, 100%, 50%, 0) 70%,  hsl(5, 100%, 69%) 90%);
+    display: none;
+}
+
 #stand-out .link:before {
     background-color: var(--soft-red);
+}
+
+.link:hover:before {
+    opacity: 1;
 }
 
 
@@ -275,17 +365,43 @@ h2 {
 }
 
 #design {
-    background-color: #8FD8C7;
+    background-color: hsl(166, 48%, 70%);
     background-image: url(../images/desktop/image-graphic-design.jpg);
     color: var(--dark-desaturated-cyan);
     background-size: cover;
+    position: relative;
+}
+
+#design:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to right, hsl(166, 48%, 70%) 10%, hsla(166, 48%, 70%, 0) 30%, hsla(166, 48%, 70%, 0) 70%,  hsl(166, 48%, 70%) 90%);
+    display: none;
 }
 
 #photography {
-    background-color: #5FCDFF;
+    background-color: hsl(199, 100%, 68%);
     background-image: url(../images/desktop/image-photography.jpg);
     color: var(--dark-blue);
     background-size: cover;
+    position: relative;
+}
+
+#photography::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to right, hsl(199, 100%, 68%) 10%,hsla(199, 100%, 68%, 0) 30%, hsla(199, 100%, 68%, 0) 70%,  hsl(199, 100%, 68%) 90%);
+    display: none;
 }
 
 h3 {
@@ -395,6 +511,11 @@ footer .links {
 
 .links a {
     color: var(--dark-moderate-cyan);
+    transition: all 300ms ease;
+}
+
+.links a:hover {
+    color: white;
 }
 
 footer .socials {
@@ -403,21 +524,35 @@ footer .socials {
     justify-content: center;
 }
 
-footer .socials img {
+footer .socials svg {
     width: 16px;
-    height: 16px
+    height: 16px;
+    fill: #2C7566;
+    transition: all 300ms ease;
+}
+
+footer .socials svg:hover {
+    fill: white;
 }
 
 
 /* Attribution  */
 
 .attribution {
-    font-size: 11px;
-    text-align: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.9rem;
+    text-align: right;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: #fff;
+    z-index: 100;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .attribution a {
-    color: hsl(228, 45%, 44%);
+    color: var(--dark-moderate-cyan);
 }
 
 
@@ -475,7 +610,7 @@ footer .socials img {
     }
 
     #hero {
-        background-size: 99vw;
+        background-size: min(1440px, 99vw);
         background-color: var(--hero);
         min-height: 785px;
         padding-top: 191px;
@@ -491,18 +626,35 @@ footer .socials img {
         top: 33px;
     }
     
+    .nav-items {
+        display: flex;
+    }
+
     .logo {
         width: 168px;
     }
     
-    .nav-items {
-        display: flex;
-    } 
+    .nav-items a.button {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: -0.3px;
+        text-transform: uppercase;
+        padding: 20px 30px 17px;
+        line-height: auto;
+        background-color: var(--white);
+        border-radius: 100px;
+        color: var(--very-dark-desaturated-blue);
+    }
     
     .nav-items a {
+        font-size: 19px;
+        line-height: 159%;
+        letter-spacing: -1px;
         color: var(--white);
-    }   
-    
+    }
+
     .hamburger-icon {
         display: none;
     }
@@ -525,6 +677,14 @@ footer .socials img {
         justify-content: center;
         align-items: start;
         min-height: 590px;
+    }
+
+    #photography {
+        background-size: min(720px, 720px);
+    }
+    
+    #design {
+        background-size: min(720px, 720px);
     }
 
     #stand-out {
@@ -560,6 +720,8 @@ footer .socials img {
 
     .link:before {
         width: 134px;
+        height: 10px;
+        bottom: -2px;
     }
 
     .color-block {
@@ -638,4 +800,15 @@ footer .socials img {
         width: 20px;
         height: 20px;
     }
+}
+
+@media screen and (min-width: 1400px) {
+    
+    #egg:after,
+    #cup:after,
+    #design:after,
+    #photography:after {
+        display: block;
+    }
+
 }
