@@ -48,8 +48,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
     --gradient: linear-gradient(135deg, hsl(192, 100%, 67%) 0%, hsl(280, 87%, 65%) 100%);
     --background: hsl(0, 0%, 98%);
     --background-main: white;
-    --delete: hsl(236, 33%, 92%);
-    --border-color: hsl(233, 11%, 84%);
+    --border-color: hsl(236, 33%, 92%);
+    --check: hsl(233, 11%, 84%);
     --botton-text: hsl(236, 9%, 61%);
     --text: hsl(235, 19%, 35%);
     --border: 5px;
@@ -158,6 +158,14 @@ main {
     max-width: 540px;
     width: 87%;
     margin: 0 auto;
+    position: relative;
+}
+
+section {
+    max-width: 540px;
+    width: 87%;
+    margin: 0 auto;
+    position: relative;
 }
 
 .new {
@@ -249,7 +257,7 @@ main {
 
     background-color: var(--background-main);
     border-radius: var(--border);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 40px hsla(0, 0%, 0%, 0.1);
     position: relative;
 }
 
@@ -303,7 +311,13 @@ li.complete .check:after {
     top: 50%;
     left: 50%;
     transform: translateX(-48%) translateY(-38%);
+}
 
+.highlight {
+    display: block;
+    background-color: var(--accent);
+    height: 4px;
+    width: 100%;
 }
 
 /* Bottom */
@@ -342,6 +356,7 @@ button:hover {
     left: 50%;
     transform: translateX(-50%);
     color: var(--botton-text);
+    user-select: none;
 }
 
 .filter h2 {
@@ -386,11 +401,59 @@ footer {
     color: black;
 }
 
+/* Functional */
+
+
+#emptyState {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: calc(100vh - 300px);
+    gap: 10px;
+    padding-bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#emptyState img {
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+    .delete {
+        opacity: 1;
+    }
+}
+
 @media screen and (max-width: 600px) {
 
     h1 {
         font-size: 27px;
         letter-spacing: 10px;
+    }
+
+    h3 {
+        font-size: 12px;
+        letter-spacing: -0.2px;
+
+    }
+
+    button {
+        font-size: 12px;
+        letter-spacing: -0.2px;
+    }
+
+    p {
+        font-size: 12px;
+        letter-spacing: -0.2px;
     }
 
     header {
@@ -412,6 +475,22 @@ footer {
         border: 1px solid var(--border-color);
     
     }
+
+    li {
+        grid-template-columns: 52px 1fr 52px;
+    }
+
+    li  p {
+        padding: 19px 0 15px;
+    }
+
+    .delete {
+        width: 44px;
+        height: 44px;
+        padding: 16px;
+        margin-top: 4px;
+        opacity: 1;
+    }
     
     .check {
         border-radius: 50%;
@@ -420,7 +499,7 @@ footer {
         position: relative;
         z-index: 1;
         cursor: pointer;
-        margin: 20px 24px 0;
+        margin: 16px 20px 0;
     }
     
     .check:before {
@@ -451,6 +530,23 @@ footer {
         padding: 19px 14px 17px 52px;
         font-size: 12px;
         letter-spacing: -0.2px;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
+    }
+
+    .filter {
+        position: static;
+        height: 50px;
+        width: 100%;
+        transform: translateX(0);
+        background-color: var(--background-main);
+        border-radius: var(--border);
+        margin-top: 16px;
+        align-items: center;
+        box-shadow: 0 5px 40px hsla(0, 0%, 0%, 0.1);
+    }
+
+    footer {
+        padding-bottom: 100px;
+        
     }
 }

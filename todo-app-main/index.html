@@ -13,54 +13,39 @@
     <h1>Todo</h1><div class="toggle" id="themeToggle"><div></div></div>
   </header>
 
-  <main>
-    <div class="new">
-      <div class="circle"></div>
-      <label for="create"></label>
-      <textarea id="create" rows='1' name="create" placeholder="Create a new todo..."></textarea>
-    </div>
+  <section class="new">
+    <div class="circle"></div>
+    <label for="create"></label>
+    <textarea id="create" rows='1' name="create" placeholder="Create a new todo..." autofocus></textarea>
+  </section>
 
+  <main class="content">
     <div class="list">
-      <ul>
-        <li class="complete">
+      <ul ondrop="drop(event)" ondragover="allowDrop(event)">
+        <li class="hidden">
           <div class="check" title="Mark as done"></div>
           <p>Complete online Javascript course</p>
           <img class="delete" src="images/icon-cross.svg" alt="Delete" title="Delete item">
         </li>
-        <li>
-            <div class="check" title="Mark as done"></div>
-            <p>Jog around the park 3x</p>
-          <img class="delete hidden" src="images/icon-cross.svg" alt="Delete" title="Delete item">
-        </li>
-        <li>
-          <div class="check" title="Mark as done"></div>
-          <p>10 minutes meditation</p>
-          <img class="delete hidden" src="images/icon-cross.svg" alt="Delete" title="Delete item">
-        </li>
-        <li>
-          <div class="check" title="Mark as done"></div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda aperiam eligendi sapiente! Dolores qui sit, ullam ipsam sint ex. Aut perspiciatis minus praesentium commodi quo nam laborum ipsa itaque eum?</p>
-          <img class="delete hidden" src="images/icon-cross.svg" alt="Delete" title="Delete item">
-        </li>
-        <li>
-          <div class="check" title="Mark as done"></div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda aperiam eligendi sapiente! Dolores qui sit, ullam ipsam sint ex. Aut perspiciatis minus praesentium commodi quo nam laborum ipsa itaque eum?</p>
-          <img class="delete hidden" src="images/icon-cross.svg" alt="Delete" title="Delete item">
-        </li>
       </ul>
       <div class="bottom">
         <div class="static">
-          <h3><span id="counter">5</span> items left</h3>
-          <button>Clear Completed</button>
-        </div>
-        <div class="filter">
-          <h2 class="active">All</h2>
-          <h2>Active</h2>
-          <h2>Completed</h2>
+          <h3 id="counter">5 items left</h3>
+          <button id="clearBtn">Clear Completed</button>
         </div>
       </div>
     </div>  
+    <div class="filter">
+      <h2 class="active" title='all' onclick="applyFilter('all')">All</h2>
+      <h2 title='active' onclick="applyFilter('active')">Active</h2>
+      <h2 title='completed' onclick="applyFilter('completed')">Completed</h2>
+    </div>
   </main>
+
+  <div id="emptyState" class="hidden">
+    <img src="images/arrow.png" alt="Empty State">
+    <p>Start your to do list with the first task</p>
+  </div>
 
   <footer>
     Drag and drop to reorder list
@@ -71,6 +56,6 @@
     Coded by <a href="https://olha-leskiv.github.io/js-projects/">Olha Leskiv</a>.
   </aside>
 
-  <script src="js/style.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
