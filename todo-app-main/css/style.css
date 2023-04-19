@@ -259,6 +259,9 @@ section {
     border-radius: var(--border);
     box-shadow: 0 5px 40px hsla(0, 0%, 0%, 0.1);
     position: relative;
+
+    overflow: hidden;
+
 }
 
 li {
@@ -316,7 +319,7 @@ li.complete .check:after {
 .highlight {
     display: block;
     background-color: var(--accent);
-    height: 4px;
+    height: 60px;
     width: 100%;
 }
 

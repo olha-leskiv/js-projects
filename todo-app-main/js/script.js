@@ -14,6 +14,10 @@ let filter = 'all';
 let dragId = null;
 let prevSibling = null;
 
+let draggingObj = null;
+let draggingIndex = null;
+let draggingItem = null;
+
 
 window.onload = () => {
     if(localStorage.getItem('list')) {
@@ -95,8 +99,9 @@ function createLiElements() {
         let li = document.createElement('li');
         li.draggable = true;
         li.ondragstart = dragStart;
+        li.ondrag = drag;
         li.ondragover = highlight; 
-        li.id = item.value.split(' ')[0];
+        // li.id = item.value.split(' ')[0];
         if(item.complete) li.classList.add('complete');
         li.innerHTML = `
             <div class="check" title="Mark as done" onclick="markAsComplete(event)"></div>
@@ -167,13 +172,16 @@ textarea.ondragstart = () => false;
 textarea.ondragover = () => false;
 
 function dragStart(e) {
-    e.dataTransfer.setData("text", e.target.id);
-    dragId = e.target.id;
-    prevSibling = document.getElementById(dragId).previousElementSibling;
+    let item = e.target;
+    let index = getIndex(item);
+    draggingObj = list[index];
+    draggingIndex = index;
+}
 
-    console.log(e.currentTarget);
-
-    // hide(e.currentTarget);
+function drag(e) {
+    let item = e.target;
+    hide(item);
+    draggingItem = item;
 }
 
 let higlightLine = document.createElement('div');
@@ -181,8 +189,7 @@ higlightLine.className = 'highlight';
 
 function highlight(e) {
     let itemDragOver = e.currentTarget;
-    if(itemDragOver.id == dragId || itemDragOver == prevSibling) return;
-    itemDragOver.after(higlightLine);
+    itemDragOver.before(higlightLine);
 }
 
 function allowDrop(e) {
@@ -190,21 +197,24 @@ function allowDrop(e) {
 }
 
 window.ondragend = () => {
+    show(draggingItem);
     updateListDisplay();
 }
 
 function drop(e) {
     e.preventDefault();
-    let itemToPut = e.target.closest('li');
-    console.log()
-    let toIndex = getIndex(itemToPut);
-    var value = e.dataTransfer.getData("text")
-    let fromIndex = list.findIndex((item) => item.value == value)
-    let draggingItem = list.splice(fromIndex, 1)[0];
-    if(fromIndex > toIndex) {
-        toIndex++;
+
+    let itemToPut
+    if(e.target.closest('.highlight')) {
+        itemToPut = e.target.nextElementSibling;
+    } else { 
+        itemToPut = e.target.closest('li');
     }
-    list.splice(toIndex, 0, draggingItem);
+    console.log(itemToPut)
+
+    list.splice(draggingIndex, 1);
+    let toIndex = getIndex(itemToPut);
+    list.splice(toIndex, 0, draggingObj);
     updateListDisplay();
 
 }
