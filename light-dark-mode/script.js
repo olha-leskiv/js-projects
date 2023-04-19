@@ -8,12 +8,10 @@ let image2 =  document.getElementById('image2');
 let image3 =  document.getElementById('image3');
 let mode = 'light';
 
-// Local Storage Update
 function updateLocalStorage() {
     localStorage.setItem('theme', mode);
 }
 
-// Modes Description
 function imageMode(color) {
     image1.src = `img/undraw_proud_coder_${color}.svg`;
     image2.src = `img/undraw_feeling_proud_${color}.svg`;
@@ -40,7 +38,6 @@ function darkMode() {
     imageMode(mode);
 }
 
-// Change Theme Function
 function setTheme() {
     if(mode === 'dark') {
 
@@ -51,7 +48,6 @@ function setTheme() {
     updateLocalStorage()
 }
 
-// First Load Theme Check
 function initThemeCheck() {
     if(localStorage.getItem('theme') === 'dark') {
         themeSwitch.checked = true;
@@ -63,10 +59,7 @@ function initThemeCheck() {
     updateLocalStorage();
 }
 
-// On Load
 document.addEventListener('DOMContentLoaded', initThemeCheck)
-
-// Event Listener
 themeSwitch.addEventListener('change', setTheme)
 
 
