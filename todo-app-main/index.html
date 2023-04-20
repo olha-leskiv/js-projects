@@ -20,15 +20,15 @@
   </section>
 
   <main class="content">
-    <div class="list" ondragover="allowDrop(event)" ondrop="drop(event)">
-      <ul>
+    <div class="list">
+      <ul ondragover="allowDrop(event)" ondrop="drop(event)">
         <li class="hidden">
           <div class="check" title="Mark as done"></div>
           <p>Complete online Javascript course</p>
           <img class="delete" src="images/icon-cross.svg" alt="Delete" title="Delete item">
         </li>
       </ul>
-      <div class="bottom" ondragover="highlight(event)">
+      <div class="bottom">
         <div class="static">
           <h3 id="counter">5 items left</h3>
           <button id="clearBtn">Clear Completed</button>

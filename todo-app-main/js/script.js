@@ -17,7 +17,9 @@ let prevSibling = null;
 let draggingObj = null;
 let draggingIndex = null;
 let draggingItem = null;
-
+let prevItemDraggedOver = null;
+let prevScreenY = null;
+let currentScreenY = null;
 
 window.onload = () => {
     if(localStorage.getItem('list')) {
@@ -101,7 +103,7 @@ function createLiElements() {
         li.ondragstart = dragStart;
         li.ondrag = drag;
         li.ondragover = highlight; 
-        // li.id = item.value.split(' ')[0];
+        li.id = item.value.split(' ')[0];
         if(item.complete) li.classList.add('complete');
         li.innerHTML = `
             <div class="check" title="Mark as done" onclick="markAsComplete(event)"></div>
@@ -134,7 +136,6 @@ function deleteItem(event) {
     const item = event.target.closest('li');
     let index = getIndex(item);
     list.splice(index, 1);
-    console.log(list);
     updateListDisplay();
 }
 
@@ -182,15 +183,37 @@ function drag(e) {
     let item = e.target;
     hide(item);
     draggingItem = item;
+    prevScreenY = currentScreenY;
 }
 
 let higlightLine = document.createElement('div');
 higlightLine.className = 'highlight';
 
 function highlight(e) {
+    currentScreenY =  e.screenY;
     let itemDragOver = e.currentTarget;
-    itemDragOver.before(higlightLine);
+    // if(!prevItemDraggedOver) {
+    //     prevItemDraggedOver = e.currentTarget
+    // }
+    // if(itemDragOver.offsetTop < prevItemDraggedOver.offsetTop) {
+    //     itemDragOver.before(higlightLine);
+    //     prevItemDraggedOver = e.currentTarget
+    //     console.log('before')
+    // } else if((itemDragOver.offsetTop > prevItemDraggedOver.offsetTop)) {
+    //     itemDragOver.after(higlightLine);
+    //     prevItemDraggedOver = e.currentTarget
+    //     console.log('after')
+    // } else if(itemDragOver.offsetTop == prevItemDraggedOver.offsetTop) {
+        if(prevScreenY > e.screenY) {
+            itemDragOver.before(higlightLine);
+             console.log('before')
+        } else if(prevScreenY < e.screenY) {
+            itemDragOver.after(higlightLine);
+            console.log('after')
+        }
+    // }
 }
+
 
 function allowDrop(e) {
     e.preventDefault()
@@ -199,21 +222,25 @@ function allowDrop(e) {
 window.ondragend = () => {
     show(draggingItem);
     updateListDisplay();
+
 }
 
 function drop(e) {
     e.preventDefault();
 
     let itemToPut
+    let toIndex;
     if(e.target.closest('.highlight')) {
         itemToPut = e.target.nextElementSibling;
     } else { 
         itemToPut = e.target.closest('li');
     }
     console.log(itemToPut)
-
+    toIndex = getIndex(itemToPut);
+    if(toIndex > draggingIndex) {
+        toIndex--
+    }
     list.splice(draggingIndex, 1);
-    let toIndex = getIndex(itemToPut);
     list.splice(toIndex, 0, draggingObj);
     updateListDisplay();
 

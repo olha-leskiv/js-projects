@@ -319,8 +319,10 @@ li.complete .check:after {
 .highlight {
     display: block;
     background-color: var(--accent);
-    height: 60px;
+    height: 4px;
     width: 100%;
+    border-radius: var(--border);
+    transform: scaleY(90%) scaleX(99%);
 }
 
 /* Bottom */
