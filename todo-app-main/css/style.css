@@ -318,8 +318,8 @@ li.complete .check:after {
 
 .highlight {
     display: block;
-    background-color: var(--accent);
-    height: 4px;
+    background-color: var(--background);
+    height: 64px;
     width: 100%;
     border-radius: var(--border);
     transform: scaleY(90%) scaleX(99%);

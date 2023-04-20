@@ -17,7 +17,6 @@ let prevSibling = null;
 let draggingObj = null;
 let draggingIndex = null;
 let draggingItem = null;
-let prevItemDraggedOver = null;
 let prevScreenY = null;
 let currentScreenY = null;
 
@@ -192,28 +191,12 @@ higlightLine.className = 'highlight';
 function highlight(e) {
     currentScreenY =  e.screenY;
     let itemDragOver = e.currentTarget;
-    // if(!prevItemDraggedOver) {
-    //     prevItemDraggedOver = e.currentTarget
-    // }
-    // if(itemDragOver.offsetTop < prevItemDraggedOver.offsetTop) {
-    //     itemDragOver.before(higlightLine);
-    //     prevItemDraggedOver = e.currentTarget
-    //     console.log('before')
-    // } else if((itemDragOver.offsetTop > prevItemDraggedOver.offsetTop)) {
-    //     itemDragOver.after(higlightLine);
-    //     prevItemDraggedOver = e.currentTarget
-    //     console.log('after')
-    // } else if(itemDragOver.offsetTop == prevItemDraggedOver.offsetTop) {
-        if(prevScreenY > e.screenY) {
-            itemDragOver.before(higlightLine);
-             console.log('before')
-        } else if(prevScreenY < e.screenY) {
-            itemDragOver.after(higlightLine);
-            console.log('after')
-        }
-    // }
+    if(prevScreenY > e.screenY + 2) {
+        itemDragOver.before(higlightLine);
+    } else if(prevScreenY < e.screenY - 2) {
+        itemDragOver.after(higlightLine);
+    }
 }
-
 
 function allowDrop(e) {
     e.preventDefault()
@@ -228,20 +211,16 @@ window.ondragend = () => {
 function drop(e) {
     e.preventDefault();
 
-    let itemToPut
     let toIndex;
-    if(e.target.closest('.highlight')) {
-        itemToPut = e.target.nextElementSibling;
-    } else { 
-        itemToPut = e.target.closest('li');
+
+    for(let i =  0; i < listContainer.children.length; i++ ) {
+        if(listContainer.children[i].classList.contains('highlight')) {
+            toIndex = i
+            if(toIndex > draggingIndex) toIndex-- ;
+        };
     }
-    console.log(itemToPut)
-    toIndex = getIndex(itemToPut);
-    if(toIndex > draggingIndex) {
-        toIndex--
-    }
+
     list.splice(draggingIndex, 1);
     list.splice(toIndex, 0, draggingObj);
     updateListDisplay();
-
 }
