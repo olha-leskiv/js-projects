@@ -83,4 +83,3 @@ function drag(e) {
 - Frontend Portfolio - [Olha Leskiv](https://olha-leskiv.github.io/js-projects/)
 - Design Portfolio - [Olha Leskiv](https://olha-leskiv.github.io/js-projects/)
 - Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)

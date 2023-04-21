@@ -13,6 +13,7 @@ let list = [];
 let filter = 'all';
 let dragId = null;
 let prevSibling = null;
+let activeItems = 0;
 
 let draggingObj = null;
 let draggingIndex = null;
@@ -76,6 +77,8 @@ function clearTextarea() {
 
 
 function updateListDisplay() {
+    activeItems = 0;
+
     hide(emptyState);
     updateLocalStorage();
     if(!list.length) {
@@ -97,6 +100,7 @@ function createLiElements() {
         if(filter === 'completed') {
             if(item.complete == false) continue;
         }
+        if(item.complete == false) activeItems++;
         let li = document.createElement('li');
         li.draggable = true;
         li.ondragstart = dragStart;
@@ -144,8 +148,9 @@ function getIndex(itemLi) {
 }
 
 function updateCounter() {
+
     let noun = list.length == 1 ? 'item' : 'items';
-    counter.textContent = `${list.length} ${noun} left`;
+    counter.textContent = `${activeItems} ${noun} left`;
 }
 
 function updateLocalStorage() {
