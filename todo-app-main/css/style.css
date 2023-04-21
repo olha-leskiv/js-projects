@@ -82,19 +82,6 @@ body {
     transition-property: background-color color;
 }
 
-.bg-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: var(--background-image);
-    background-position: center;
-    background-size: cover;
-    max-height: 300px;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
 h1 {
     text-transform: uppercase;
     font-family: 'Josefin Sans';
@@ -131,6 +118,21 @@ header {
     width: 87%;
     margin: 0 auto;
     padding: 78px 0 40px;
+    border: solid magenta;
+}
+
+
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: var(--background-image);
+    background-position: center;
+    background-size: cover;
+    max-height: 300px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .toggle {
@@ -159,6 +161,7 @@ main {
     width: 87%;
     margin: 0 auto;
     position: relative;
+    border: solid green;
 }
 
 section {
@@ -468,6 +471,10 @@ footer {
     .toggle {
         width: 20px;
         height: 20px;
+    }
+
+    .bg-img {
+        max-height: 200px;
     }
 
     .new .circle {
