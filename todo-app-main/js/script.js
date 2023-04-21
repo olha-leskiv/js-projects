@@ -205,7 +205,6 @@ function allowDrop(e) {
 window.ondragend = () => {
     show(draggingItem);
     updateListDisplay();
-
 }
 
 function drop(e) {

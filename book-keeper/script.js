@@ -77,12 +77,13 @@ function getValuesFromForm() {
 function createBookmark() {
     let item = document.createElement('div');
     item.classList.add('item');
-    domain = bookmark.url.split('/')[2];
+    // domain = bookmark.url.split('/')[2];
+    // let image = `<img src="http://s2.googleusercontent.com/s2/favicons?domain=${domain}" alt="favicon">`;
     item.innerHTML =  `
     <i class="fa-solid fa-trash-can hidden" id="delete-bookmark" title="Delete Bookmark"></i>
     <div class="name">
-        <img src="http://s2.googleusercontent.com/s2/favicons?domain=${domain}" alt="favicon">
         <a href="${bookmark.url}" target="_blank">${bookmark.name}</a>
+        <i class="fa-solid fa-up-right-from-square"></i>
     </div>`
     item.addEventListener('mouseenter', showDeleteIcon);
     item.addEventListener('mouseleave', showDeleteIcon);
