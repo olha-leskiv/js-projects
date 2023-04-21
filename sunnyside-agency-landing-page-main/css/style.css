@@ -167,6 +167,8 @@ img {
     background-color: var(--hero);
     min-height: 425px;
     padding-top: 113px;
+    border: 2px solid magenta;
+
 }
 
 #hero img {
@@ -202,6 +204,7 @@ h1 {
     'photography photography'
     'testimonials testimonials'
     'gallery gallery';
+    border: 2px solid green;
 }
 
 #egg {

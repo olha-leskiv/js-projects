@@ -118,7 +118,6 @@ header {
     width: 87%;
     margin: 0 auto;
     padding: 78px 0 40px;
-    border: solid magenta;
 }
 
 
@@ -161,7 +160,6 @@ main {
     width: 87%;
     margin: 0 auto;
     position: relative;
-    border: solid green;
 }
 
 section {
