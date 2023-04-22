@@ -80,8 +80,14 @@ a {
     text-align: center;
 }
 
+.hero-container h1 {
+    margin-bottom: 32px;
+}
+
 .hero-container p {
-    margin-top: 32px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 4px;
 }
 
     .items-container {
