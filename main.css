@@ -77,6 +77,11 @@ a {
 
 .hero-container{
     padding: 0  0 5rem 0;
+    text-align: center;
+}
+
+.hero-container p {
+    margin-top: 32px;
 }
 
 .items-container {
