@@ -84,7 +84,7 @@ a {
     margin-top: 32px;
 }
 
-.items-container {
+    .items-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 32px;
