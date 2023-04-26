@@ -126,6 +126,21 @@ a {
     margin-bottom: 32px;
 }
 
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags li {
+    display: block;
+    padding: 4px 8px;
+    font-size: 13px;
+    color: rgb(14, 72, 90);
+    border: 1px solid  rgb(14, 72, 90);
+    border-radius: 4px;
+}
+
 @media screen and (max-width: 1800px) {
     .container {
         max-width: 95vw;
