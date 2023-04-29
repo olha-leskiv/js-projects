@@ -13,20 +13,3 @@ function getAge(sonAge, fatherAge) {
 }
 
 getAge(6, 22)
-
-function olderThanSon(dadAge, sonAge)  {
-
-    let dadAgeSonWasBorn = dadAge - sonAge;
- 
-        for(dadAgeSonWasBorn; ; dadAgeSonWasBorn++) {
-            for(let i = 0; ; i++) {
-                if (dadAgeSonWasBorn / i !== 2) {
-                    continue;
-                } else {
-                    return(dadAgeSonWasBorn, i)
-                }
-            }
-        }
-  }
-  
-  console.log(olderThanSon(6, 22))
