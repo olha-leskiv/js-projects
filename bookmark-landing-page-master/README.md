@@ -8,7 +8,7 @@
 - [Author](#author)
 
 ## Overview
-Landin page using SASS/SCSS technology
+Landing page using SASS/SCSS technology
 
 ### The challenge
 
