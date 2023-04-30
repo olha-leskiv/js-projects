@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
   <title>Bookmark landing page</title>
 </head>
 <body>
@@ -210,7 +210,7 @@
       <form action="." method="GET">
         <span class="form-group">
           <label for="email">Email</label>
-          <input type="email" placeholder="Enter your email address" oninvalid="showErrorMessage(event)"
+          <input name="email" id="email" type="email" placeholder="Enter your email address" oninvalid="showErrorMessage(event)"
           oninput="clearErrorMassage(event)" required/>
         </span>
         <button type="submit" class="button red">Contact Us</button>
