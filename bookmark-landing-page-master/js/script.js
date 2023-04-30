@@ -1,17 +1,20 @@
 const tabs = document.querySelectorAll('.tab');
 const tabNames = document.querySelector('.tab-names').children;
+let activeTab = 'Bookmarking';
 
-function displayTab(event, tabTitle) {
+function updateTabsTo(tabTitle) {
+    activeTab = tabTitle;
+    displayTab();
+}
+
+function displayTab() {
     for(let tabName of tabNames) {
         tabName.classList.remove('active');
-        if(tabName == event.currentTarget) {
-            tabName.classList.add('active');
-        }
+        if(tabName.title === activeTab) tabName.classList.add('active');
     }
-
     for(let tab of tabs) {
         tab.classList.remove('active');
-        if(tab.title === tabTitle) {
+        if(tab.title === activeTab) {
             tab.classList.add('active');
         }
     }
@@ -57,6 +60,13 @@ form.onsubmit = (event) => {
     event.preventDefault();
 }
 
+let mobileNav = document.getElementById('mobileNav');
+document.querySelector('.hamburger').onclick = () => {
+    mobileNav.classList.remove('hidden');
+}
+document.querySelector('.cross').onclick = () => {
+    mobileNav.classList.add('hidden');
+}
 
-
+displayTab();
 

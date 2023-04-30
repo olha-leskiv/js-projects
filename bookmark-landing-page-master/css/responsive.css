@@ -1,0 +1,8 @@
+@media screen and (max-width: 1000px) {
+  body {
+    background-color: blanchedalmond;
+  }
+  nav ul {
+    display: none;
+  }
+}/*# sourceMappingURL=responsive.css.map */

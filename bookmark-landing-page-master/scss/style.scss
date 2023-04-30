@@ -20,6 +20,7 @@ body {
 
 .container {
     max-width: 1110px;
+    width: 83%;
     margin: 0 auto;
 }
 
@@ -55,6 +56,11 @@ h4 {
     line-height: 17px;
     letter-spacing: 0.533333px;
     }
+h5 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+}
 p {
     font-family: 'Rubik';
     font-weight: 400;
@@ -79,7 +85,7 @@ a {
     min-width: 111px;
     text-align: center;
     box-shadow: 0px 8px 8px -4px rgba(73, 93, 207, 0.20012);
-    @include transition(400ms, );
+    @include transition(400ms, all);
 
     &.primary {
         background: $blue;
@@ -131,6 +137,9 @@ nav {
         line-height: 17px;
         letter-spacing: 1.5px;
     }
+    .hamburger {
+        display: none;
+    }
     a {
         @include transition($property: color);
         &:hover{
@@ -150,15 +159,20 @@ nav {
     }
 }
 
+nav.mobile-nav {
+    display: none;
+}
+
 header {
     margin-top: 185px;
-    margin-bottom: 110px;
+    margin-bottom: 134px;
     position: relative;
     .container {
         display: flex;
     }
     .content {
         width: 48%;
+        max-width: 540px;
     }
     .images {
         width: 52%;
@@ -169,6 +183,7 @@ header {
         top: -70px;
         box-shadow: 0px 30px 40px 0px hsla(231, 47%, 34%, 0.2);
         border-radius: 25px;
+        max-width: 600px;
     }
     p {
         margin: 24px 0 32px;
@@ -201,44 +216,54 @@ header {
         display: flex;
         max-width: 730px;
         margin: 0 auto;
-        border-bottom: 1px solid rgba(73, 93, 207, 0.20012);;
-
-        h4 {
-            position: relative;
-            width: 100%;
-            padding-bottom: 27px;
-            border-bottom: 4px solid transparent;
-            cursor: pointer;
-            &:hover {
-                color: $red;
-            }
-            &::after {
-                content: '';
-                height: 4px;
-                width: 100%;
-                background-color: $red;
-                position: absolute;
-                bottom: -4px;
-                left: 0;
-                transform: scaleX(0%);
-                @include transition;
-            }
-            &.active::after{
-                transform: scaleX(100%);
-            }
-        }
         p {
             margin: 16px auto 72px
+        }
+    }
+    h4 {
+        position: relative;
+        width: 100%;
+        padding-bottom: 31px;
+        border-bottom: 4px solid transparent;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(73, 93, 207, 0.20012);
+
+        &:hover {
+            color: $red;
+        }
+        &::after {
+            content: '';
+            height: 4px;
+            width: 100%;
+            background-color: $red;
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            transform: scaleX(0%);
+            @include transition;
+        }
+        &.active::after{
+            transform: scaleX(100%);
         }
     }
     .tabs {
         position: relative;
         min-height: 507px;
+        .container {
+            position: relative;
+        }
     }
     .tab {
+        display: flex;
         text-align: left;
         justify-content: space-between;
-        display: none;
+        visibility: hidden;
+        position: absolute;
+        width: 100%;
+        opacity: 0;
+        gap: 32px;
+        @include transition(400ms, all);
+        transform: translateX(3%);
 
         .tab-content {
             max-width: 445px;
@@ -251,7 +276,9 @@ header {
             padding-top: 72px;
         }
         &.active {
-            display: flex;
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0); 
         }
         &:nth-of-type(2),
         &:nth-of-type(3) {
@@ -283,6 +310,7 @@ header {
     }
     .extention-cards {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 34px;
@@ -325,12 +353,14 @@ header {
 }
 
 #FAQ {
-    max-width: 540px;
     margin: 0 auto 150px;
     text-align: center;
 
     h2 {
         margin-bottom: 16px;
+    }
+    .container {
+        max-width: 540px;
     }
     .accordion {
         border-bottom: 1px solid rgb(36, 42, 69, 0.15);
@@ -359,7 +389,7 @@ header {
         display: flex;
         justify-content: space-between;
         border-top: 1px solid rgb(36, 42, 69, 0.15);
-        height: 64px;
+        height: 67px;
         align-items: center;
         stroke: #5267DF; 
         cursor: pointer;
@@ -368,9 +398,8 @@ header {
             color: $red;
         }
     }
-    img {
-        width: 16px;
-        height: 11px;
+    svg{
+        margin-right: 24px;
     }
     
     li.active {
@@ -480,6 +509,9 @@ header {
             @include transition;
         }
         &.error {
+            input {
+                @include transition;
+            }
             &::before {
                 height: 70px;
                 opacity: 1;
@@ -510,6 +542,7 @@ footer {
         }
     }
     .footer-items {
+        flex-wrap: wrap;
         display: flex;
         gap: 48px;
         margin-left: 64px;
@@ -521,12 +554,22 @@ footer {
 
         color: white; 
     }
+    a {
+        @include transition;
+        &:hover {
+            color: $red;
+        }
+    }
     .socials {
         display: flex;
         gap: 40px;
     }
     svg {
         fill: #FFF;
+        @include transition;
+        &:hover {
+            fill: $red;
+        }
     }
 
 }
@@ -544,5 +587,6 @@ footer {
     a {
         color: $red;
     }
-    
 }
+
+@import "responsive";
