@@ -1,0 +1,12 @@
+@import "general";
+
+body {
+    background-color: $dark-purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    margin: 20px auto 80px;
+}

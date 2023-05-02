@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="../css/game.css">
+  <title>Connect Four game</title>
+</head>
+<body>
+
+  <!-- Rules start -->
+
+  Rules
+
+  Objective
+
+  Be the first player to connect 4 of the same colored discs in a row (either 
+  vertically, horizontally, or diagonally).
+
+  How to play
+
+  Red goes first in the first game.
+  Players must alternate turns, and only one disc can be dropped in each turn. 
+  The game ends when there is a 4-in-a-row or a stalemate.
+  The starter of the previous game goes second on the next game.
+
+  <!-- Rules end -->
+
+  <!-- Ingame menu start -->
+
+  Pause
+
+  Continue game
+  Restart
+  Quit game
+
+  <!-- Ingame menu end -->
+  
+
+  <header class="container">
+    <button class="button tetriary">Menu</button>
+    <img src="../assets/images/logo.svg" alt="logo" class="logo">
+    <button class="button tetriary">Restart</button>
+  </header>
+
+  <aside class="player-1"></aside>
+
+  <main class="container">
+    <div class="game-container">
+      <div class="game-box">
+        <ul>
+          <li><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
+          <li><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
+          <li><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
+          <li class="counter-active"><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="white-board"><img src="../assets/images/board-layer-white-large.svg" alt=""></div>
+    </div>
+  </main>
+  <aside class="player-2"></aside>
+
+  <script src="js/script.js"></script>
+  </body>
+  </html>
+  
+
+  Player 1
+  Player 2
+
+  Player 1's turn
+  Player 2's turn
+
+  Wins
+  Play again
+
+  <!-- Game board end -->
