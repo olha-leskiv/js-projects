@@ -8,120 +8,86 @@
   <link rel="stylesheet" href="../css/game.css">
   <title>Connect Four game</title>
 </head>
-<body>
+<body class="pl1">
 
-  <!-- Rules start -->
+  <section id="rules" class="hidden">
+    <div class="menu-container white">
+      <h1>Rules</h1>
+      <h3>Objective</h3>
+      <p>Be the first player to connect 4 of the same colored discs in a row (either 
+        vertically, horizontally, or diagonally).</p>
+      <h3>How to play</h3>
+      <ol>
+        <li><p>Red goes first in the first game.</p></li>
+        <li><p>Players must alternate turns, and only one disc can be dropped in each turn. </p></li>
+        <li><p>The game ends when there is a 4-in-a-row or a stalemate.</p></li>
+        <li><p>The starter of the previous game goes second on the next game.</p></li>
+      </ol>
+      <button><img src="../assets/images/icon-check.svg" alt=""></button>
+    </div>
+  </section>
 
-  Rules
+  <section id="menu" class="hidden">
+    <div class="menu-container">
+      <h1>Pause</h1>
+      <div class="buttons">
+        <a href="." class="button secondary">CONTINUE GAME</a>
+        <a href="." class="button secondary">RESTART</a>
+        <a href="." class="button red">QUIT GAME</a>
+      </div>
+    </div>
+  </section>
 
-  Objective
-
-  Be the first player to connect 4 of the same colored discs in a row (either 
-  vertically, horizontally, or diagonally).
-
-  How to play
-
-  Red goes first in the first game.
-  Players must alternate turns, and only one disc can be dropped in each turn. 
-  The game ends when there is a 4-in-a-row or a stalemate.
-  The starter of the previous game goes second on the next game.
-
-  <!-- Rules end -->
-
-  <!-- Ingame menu start -->
-
-  Pause
-
-  Continue game
-  Restart
-  Quit game
-
-  <!-- Ingame menu end -->
-  
-
-  <header class="container">
+  <header>
     <button class="button tetriary">Menu</button>
     <img src="../assets/images/logo.svg" alt="logo" class="logo">
     <button class="button tetriary">Restart</button>
   </header>
 
-  <aside class="player-1"></aside>
+  <aside class="player-1">
+    <img src="../assets/images/player-one.svg" alt="Player One">
+    <h3>PLAYER 1</h3>
+    <h1>12</h1>
+  </aside>
 
-  <main class="container">
+  <main>
     <div class="game-container">
       <div class="game-box">
         <ul>
-          <li><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
-          <li><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
-          <li><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
-          <li class="counter-active"><img src="../assets/images/counter-red-large.svg" alt="" class="counter"></li>
+          <div class="marker"></div>
+
+          <li class="counter yellow win"></li>
+          <li class="counter red"></li>
+          <li class="counter red"></li>
+          <li class="counter red"></li>
+          <li class="counter red"></li>
+          <li class="counter yellow counter-active"></li>
         </ul>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+        <ul class="marker"></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
       </div>
       <div class="white-board"><img src="../assets/images/board-layer-white-large.svg" alt=""></div>
     </div>
+    <div class="turn">
+      <h4>PLAYER 2’S TURN</h4>
+      <h1><span>15</span>s</h1>
+    </div>
   </main>
-  <aside class="player-2"></aside>
+  
+  <aside class="player-2">
+    <img src="../assets/images/player-two.svg" alt="Player One">
+    <h3>PLAYER 2</h3>
+    <h1>12</h1>
+  </aside>
+
+  <footer>
+  </footer>
 
   <script src="js/script.js"></script>
-  </body>
-  </html>
-  
-
-  Player 1
-  Player 2
-
-  Player 1's turn
-  Player 2's turn
-
-  Wins
-  Play again
-
+</body>
+</html>
   <!-- Game board end -->
