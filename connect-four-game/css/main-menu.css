@@ -177,7 +177,7 @@ body {
   width: 100%;
   font-size: 24px;
   color: hsl(0, 0%, 0%);
-  padding: 13px 17px 13px 20px;
+  padding: 21px 20px 20px;
 }
 .button.tetriary {
   background-color: hsl(257, 67%, 51%);
@@ -212,4 +212,8 @@ body {
 
 .logo {
   margin: 20px auto 80px;
+}
+
+.button {
+  text-align: left;
 }/*# sourceMappingURL=main-menu.css.map */

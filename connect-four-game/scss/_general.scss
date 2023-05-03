@@ -14,25 +14,6 @@ $btn-radius: 20px;
 $box-shadow: 0px 10px 0px $black;
 $border: 3px solid $black;
 
-$turn: null;
-$marker-img: null;
-
-body.pl1 {
-    $turn: "player-1" !global;
-}
-
-body.pl2 {
-    $turn: "player-2" !global;
-}
-
-@if $turn == "player-1" {
-    $marker-img: url("../assets/images/marker-yellow.svg");
-}
-
-@if $turn == "player-2" {
-    $marker-img: url("../assets/images/marker-red.svg");
-}
-
 //  Typography
 h1 {
     font-family: 'Space Grotesk';
@@ -137,7 +118,7 @@ p {
         width: 100%;
         font-size: 24px;
         color: $black;
-        padding: 13px 17px 13px 20px;
+        padding: 21px 20px 20px;
     } 
     &.tetriary {
         background-color: $dark-purple;

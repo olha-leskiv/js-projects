@@ -177,7 +177,7 @@ body {
   width: 100%;
   font-size: 24px;
   color: hsl(0, 0%, 0%);
-  padding: 13px 17px 13px 20px;
+  padding: 21px 20px 20px;
 }
 .button.tetriary {
   background-color: hsl(257, 67%, 51%);
@@ -297,8 +297,20 @@ main ul {
   flex-direction: column-reverse;
   transition: 1s all;
 }
-main ul.marker::before {
-  content: url("../assets/images/marker-red.svg");
+main ul.marker {
+  cursor: pointer;
+}
+main ul.marker.red::before {
+  content: url(../assets/images/marker-red.svg);
+  width: 38px;
+  height: 37px;
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+main ul.marker.yellow::before {
+  content: url(../assets/images/marker-yellow.svg);
   width: 38px;
   height: 37px;
   position: absolute;
@@ -315,6 +327,7 @@ main .white-board {
   left: 0;
   top: 0;
   user-select: none;
+  pointer-events: none;
 }
 main .counter {
   position: relative;
