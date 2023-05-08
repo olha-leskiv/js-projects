@@ -8,58 +8,34 @@
   <link rel="stylesheet" href="../css/game.css">
   <title>Connect Four game</title>
 </head>
-<body class="pl1">
-
-  <section id="rules" class="hidden">
-    <div class="menu-container white">
-      <h1>Rules</h1>
-      <h3>Objective</h3>
-      <p>Be the first player to connect 4 of the same colored discs in a row (either 
-        vertically, horizontally, or diagonally).</p>
-      <h3>How to play</h3>
-      <ol>
-        <li><p>Red goes first in the first game.</p></li>
-        <li><p>Players must alternate turns, and only one disc can be dropped in each turn. </p></li>
-        <li><p>The game ends when there is a 4-in-a-row or a stalemate.</p></li>
-        <li><p>The starter of the previous game goes second on the next game.</p></li>
-      </ol>
-      <button><img src="../assets/images/icon-check.svg" alt=""></button>
-    </div>
-  </section>
-
+<body>
   <section id="menu" class="hidden">
     <div class="menu-container">
       <h1>Pause</h1>
       <div class="buttons">
-        <a href="." class="button secondary">CONTINUE GAME</a>
-        <a href="." class="button secondary">RESTART</a>
-        <a href="." class="button red">QUIT GAME</a>
+        <button class="button secondary continueBtn">CONTINUE GAME</button>
+        <button class="button secondary restartBtn">RESTART</button>
+        <a href="../index.html" class="button red">QUIT GAME</a>
       </div>
     </div>
   </section>
 
   <header>
-    <button class="button tetriary">Menu</button>
+    <button class="button tetriary" id="menuBtn">Menu</button>
     <img src="../assets/images/logo.svg" alt="logo" class="logo">
-    <button class="button tetriary">Restart</button>
+    <button class="button tetriary restartBtn">Restart</button>
   </header>
 
   <aside class="player-1">
     <img src="../assets/images/player-one.svg" alt="Player One">
     <h3>PLAYER 1</h3>
-    <h1>12</h1>
+    <h1>0</h1>
   </aside>
 
   <main>
     <div class="game-container">
       <div class="game-box">
         <ul>
-          <li class="counter yellow win"></li>
-          <li class="counter red"></li>
-          <li class="counter red"></li>
-          <li class="counter red"></li>
-          <li class="counter red"></li>
-          <li class="counter yellow counter-active"></li>
         </ul>
         <ul></ul>
         <ul></ul>
@@ -71,21 +47,26 @@
       <div class="white-board"><img src="../assets/images/board-layer-white-large.svg" alt=""></div>
     </div>
     <div class="turn">
-      <h4>PLAYER 2’S TURN</h4>
+      <h4>PLAYER 1’S TURN</h4>
       <h1><span>15</span>s</h1>
+    </div>
+    <div class="wins">
+      <h4>PLAYER 1</h4>
+      <h1>WINS</h1>
+      <button class="button tetriary" id="playAgain">Play Again</button>
     </div>
   </main>
   
   <aside class="player-2">
     <img src="../assets/images/player-two.svg" alt="Player One">
     <h3>PLAYER 2</h3>
-    <h1>12</h1>
+    <h1>0</h1>
   </aside>
 
   <footer>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="../js/script.js"></script>
 </body>
 </html>
   <!-- Game board end -->

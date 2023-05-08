@@ -191,11 +191,11 @@ body {
   background: hsl(347, 97%, 70%);
   border: 3px solid hsl(0, 0%, 0%);
   box-shadow: 0px 10px 0px hsl(0, 0%, 0%);
-  padding: 20px 21px 20px;
   width: 100%;
   font-size: 24px;
+  line-height: 31px;
   color: hsl(0, 0%, 100%);
-  padding: 13px 17px 13px 20px;
+  padding: 21px 20px 20px;
 }
 
 .hidden {
@@ -235,6 +235,7 @@ header .logo {
   align-items: center;
   justify-content: center;
   z-index: 10;
+  transition: all 500ms;
 }
 #menu h1 {
   color: white;
@@ -254,6 +255,7 @@ header .logo {
   justify-content: center;
   z-index: 10;
   text-align: left;
+  transition: all 500ms;
 }
 #rules h1 {
   text-align: center;
@@ -280,7 +282,7 @@ header .logo {
   line-height: 21px;
   text-transform: uppercase;
 }
-#rules button {
+#rules a {
   position: absolute;
   bottom: -40px;
   left: 50%;
@@ -363,6 +365,21 @@ main .turn {
 }
 main .turn h1 {
   text-transform: unset;
+}
+main .wins {
+  background-color: hsl(0, 0%, 100%);
+  width: 285px;
+  padding: 17px;
+  text-align: center;
+  position: relative;
+  border: 3px solid hsl(0, 0%, 0%);
+  box-shadow: 0px 10px 0px hsl(0, 0%, 0%);
+  border-radius: 40px;
+  margin: -50px auto;
+  z-index: 3;
+}
+main .wins h1 {
+  margin-top: -4px;
 }
 
 .game-container {
