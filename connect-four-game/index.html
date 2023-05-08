@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="css/main-menu.css">
   <title>Connect Four game</title>
@@ -14,11 +14,18 @@
   <div class="menu-container">
     <img class="logo" src="assets/images/logo.svg" alt="Logo">
     <div class="buttons">
-      <a href="pages/game.html" class="button primary">PLAY VS PLAYER <img src="assets/images/player-vs-player.svg" alt="Player-vs-player icon"></a>
+      <a 
+      href="pages/game.html"
+      class="button primary red" 
+      id="playWithCPU"
+      onclick="setMode('player-vs-cpu')"
+      >PLAY VS CPU<img src="assets/images/player-vs-cpu.svg" alt="Player-vs-player icon"></a>
+
+      <a href="pages/game.html" class="button primary" onclick="setMode('player-vs-player')" id="playWithPlayer" >PLAY VS PLAYER <img src="assets/images/player-vs-player.svg" alt="Player-vs-player icon"></a>
       <a href="pages/rules.html" class="button secondary">GAME RULES</a>
     </div>
   </div>
 
-
+  <script src="js/script.js"></script>
 </body>
 </html>

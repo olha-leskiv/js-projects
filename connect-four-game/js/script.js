@@ -1,21 +1,60 @@
-const players = {
-    player1: {
-        color: "hsl(347°, 97%, 70%)",
-        class: "red",
-        value: "player1",
-        scoreh1: $("aside.player-1 h1"),
-        name: "Player 1",
-        turntext: "PLAYER 1’S TURN"
-    },
-    player2: {
-        color: "hsl(41°, 100%, 70%)",
-        class: "yellow",
-        value: "player2",
-        scoreh1: $("aside.player-2 h1"),
-        name: "Player 2",
-        turntext: "PLAYER 2’S TURN"
-    }
+let mode = "player-vs-player";
+let players;
+
+if(localStorage.getItem("mode")) {
+    mode = localStorage.getItem("mode");
 }
+
+function setMode(type) {
+    localStorage.setItem("mode", type);
+}
+
+switch(mode) {
+    case "player-vs-player":
+        players = {
+            player1: {
+                color: "hsl(347°, 97%, 70%)",
+                class: "red",
+                value: "player1",
+                scoreh1: $("aside.player-1 h1"),
+                name: "Player 1",
+                turntext: "PLAYER 1’S TURN"
+            },
+            player2: {
+                color: "hsl(41°, 100%, 70%)",
+                class: "yellow",
+                value: "player2",
+                scoreh1: $("aside.player-2 h1"),
+                name: "Player 2",
+                turntext: "PLAYER 2’S TURN",
+                icon: "../assets/images/player-two.svg"
+            }
+        };
+    break;
+
+    case "player-vs-cpu":
+        players = {
+            player1: {
+                color: "hsl(347°, 97%, 70%)",
+                class: "red",
+                value: "player1",
+                scoreh1: $("aside.player-1 h1"),
+                name: "Player 1",
+                turntext: "PLAYER 1’S TURN"
+            },
+            player2: {
+                color: "hsl(41°, 100%, 70%)",
+                class: "yellow",
+                value: "player2",
+                scoreh1: $("aside.player-2 h1"),
+                name: "CPU",
+                turntext: "CPU’S TURN",
+                icon: "../assets/images/cpu.svg"
+            }
+        };
+    break;
+}
+
 
 let activeState = "player1";
 let columns = [];
@@ -40,8 +79,8 @@ $(document).ready(function(){
             click: function() {
                 if($(this).children().length + 1 > 6) return;
                 addCounterTo(this)
-                checkIfWin();
                 changeTurn();
+                checkIfWin();
                 updateUI(activeState);
             },
 
@@ -82,7 +121,6 @@ $(document).ready(function(){
                             { ul: i, li: j + 2 },
                             { ul: i, li: j + 3 },
                         ] )
-                        return console.log("someone win in column", columns[i][j]);
                     }
                     
                     if(i == columns.length - 1) {
@@ -103,7 +141,6 @@ $(document).ready(function(){
                                 { ul: i + 2, li: j },
                                 { ul: i + 3, li: j },
                             ])
-                            return console.log("someone win in row", columns[i][j]);
                     }
                     
                     if(columns[i][j] == columns[i + 1][j + 1]
@@ -116,7 +153,6 @@ $(document).ready(function(){
                                 { ul: i + 2, li: j + 2 },
                                 { ul: i + 3, li: j + 3 },
                             ] )
-                            return console.log("someone win ascending", columns[i][j]);
                     }
 
                     if(columns[i][j] == columns[i + 1][j - 1]
@@ -129,14 +165,18 @@ $(document).ready(function(){
                                 { ul: i + 2, li: j - 2 },
                                 { ul: i + 3, li: j - 3 },
                             ] )
-                            return console.log("someone win descending", columns[i][j]);
                     }
                 }
             }
-        return console.log("nobody win yet")
     }
 
     function showWinner(player, countersIndexes) {
+        if(mode == "player-vs-cpu") {
+            clearTimeout(CPUTurn);
+            CPUTurn = null;
+        }
+        clearInterval(timer);
+        timer = null;
         if(countersIndexes) {
             for(let counterIndexes of countersIndexes) {
                 let ul = $(".game-box").children()[counterIndexes.ul];
@@ -152,7 +192,14 @@ $(document).ready(function(){
     }
 
     function changeTurn() {
-        activeState =  activeState == "player1" ? "player2" : "player1";
+        changeAvtiveState();
+        clearInterval(timer);
+        timer = null;
+        if(mode == "player-vs-cpu") {
+            CPUTurn = setTimeout(addCPUCounter, 1500);
+            setTimer();
+            removeEvents();
+        }
     }
 
     function updateUI(player) {
@@ -201,7 +248,7 @@ $(document).ready(function(){
         addEvents();
         pauseTime = 0;
         setTimer();
-        $("#menu").addClass("hidden")
+        $("#menu").addClass("hidden");
     })
 
     $("#playAgain").click(function() {
@@ -210,7 +257,11 @@ $(document).ready(function(){
         updateScore("playAgain");
         $(".wins").hide("fast");
         $(".turn").show("fast");
-        addEvents();
+        if(mode == "player-vs-cpu" && activeState == "player2") {
+            addCPUCounter();
+        } else {
+            addEvents();
+        }
         setTimer();
     })
 
@@ -253,6 +304,36 @@ $(document).ready(function(){
         }
     )
 
+    $("#playWithCPU").click(function() {
+        mode = "player-vs-cpu";
+    })
+
+    $("#playWithPlayer").click(function() {
+        mode = "player-vs-cpu";
+    })
+
+    function addCPUCounter() {
+        let randomUl
+        do {
+        randomUl = $(".game-box").children()[Math.floor(Math.random() * 7)];
+        }
+        while($(randomUl).children().length + 1 > 6)
+        addCounterTo(randomUl)
+        checkIfWin();
+        changeAvtiveState();
+        addEvents();
+        setTimer();
+        clearTimeout(CPUTurn);
+        CPUTurn = null;
+    }
+
+    function changeAvtiveState() {
+        activeState =  activeState == "player1" ? "player2" : "player1";
+        updateUI(activeState);
+    }
+
+    $(".player-2 img").attr("src", players.player2.icon);
+    $(".player-2 h3").text(players.player2.name);
     setTimer()
     updateUI(activeState)
     $(".wins").hide();
