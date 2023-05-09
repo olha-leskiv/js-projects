@@ -1,5 +1,6 @@
 let mode = "player-vs-player";
 let players;
+let firstTurn = "player1"
 
 if(localStorage.getItem("mode")) {
     mode = localStorage.getItem("mode");
@@ -250,6 +251,10 @@ $(document).ready(function(){
         updateScore("restart");
         $(".wins").hide("fast");
         $(".turn").show("fast");
+        firstTurn = "player1"
+        activeState = "player1";
+        updateUI(activeState);
+        removeEvents();
         addEvents();
         pauseTime = 0;
         setTimer();
@@ -262,7 +267,15 @@ $(document).ready(function(){
         updateScore("playAgain");
         $(".wins").hide("fast");
         $(".turn").show("fast");
-        if(mode == "player-vs-cpu" && activeState == "player2") {
+        if(firstTurn == "player1") {
+            firstTurn = "player2"
+            activeState = "player2";
+        } else {
+            firstTurn = "player1";
+            activeState = "player1";
+        }
+        updateUI(firstTurn);
+        if(mode == "player-vs-cpu" &&  firstTurn == "player2") {
             addCPUCounter();
         } else {
             addEvents();
@@ -340,7 +353,7 @@ $(document).ready(function(){
     $(".player-2 img").attr("src", players.player2.icon);
     $(".player-2 h3").text(players.player2.name);
     setTimer()
-    updateUI(activeState)
+    updateUI(firstTurn)
     $(".wins").hide();
     addEvents();
 });

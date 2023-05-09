@@ -32,7 +32,7 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- SCSS/SASS3
+- SCSS/SASS
 - Javascript
 - AOS Library
 
