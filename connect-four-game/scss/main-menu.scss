@@ -14,3 +14,18 @@ body {
 .button {
     text-align: left;
 }
+
+@media screen and (max-width: 730px) {
+
+    body {
+        background-color: $light-purple;
+        padding: 0 0 30%;
+    }
+
+    .menu-container.mainscreen {
+        background-color: transparent;
+        border: unset;
+        box-shadow: unset;
+        padding: 0;
+    }
+  }

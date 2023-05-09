@@ -1,5 +1,9 @@
 @import "general";
 
+html {
+    position: relative;
+}
+
 body {
     background-color: $light-purple;
     display: grid;
@@ -41,6 +45,7 @@ header {
         color: white;
         text-transform: uppercase;
         margin-bottom: 40px;
+        text-align: center;
     }
 }
 
@@ -105,7 +110,6 @@ header {
 
 main {
     grid-area: game;
-
     
     ul {
         position: relative;
@@ -213,9 +217,17 @@ main {
 
 .game-box {
     background-image: url(../assets/images/board-layer-black-large.svg);
+    background-repeat: no-repeat;
     height: 594px;
     display: flex;
     padding: 8px 8px 57px;
+}
+
+.white-board {
+    background-image: url(../assets/images/board-layer-white-large.svg);
+    background-repeat: no-repeat;
+    height: 594px;
+    width: 100%;
 }
 
 aside {
@@ -230,14 +242,13 @@ aside {
     height: 160px;
     padding: 46px 0 0;
     margin-top: 195px;
-}
 
-aside img {
-position: absolute;
-top: -29.5px;
-left: 50%;
-transform: translateX(-50%);
-
+    img {
+        position: absolute;
+        top: -29.5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .player-1 {
@@ -259,4 +270,7 @@ footer {
     top: calc(17vh + 544px);
     z-index: -1;
     border-radius: 60px 60px 0px 0px;
+
 }
+
+@import "responsive";

@@ -1,0 +1,195 @@
+@media screen and (max-width: 1024px) {
+
+    body {
+        margin: 0 auto;
+        max-width: 632px;
+        width: 89%;
+        column-gap: 40px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 114px 1fr;
+        grid-template-areas:
+        "header header"
+        "player1 player2"
+        "game game"
+        ;
+    }
+
+    main {
+        ul {
+            &.marker {
+                cursor: pointer;
+                &.red::before {
+                    content: "";
+                    }
+                &.yellow::before {
+                    content: "";
+                }
+            }
+        }
+    }
+
+    aside {
+        position: relative;
+        text-align: center;
+        align-self: flex-start;
+        width: calc(100% - 27px);
+        height: 100px;
+        padding: 14px 40px;
+        margin-top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+        
+        img {
+            top: 50%;
+            transform: translateY(-50%);
+            left: -27px;
+        }
+        
+        &.player-1 {
+            justify-self: start;
+            margin-left: 24px;
+        }
+        &.player-2 {
+            flex-direction: row-reverse;
+            justify-self: end;
+            margin-right: 24px;
+
+            img {
+                right: -27px;
+                left: unset;
+            }
+        }
+    }
+    
+    footer {
+        top: 790px;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 400%;
+            background-color: $dark-purple;
+            border-radius: 60px 60px 0px 0px;
+        }
+    }
+}
+
+@media screen and (max-width: 730px) {
+
+    .button {
+        &.tetriary {
+            min-width: 108px;
+        }
+    }
+
+    body {
+        margin: 0 auto;
+        max-width: 632px;
+        column-gap: 14px;
+        grid-template-rows: 114px 80px 1fr;
+        grid-template-areas:
+        "header header"
+        "player1 player2"
+        "game game"
+        ;
+    }
+
+    header {
+        .logo {
+            width: 40px;
+        }
+    }
+
+    .game-box {
+        background-image: url(../assets/images/board-layer-black-small.svg);
+        height: auto;
+        background-size: contain;
+        width: 100%;
+        height: 89vw * 0.955;
+        padding: 0 1.5% 9.5%;
+    }
+
+    main {
+        margin-top: 50px;
+        li {
+            height: 89vw * 0.975 / 7;
+        }
+        .counter {
+            &.red {
+                background-size: contain;
+            }
+            &.yellow {
+                background-size: contain;
+            }
+            &.win:after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 50%;
+                top: 40%;
+                transform: translateX(-50%) translateY(-50%);
+                border: solid 6px $white;
+                border-radius: 50%;
+            }
+        }
+        .turn {
+            background: url(../assets/images/turn-background-red.svg) no-repeat;
+            margin: -7vw auto;
+        }
+        .wins {
+            border: $border;
+            box-shadow: $box-shadow;
+            border-radius: $btn-radius;
+            margin: -7vw auto;
+        }
+    }
+
+    .white-board {
+        background-image: url(../assets/images/board-layer-white-small.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: auto;
+        width: 100%;
+        height: 89vw * 0.925;
+    }
+
+    aside {
+        height: 80px;
+        padding: 10px 0px;
+        margin-top: 0;
+        flex-direction: column;
+
+        h1 {
+            font-size: 32px;
+            line-height: 41px;
+        }
+
+        h3 {
+            font-size: 16px;
+            line-height: 21px;
+        }
+
+        &.player-2 {
+            flex-direction: column;
+        }
+    }
+
+    footer {
+        top: 65vh;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100%;
+            background-color: $dark-purple;
+            border-radius: 60px 60px 0px 0px;
+        }
+    }
+}

@@ -193,8 +193,7 @@ $(document).ready(function(){
 
     function changeTurn() {
         changeAvtiveState();
-        clearInterval(timer);
-        timer = null;
+
         if(mode == "player-vs-cpu") {
             CPUTurn = setTimeout(addCPUCounter, 1500);
             setTimer();
@@ -204,13 +203,19 @@ $(document).ready(function(){
 
     function updateUI(player) {
         if(player == "player1") {
-            $(".turn").css("background", "url(../assets/images/turn-background-red.svg)");
+            $(".turn").css({
+                "background": "url(../assets/images/turn-background-red.svg)",
+                "color": "white"
+            });
             $(".turn h4").text(players[player].turntext)
             $(".marker").removeClass('yellow');
             $(".marker").addClass('red');
 
         } else if(player == "player2") {
-            $(".turn").css("background", "url(../assets/images/turn-background-yellow.svg)");
+            $(".turn").css({
+                "background": "url(../assets/images/turn-background-yellow.svg)",
+                "color": "black"
+            });
             $(".turn h4").text(players[player].turntext)
             $(".marker").removeClass('red');
             $(".marker").addClass('yellow');
