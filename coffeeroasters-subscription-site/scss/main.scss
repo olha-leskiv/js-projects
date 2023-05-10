@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Fraunces:wght@900&display=swap');
+
+$headings-font-family: 'Fraunces', serif;
+$font-family-sans-serif: 'Barlow', sans-serif;
+
+
+$display-font-family: null !default;
+$display-font-style:  null !default;
+$display-font-weight: 300 !default;
+$display-line-height: $headings-line-height !default;
+
+$primary: #0E8784;
+$secondary: #FDD6BA;
+$light: #FEFCF7;
+$dark: #333D4B;
+$info: #83888F;
+
+$border-radius-sm: 6px;
+$border-radius: 8px;
+$border-radius-lg: 10px;
+
+$btn-border-radius: $border-radius-sm;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+
+.home-hero {
+    padding: 117px 0;
+    background-image: url(../assets/home/desktop/image-hero-coffeepress.jpg);
+}
+
+
+@media screen and (min-width: 576px) {
+    .container {
+        padding-left: 58px;
+        padding-right: 58px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        padding-left: 85px;
+        padding-right: 85px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
