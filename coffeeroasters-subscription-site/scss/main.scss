@@ -3,11 +3,11 @@
 $headings-font-family: 'Fraunces', serif;
 $font-family-sans-serif: 'Barlow', sans-serif;
 
-
-$display-font-family: null !default;
-$display-font-style:  null !default;
-$display-font-weight: 300 !default;
-$display-line-height: $headings-line-height !default;
+$font-size-base: 1rem;
+$h1-font-size: $font-size-base * 4.5;
+$h2-font-size: $font-size-base * 3;
+$h3-font-size: $font-size-base * 2;
+$h4-font-size: $font-size-base * 1.5;
 
 $primary: #0E8784;
 $secondary: #FDD6BA;
@@ -15,27 +15,163 @@ $light: #FEFCF7;
 $dark: #333D4B;
 $info: #83888F;
 
+$body-bg: $light;
+
+$spacer: 8px;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4,
+  7: $spacer * 5,
+  8: $spacer * 6,
+  9: $spacer * 7,
+  10: $spacer * 10,
+  11: $spacer * 12,
+);
+
 $border-radius-sm: 6px;
 $border-radius: 8px;
 $border-radius-lg: 10px;
 
 $btn-border-radius: $border-radius-sm;
+$input-btn-padding-y:         1rem;
+$input-btn-padding-x:         2rem;
+$input-btn-font-family:       'Fraunces', serif;
+$input-btn-font-size:         $font-size-base * 1.125;
+$input-btn-line-height:       1.39;
+
+$display-font-sizes: (
+  1: 9.375rem,
+  2: 6.5rem,
+  3: 4rem,
+  4: 3.5rem,
+  5: 3rem,
+  6: 2.5rem
+) !default;
+
+$display-font-weight: 900;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 
+.btn-primary {
+    color: white !important;
+}
+
+h1 {
+    line-height: 1;
+}
+
+h2 {
+    line-height: 1.2;
+}
+
+h3 {
+    line-height: 1.12;
+}
+
+h4 {
+    line-height: 1.33 ;
+}
+
+header .col {
+    max-width: 500px;
+    padding: 0;
+}
 
 .home-hero {
     padding: 117px 0;
     background-image: url(../assets/home/desktop/image-hero-coffeepress.jpg);
 }
+nav {
+    margin: 28.5px 0;
+}
+nav .container {
+    padding: 0;
+}
+.nav-link {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.923077px;
+    text-transform: uppercase;
+}
 
+#collection {
+    &.container {
+        margin-top: 82px;
+        margin-bottom: 200px;
+
+    }
+    .display-1 {
+        color: $info;
+    }
+
+    .back-wrapper {
+        position: relative;
+        position: relative;
+        bottom: -70px;
+        z-index: -1;
+    }
+    .gradient {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(254, 252, 247, 0.575) 0%, #FEFCF7 100%);
+        z-index: 1;
+    }
+}
+
+#whyUs {
+    position: relative;
+    margin-bottom: 200px;
+    h2, p {
+        max-width: 540px;
+    }
+
+    .bg-dark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80%;
+        z-index: -1;
+    }
+    &.container {
+        padding-top: 100px;
+    }
+}
+
+#howItWorks {
+    margin-bottom: 190px;
+
+    .col-lg-4 {
+        position: relative;
+        .circle {
+            position: absolute;
+            top: -15px;
+            left: 0;
+            height: 31px;
+            width: 31px;
+        }
+    }
+}
+
+footer {
+    min-height: 80px;
+}
 
 @media screen and (min-width: 576px) {
     .container {
         padding-left: 58px;
         padding-right: 58px;
     }
+
+
 }
 
 @media screen and (min-width: 768px) {
@@ -45,9 +181,25 @@ $btn-border-radius: $border-radius-sm;
     }
 }
 
+@media screen and (max-width: 990px) {
+    #howItWorks {
+        .border-top {
+            border: 0px solid transparent !important;
+        }
+    }
+}
+
 @media screen and (max-width: 576px) {
     .container {
         padding-left: 24px;
         padding-right: 24px;
+        width: 89%;
+    }
+    #howItWorks {
+        .col-lg-4 {
+            h3 {
+                max-width: unset;
+            }
+        }
     }
 }
