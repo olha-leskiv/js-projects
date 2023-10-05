@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "credit-card-input-mask": "^3.0.0",
+    "imask": "^7.1.3",
+    "ts-input-mask": "^2.2.0",
+    "type": "module"
+  }
+}

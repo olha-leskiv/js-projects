@@ -11,54 +11,57 @@
 </head>
 <body>
   <div class="side">
-    <div class="card front"></div>
-    <div class="card back"></div>
+    <div class="card front">
+      <img class="card-logo" src="images/card-logo.svg" alt="card logo">
+      <p id="cardNumber" >0000 0000 0000 0000</p>
+      <div>
+        <p class="card-text" id="cardName">JANE APPLESEED</p>
+        <p class="card-text" id="cardExpDate"><span id="cardExpMonth">00</span>/<span id="cardExpYear">00</span></p>
+      </div>
+    </div>
+    <div class="card back">
+      <p class="card-text" id="cardCVC">000</p>
+    </div>
   </div>
+
   <main>
-    <form>
+
+    <form noValidate>
       <label>
         Cardholder Name
-        <input type="text" placeholder="e.g. Jane Appleseed" />
+        <input id="cardNameInput" type="text" placeholder="e.g. Jane Appleseed" maxlength="23" required/>
       </label>
       <label>
         Card Number
-        <input type="number" placeholder="e.g. 1234 5678 9123 0000"/>
+        <input id="cardNumberInput" type="text" placeholder="e.g. 1234 5678 9123 0000" required/>
       </label>
       <div class="horizontal">
         <label>
           Exp. Date (MM/YY)
           <div class="horizontal">
-            <input type="number" placeholder="MM"/>
-            <input type="number" placeholder="YY" />
+            <input class="common" id="cardExpMonthInput" type="number" placeholder="MM" max="12" maxlength="2" required/>
+            <input class="common" id="cardExpYearInput" type="number" placeholder="YY" max="99" maxlength="2" required/>
           </div>
         </label>
-        <label>
+        <label class="cvc">
           CVC
-          <input type="number" placeholder="e.g. 123"/>
+          <input id="cardCVCInput" type="number" placeholder="e.g. 123" required/>
         </label>
       </div>
-      <input type="button" value="Confirm" />
+      <input type="submit" value="Confirm" />
     </form>
+
+    <div id="thankYouSection" class="thank-you hidden" >
+      <img src="images/icon-complete.svg" alt="Complete">
+      <h1>THANK YOU!</h1>
+      <p>We’ve added your card details</p>
+      <input id="resetBtn" type="submit" value="Confirm" />
+
+    </div>
+
   </main>
-<!-- 
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
-
-  000
-
-
-  Completed state start -->
-
-  <!-- Thank you!
-  We've added your card details
-  Continue
   
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
-
+  <script src="https://unpkg.com/imask"></script>
   <script src="dist/index.js"></script>
 </body>
 </html>

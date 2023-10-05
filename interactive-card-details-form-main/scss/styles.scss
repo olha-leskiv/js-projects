@@ -3,7 +3,9 @@
 
 $deep-violet: #21092F;
 $light-gray: #DFDEE0;
+$text-gray: #8F8694;
 $white: #FFFFFF;
+$purple: #6348FE;
 
 body {
     display: flex;
@@ -14,6 +16,8 @@ body {
     width: 100%;
     max-width: 33%;
     background-color: $deep-violet;
+    background-image: url(../images/bg-main-desktop.png);
+    background-size: cover;
     display: flex;
     align-items: center;
     position: relative;
@@ -26,19 +30,51 @@ body {
         height: 100%;
         max-height: 245px;
         position: absolute;
+        filter: drop-shadow(0px 39px 60px rgba(0, 0, 0, 0.14));
+
+        #cardNumber {
+            color: $white;
+            font-size: 28px;
+            letter-spacing: 3.422px;
+        }
+
+        .card-text {
+            color: $white;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
         &.front {
             border-radius: 10px;
-            background: linear-gradient(164deg, #6348FE 4.74%, #610595 88.83%);
+            background: url(../images/bg-card-front.png);
+            background-size: cover;
             right: -128px;
             top: 50%;
             transform: translateY(-105%);
+            padding: 28px 32px;
+            display: grid;
+            grid-template-rows: 1fr auto auto;
+            gap: 31px;
+
+            div {
+                display: flex;
+                justify-content: space-between;
+            }
         }
         &.back {
-            background: linear-gradient(169deg, #FFF 5%, #D2D3D9 91.69%);
+            background: url(../images/bg-card-back.png);
+            background-size: cover;
             right: -223px;
             top: 50%;
             transform: translateY(5%);
+
+            p {
+                position: absolute;
+                top: 114px;
+                right: 57px;
+            }
+
         }
 }
 
@@ -47,6 +83,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 12%;
 
     form {
         display: flex;
@@ -57,7 +94,7 @@ main {
 
         .horizontal {
             display: flex;
-            gap: 20px;
+            gap: 10px;
         }
     }
     label {
@@ -66,7 +103,18 @@ main {
         text-transform: uppercase;
         font-size: 12px;
         letter-spacing: 2px;
+        &.cvc {
+            margin-left: 10px;
+        }
 
+    }
+
+    .errorMessage {
+        color: #FF5050;
+        font-size: 12px;
+        text-transform: none;
+        letter-spacing: 0;
+        margin-top: 8px;
     }
 
     input {
@@ -78,21 +126,142 @@ main {
         padding: 16px 11px;
         margin-top: 9px;
         font-size: 18px;
+
         &::placeholder {
             opacity: 0.25;
         }
 
-        &[type="button"] {
+        &:focus {
+            color: $deep-violet;
+            border: 1px solid $purple;
+        }
+
+        &.invalid {
+            border: 1px solid #FF5050;
+        }
+
+        &[type="submit"] {
             border-radius: 8px;
             font-size: 18px;
             color: $white;
             background-color: $deep-violet;
             padding: auto 15px ;
             height: auto;
+            cursor: pointer;
+            transition: all 0.15s;
+            outline: none;
+
+            &:hover {
+                filter: brightness(150%);
+            }
+        }
+    }
+}
+
+.thank-you {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 381px;
+    width: 100%;
+
+    h1 {
+        color: $deep-violet;
+        font-size: 28px;
+        letter-spacing: 3.422px;
+        margin: 35px auto 16px
+    }
+
+    p {
+        color: $text-gray;
+        font-size: 18px;
+        margin-bottom: 48px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 1200px) { 
+    body {
+        display: block;
+    }
+
+    .side {
+        width: 100%;
+        max-width: none;
+        min-height: 240px;
+        background-image: url(../images/bg-main-mobile.png);
+    }
+
+    main {
+        padding: 16px;
+        padding-top: max(90px, 15vh);
+    }
+
+    .card {
+        border-radius: 6px;
+        width: 80vw;
+        max-width: 286px;
+        height: 156px;
+        max-height: 245px;
+        position: absolute;
+        filter: drop-shadow(0px 39px 60px rgba(0, 0, 0, 0.14));
+
+        #cardNumber {
+            font-size: 18px;
+            letter-spacing: 2.2px;
         }
 
-        .cvc {
-            margin-left: 20px;
+        .card-text {
+            font-size: 9px;
+            letter-spacing: 1.286px;
         }
+
+        &.front {
+            right: 0;
+            left: 50%;
+            top: 123px;
+            transform: translateX(-65%);
+            padding: 19px 16px;
+            display: grid;
+            grid-template-rows: 1fr auto auto;
+            gap: 17px;
+            z-index: 1;
+            margin: 0 17px;
+
+            img {
+                height: 30px;
+            }
+
+        }
+        &.back {
+            right: 50%;
+            top: 35px;
+            transform: translateX(65%);
+            margin: 0 17px;
+
+            p {
+                position: absolute;
+                top: 73px;
+                right: 37px;
+            }
+
+        }
+    }
+
+    form {
+        gap: 20px;
     }
 }
