@@ -17,7 +17,7 @@ a:focus,a:active{outline: none;}
 nav,footer,header,aside{display: block;}
 
 html,body{
-	height: 100%;
+	min-height: 100%;
 	width: 100%;
 	font-size: 100%;
 	line-height: 1;
@@ -42,23 +42,38 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 html {
    font-family: 'Montserrat', sans-serif;
-   background-color: rgb(226, 238, 241);
+   background-color: rgb(255, 255, 255);
 }
 
 h1 {
     font-size: 4rem;
     text-align: center;
-    font-weight: 600;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 h2 {
     font-size: 2.6rem;
-    text-align: left;
-    font-weight: 600;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 4vw;
+    height: 4px;
+    margin-top: 2vw;
+    background-color: #ff4949;
 }
 
 h3 {
-    padding: 1.2em 0 0.6em;
+    padding: 1.2em 0 0.7em;
+    line-height: 125%;
     font-size: 1.7rem;
     font-weight: 600;
     text-transform: capitalize;
@@ -73,17 +88,57 @@ p {
 }
 
 a {
-    color: rgb(45, 78, 88);
+    color: #ff4949;
+}
+
+.bg {
+    position: relative;
+    background: linear-gradient(270deg, #5DC3DA,  #27dd8b,#FDD16B, #FFA149, #ff4949, #ff4992 );
+    background-size: 800% 800%;
+
+    -webkit-animation: gradient 30s ease infinite;
+    -moz-animation: gradient 30s ease infinite;
+    animation: gradient 30s ease infinite;
+}
+
+.bg::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 3em;
+}
+
+@-webkit-keyframes gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
 .container {
+    position: relative;
     max-width: 85vw;
     margin: 0 auto;
-    padding: 5rem 5%;
+    padding: 10rem 4% 7rem;
+    z-index: 2;
 }
 
 .hero-container{
-    padding: 0  0 5rem 0;
+    padding: 0 0 5rem 0;
     text-align: center;
 }
 
@@ -99,28 +154,33 @@ a {
 }
 
 .section-header {
-    margin-bottom: 4.5vh;
+    margin-bottom: 8vh;
+    margin-top: 2rem;
 }
 
 .items-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
+    gap: 24px;
     margin-bottom: 10vh;
 }
 
 .item {
     padding: 2em;
     text-decoration: none;
-    border-radius: 24px;
-    background-color: rgb(251, 254, 255);
-    box-shadow: 0 2px 16px 4px  rgba(19, 38, 44, 0.021);
+    border-radius: 2em;
+    box-shadow: 0 0 1px 1px rgba(23, 33, 36, 0.1);
+    background-color: white;
     transition: 300ms ease;
+}
+
+.item h3 {
+    color: black;
 }
 
 .item:hover {
     transform: scale(105%) translateY(-4%);
-    box-shadow: 0 2px 16px 8px  rgba(23, 33, 36, 0.2);
+    box-shadow: 0 8px 16px 8px  rgba(23, 33, 36, 0.1);
     cursor: pointer;
 }
 
@@ -128,7 +188,7 @@ a {
     max-width: 100%;
     aspect-ratio: 4.5/2;
     margin-right: 36px;
-    border-radius: 12px;
+    border-radius: 1em;
     box-shadow: 0 0 1px 1px rgba(23, 33, 36, 0.1);
     object-fit: cover;
     object-position: center;
@@ -136,7 +196,7 @@ a {
 }
 
 .item p {
-    margin-bottom: 32px;
+    margin-bottom: 64px;
 }
 
 .tags {
