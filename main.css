@@ -61,6 +61,7 @@ h3 {
     padding: 1.2em 0 0.6em;
     font-size: 1.7rem;
     font-weight: 600;
+    text-transform: capitalize;
 }
 
 p {
@@ -125,6 +126,7 @@ a {
 
 .item img {
     max-width: 100%;
+    aspect-ratio: 4.5/2;
     margin-right: 36px;
     border-radius: 12px;
     box-shadow: 0 0 1px 1px rgba(23, 33, 36, 0.1);
