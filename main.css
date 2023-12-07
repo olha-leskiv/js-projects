@@ -129,12 +129,40 @@ a {
     100%{background-position:0% 50%}
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 44px 56px;
+    position: relative;
+    z-index: 10;
+}
+
+nav ul {
+    display: flex;
+    gap: 2vw;
+    color: black;
+}
+
+nav p {
+    letter-spacing: 2px;
+    font-weight: 600;
+    opacity: 1;
+    font-size: 1.4rem;
+    color: black;
+
+}
+
+nav a {
+    color: black;
+}
+
 
 .container {
     position: relative;
     max-width: 85vw;
     margin: 0 auto;
-    padding: 10rem 4% 7rem;
+    padding: 8rem 4% 7rem;
     z-index: 2;
 }
 
@@ -242,7 +270,18 @@ a {
     }
 }
 
+@media screen and (max-width: 700px) {
+    nav {
+        display: none;
+    }
+    
+} 
+
 @media screen and (max-width: 600px) {
+    :root {
+        font-size: 11px;
+    }
+    
     .items-container {
         grid-template-columns: 1fr;
     }
